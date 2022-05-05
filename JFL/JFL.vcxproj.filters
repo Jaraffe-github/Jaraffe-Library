@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="Math\JFAffineTransform2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\JFAffineTransform3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\JFLinearTransform2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\JFLinearTransform3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\JFMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\JFMatrix2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\JFMatrix3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\JFMatrix4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\JFVector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\JFVector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\JFVector4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="JFL.h" />
+    <ClInclude Include="JFInclude.h" />
+    <ClInclude Include="Application\JFApplicationContextInterface.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\JFApplication.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Private\ApplicationPlatform.h">
+      <Filter>Application\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Private\Win32\ApplicationContext.h">
+      <Filter>Application\Private\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\JFWindow.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Private\WindowPlatform.h">
+      <Filter>Window\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Private\Win32\WindowContext.h">
+      <Filter>Window\Private\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\JFWindowContextInterface.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Math\JFAffineTransform2.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="Math\JFAffineTransform3.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="Math\JFLinearTransform2.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="Math\JFLinearTransform3.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="Math\JFMatrix2.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="Math\JFMatrix3.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="Math\JFMatrix4.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="Math\JFVector2.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="Math\JFVector3.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="Math\JFVector4.inl">
+      <Filter>Math</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Math">
+      <UniqueIdentifier>{b65c40b3-fe77-4d3a-bbee-656b1732745c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{9ac82033-b118-4b47-8c64-2afe20b190a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Private">
+      <UniqueIdentifier>{1e075600-229f-405e-900f-2ff1eec978dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Private\Win32">
+      <UniqueIdentifier>{75d6a3b5-f3f4-4d3c-aa85-ce0436fabb1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{9b4146b9-6b19-413b-bc2f-469f2e70c1c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Private">
+      <UniqueIdentifier>{0131bac6-5799-4800-876f-394e79f316a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Private\Win32">
+      <UniqueIdentifier>{093e49e5-eefc-4b7f-9507-62b091083a56}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Application\JFApplication.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Private\Win32\ApplicationContext.cpp">
+      <Filter>Application\Private\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\JFWindow.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\Private\Win32\WindowContext.cpp">
+      <Filter>Window\Private\Win32</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

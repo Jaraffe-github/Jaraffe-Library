@@ -1,0 +1,29 @@
+﻿# Binary files
+Build/
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Visual C++ cache files
+ipch/
+*.aps
+*.ncb
+*.opensdf
+*.sdf
+*.cachefile
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+
+# Visual Studio 2015 and later
+*.VC.db
+*.VC.opendb
+**/.vs/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
