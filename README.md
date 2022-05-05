@@ -1,7 +1,8 @@
-﻿현재 스터디 목적으로 만든 프로젝트 이며, 진도에 해당하는 코드들만 올리고 있습니다.
+﻿# Jaraffe Library
+This is a project made for study.
 
-# Jaraffe Library
-The currently supported graphics API is [Microsoft DirectX 12](https://msdn.microsoft.com/en-us/library/windows/desktop/dn903821.aspx).
+Only the code that corresponds to the study progress has been updated.
+(See. Study Note Address)
 
 ## Build Environmnets
 - Visual Studio 2022 for windows
@@ -12,10 +13,13 @@ The currently supported graphics API is [Microsoft DirectX 12](https://msdn.micr
 - Windows 10 or later. (Direct12 Required)
 
 ## Included External Libraries
-- None
+[googletest-1.11.0](https://github.com/google/googletest) <br />
 
 ## My Blog Address
 https://jaraffe.notion.site/Blog-d84b8b9381604112a3a75234c738a2c0
+
+## Study Note Address
+https://jaraffe.notion.site/1-04f805ef52094ffc90bb960fa273d022
 
 ## Author
 Seungmin Choi, (ccm1333@naver.com)
