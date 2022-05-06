@@ -7,6 +7,7 @@ Only the code that corresponds to the study progress has been updated.
 ## Build Requirements
 - C++ 20 compiler
 - Visual Studio 2022+ or Xcode 12.0+
+- CMake 3.18+ (In Progress - Option)
 
 ## Runtime Requirements
 - Windows 10+ for Win games 
