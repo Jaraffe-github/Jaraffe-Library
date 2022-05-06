@@ -5,6 +5,7 @@
 //  Copyright (c) 2021 Seungmin Choi. All rights reserved.
 //
 
+#if defined(_WIN32)
 #include "WindowContext.h"
 
 using namespace JFL;
@@ -83,3 +84,5 @@ LRESULT WindowContext::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
     // Handle any messages the switch statement didn't.
     return ::DefWindowProcW(hWnd, message, wParam, lParam);
 }
+
+#endif

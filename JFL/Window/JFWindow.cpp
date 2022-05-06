@@ -5,7 +5,6 @@
 //  Copyright (c) 2021 Seungmin Choi. All rights reserved.
 //
 
-#pragma once
 #include "JFWindow.h"
 #include "Private/WindowPlatform.h"
 

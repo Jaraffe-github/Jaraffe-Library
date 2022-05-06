@@ -5,6 +5,7 @@
 //  Copyright (c) 2021 Seungmin Choi. All rights reserved.
 //
 
+#if defined(_WIN32)
 #include "ApplicationContext.h"
 #include <Windows.h>
 
@@ -73,3 +74,5 @@ int ApplicationContext::MessageLoop()
 
 	return static_cast<int>(msg.wParam);
 }
+
+#endif

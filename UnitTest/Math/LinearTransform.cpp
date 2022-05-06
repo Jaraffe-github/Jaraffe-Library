@@ -1,4 +1,4 @@
-﻿#include "Include.h"
+#include "Include.h"
 
 TEST(LinearTransform, Equal)
 {
@@ -69,7 +69,7 @@ TEST(LinearTransform, Rotate)
         int size = sizeof(m.value) / sizeof(m.value[0]);
         for (int i = 0; i < size; ++i)
         {
-            using elementType = std::remove_reference<decltype(m.value[i])>::type;
+            using elementType = typename std::remove_reference<decltype(m.value[i])>::type;
             EXPECT_EQ(true, ApproximatelyEqualAbsRel<elementType>(identity.value[i],
                                                                   m.value[i],
                                                                   1e-5f,

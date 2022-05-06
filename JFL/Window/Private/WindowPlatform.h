@@ -8,9 +8,9 @@
 #pragma once
 #include "../JFWindowContextInterface.h"
 
-#if defined(_WIN32)
 #include "Win32/WindowContext.h"
-#endif
+#include "Cocoa/WindowContext.h"
+#include "CocoaTouch/WindowContext.h"
 
 JFL::JFWindowContextInterface* CreateWindowContext()
 {

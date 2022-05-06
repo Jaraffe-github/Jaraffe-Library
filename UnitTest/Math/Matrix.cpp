@@ -1,4 +1,4 @@
-﻿#include "Include.h"
+#include "Include.h"
 
 TEST(Matrix, Equal)
 {
@@ -13,8 +13,6 @@ TEST(Matrix, Equal)
     body(JFMatrix2());
     body(JFMatrix3());
     body(JFMatrix4());
-
-    JFMatrix2 t{};
 }
 
 TEST(Matrix, NotEqual)
@@ -147,7 +145,7 @@ TEST(Matrix, Inverse)
         auto identity = M();
         for (int i = 0; i < size; ++i)
         {
-            using elementType = std::remove_reference<decltype(m.value[i])>::type;
+            using elementType = typename std::remove_reference<decltype(m.value[i])>::type;
             EXPECT_EQ(true, ApproximatelyEqualAbsRel<elementType>(identity.value[i], 
                                                                   r.value[i], 
                                                                   1e-5f,

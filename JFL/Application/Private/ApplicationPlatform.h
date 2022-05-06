@@ -8,9 +8,9 @@
 #pragma once
 #include "../JFApplicationContextInterface.h"
 
-#if defined(_WIN32)
 #include "Win32/ApplicationContext.h"
-#endif
+#include "Cocoa/ApplicationContext.h"
+#include "CocoaTouch/ApplicationContext.h"
 
 JFL::JFApplicationContextInterface* CreateApplicationContext()
 {

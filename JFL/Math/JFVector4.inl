@@ -68,7 +68,7 @@ namespace JFL
 		return { x / v.x, y / v.y, z / v.z, w / v.w };
 	}
 
-	constexpr static JFVector4 operator*(float f, const JFVector4& v) noexcept
+	constexpr JFVector4 operator*(float f, const JFVector4& v) noexcept
 	{
 		return { v.x * f, v.y * f, v.z * f, v.w * f };
 	}

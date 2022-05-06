@@ -6,6 +6,7 @@
 //
 
 #pragma once
+#if defined(_WIN32)
 #include "JFInclude.h"
 #include "../../JFApplicationContextInterface.h"
 
@@ -20,3 +21,5 @@ namespace JFL
 		int MessageLoop() override;
 	};
 }
+
+#endif

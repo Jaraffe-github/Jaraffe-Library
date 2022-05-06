@@ -6,13 +6,14 @@
 //
 
 #pragma once
+#if defined(_WIN32)
 #include "JFInclude.h"
 #include "../../JFWindowContextInterface.h"
 #include <windows.h>
 
 namespace JFL
 {
-	class JFL_API WindowContext : public JFWindowContextInterface
+	class WindowContext : public JFWindowContextInterface
 	{
 	public:
 		WindowContext();
@@ -33,3 +34,5 @@ namespace JFL
 		HWND handle;
 	};
 }
+
+#endif
