@@ -18,3 +18,7 @@ target_include_directories(UnitTest
 target_link_libraries(UnitTest PUBLIC JFL googletest)
 
 target_compile_features(UnitTest PRIVATE cxx_std_20)
+
+if (BUILD_SHARED_LIBS)
+	target_compile_definitions(UnitTest PRIVATE GTEST_LINKED_AS_SHARED_LIBRARY)
+endif()

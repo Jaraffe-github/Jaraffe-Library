@@ -44,9 +44,14 @@ set(SOURCE
 	Window/Private/CocoaTouch/WindowContext.m
 	Window/Private/Win32/WindowContext.cpp
 )
-	
-add_library(JFL STATIC ${SOURCE} ${INCLUDE})
+
+add_library(JFL ${SOURCE} ${INCLUDE})
 
 target_include_directories(JFL PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_compile_features(JFL PRIVATE cxx_std_20)
+
+if (BUILD_SHARED_LIBS)
+	target_compile_definitions(JFL PUBLIC JFL_DYNAMIC)
+	target_compile_definitions(JFL PRIVATE DLL_EXPORTS)
+endif()
