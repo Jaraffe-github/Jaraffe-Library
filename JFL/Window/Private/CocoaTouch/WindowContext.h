@@ -6,9 +6,6 @@
 //
 
 #pragma once
-#if defined(__APPLE__)
-#include <TargetConditionals.h>
-#if TARGET_OS_IOS
 #include "JFInclude.h"
 #include "../../JFWindowContextInterface.h"
 #include <UIKit/UIKit.h>
@@ -34,6 +31,3 @@ namespace JFL
         UIView* view;
     };
 }
-
-#endif
-#endif

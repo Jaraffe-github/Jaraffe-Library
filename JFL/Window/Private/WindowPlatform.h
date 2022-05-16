@@ -6,13 +6,9 @@
 //
 
 #pragma once
-#include "../JFWindowContextInterface.h"
+#include "../JFWindow.h"
 
-#include "Win32/WindowContext.h"
-#include "Cocoa/WindowContext.h"
-#include "CocoaTouch/WindowContext.h"
-
-JFL::JFWindowContextInterface* CreateWindowContext()
+namespace JFL::Private
 {
-	return new JFL::WindowContext();
+	JFWindow* CreatePlatformWindow();
 }

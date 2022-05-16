@@ -6,9 +6,6 @@
 //
 
 #pragma once
-#if defined(__APPLE__)
-#include <TargetConditionals.h>
-#if TARGET_OS_OSX
 #include "JFInclude.h"
 #include "../../JFWindowContextInterface.h"
 #include <Cocoa/Cocoa.h>
@@ -34,6 +31,3 @@ namespace JFL
         NSView* view;
     };
 }
-
-#endif
-#endif

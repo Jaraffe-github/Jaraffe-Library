@@ -7,25 +7,25 @@
 
 #pragma once
 #include "JFInclude.h"
-#include "JFWindowContextInterface.h"
 
 namespace JFL
 {
-	class JFL_API JFWindow final
+	class JFL_API JFWindow
 	{
 	public:
-		JFWindow();
-		~JFWindow();
+		virtual ~JFWindow() noexcept = default;
 
-		void Create();
-		void Destory();
+		static JFWindow* CreatePlatformWindow();
 
-		void Show();
-		void Hide();
+		virtual void Create() = 0;
+		virtual void Destory() = 0;
 
-		void* PlatformHandle() const;
+		virtual void Show() = 0;
+		virtual void Hide() = 0;
 
-	private:
-		JFWindowContextInterface* context;
+		virtual void* PlatformHandle() const = 0;
+
+	protected:
+		JFWindow() = default;
 	};
 }

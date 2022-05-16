@@ -5,17 +5,24 @@
 //  Copyright (c) 2021 Seungmin Choi. All rights reserved.
 //
 
-#if defined(_WIN32)
-#include "WindowContext.h"
+#include "Window.h"
 
 using namespace JFL;
 
-WindowContext::WindowContext()
+namespace JFL::Private
+{
+    JFWindow* CreatePlatformWindow()
+    {
+        return new Window();
+    }
+}
+
+Window::Window()
     : handle(nullptr)
 {
 }
 
-void WindowContext::Create()
+void Window::Create()
 {
     // Initialize the window class.
     WNDCLASSEXW windowClass = { 0 };
@@ -43,34 +50,34 @@ void WindowContext::Create()
     }
 }
 
-void WindowContext::Destory()
+void Window::Destory()
 {
     JFASSERT_DEBUG(handle);
     ::PostMessageW(handle, WM_CLOSE, 0, 0);
     handle = NULL;
 }
 
-void WindowContext::Show()
+void Window::Show()
 {
     JFASSERT_DEBUG(handle);
     ::ShowWindow(handle, SW_SHOWNORMAL);
 }
 
-void WindowContext::Hide()
+void Window::Hide()
 {
     JFASSERT_DEBUG(handle);
     ::ShowWindow(handle, SW_HIDE);
 }
 
-void* WindowContext::PlatformHandle() const
+void* Window::PlatformHandle() const
 {
     JFASSERT_DEBUG(handle);
 	return handle;
 }
 
-LRESULT WindowContext::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT Window::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    WindowContext* window = (WindowContext*)::GetWindowLongPtrW(hWnd, GWLP_USERDATA);
+    Window* window = (Window*)::GetWindowLongPtrW(hWnd, GWLP_USERDATA);
     if (window)
     {
         switch (message)
@@ -84,5 +91,3 @@ LRESULT WindowContext::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
     // Handle any messages the switch statement didn't.
     return ::DefWindowProcW(hWnd, message, wParam, lParam);
 }
-
-#endif

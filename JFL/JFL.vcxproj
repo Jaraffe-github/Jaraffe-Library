@@ -102,34 +102,42 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Common.props" />
+    <Import Project="JFL.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_DLL|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Common.props" />
+    <Import Project="JFL.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Common.props" />
+    <Import Project="JFL.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_DLL|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Common.props" />
+    <Import Project="JFL.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Common.props" />
+    <Import Project="JFL.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_DLL|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Common.props" />
+    <Import Project="JFL.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Common.props" />
+    <Import Project="JFL.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_DLL|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Common.props" />
+    <Import Project="JFL.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -281,6 +289,12 @@
     <ClInclude Include="Application\JFApplicationContextInterface.h" />
     <ClInclude Include="Application\Private\ApplicationPlatform.h" />
     <ClInclude Include="Application\Private\Win32\ApplicationContext.h" />
+    <ClInclude Include="Graphics\JFGraphics.h" />
+    <ClInclude Include="Graphics\JFGraphicsDevice.h" />
+    <ClInclude Include="Graphics\Private\Direct3D12\d3d12_headers.h" />
+    <ClInclude Include="Graphics\Private\Direct3D12\d3dx12.h" />
+    <ClInclude Include="Graphics\Private\GraphicsAPI.h" />
+    <ClInclude Include="Graphics\Private\Direct3D12\GraphicsDevice.h" />
     <ClInclude Include="JFInclude.h" />
     <ClInclude Include="JFL.h" />
     <ClInclude Include="Math\JFAffineTransform2.h" />
@@ -295,9 +309,8 @@
     <ClInclude Include="Math\JFVector3.h" />
     <ClInclude Include="Math\JFVector4.h" />
     <ClInclude Include="Window\JFWindow.h" />
-    <ClInclude Include="Window\JFWindowContextInterface.h" />
     <ClInclude Include="Window\Private\WindowPlatform.h" />
-    <ClInclude Include="Window\Private\Win32\WindowContext.h" />
+    <ClInclude Include="Window\Private\Win32\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl" />
@@ -314,8 +327,10 @@
   <ItemGroup>
     <ClCompile Include="Application\JFApplication.cpp" />
     <ClCompile Include="Application\Private\Win32\ApplicationContext.cpp" />
+    <ClCompile Include="Graphics\JFGraphicsDevice.cpp" />
+    <ClCompile Include="Graphics\Private\Direct3D12\GraphicsDevice.cpp" />
     <ClCompile Include="Window\JFWindow.cpp" />
-    <ClCompile Include="Window\Private\Win32\WindowContext.cpp" />
+    <ClCompile Include="Window\Private\Win32\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

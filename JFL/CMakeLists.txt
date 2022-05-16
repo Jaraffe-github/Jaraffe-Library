@@ -5,6 +5,17 @@ set(INCLUDE
 	Application/Private/Cocoa/ApplicationContext.h
 	Application/Private/CocoaTouch/ApplicationContext.h
 	Application/Private/Win32/ApplicationContext.h
+	Window/JFWindow.h
+	Window/Private/WindowPlatform.h
+	Window/Private/Cocoa/WindowContext.h
+	Window/Private/CocoaTouch/WindowContext.h
+	Window/Private/Win32/Window.h
+	Graphics/JFGraphics.h
+	Graphics/JFGraphicsDevice.h
+	Graphics/Private/GraphicsAPI.h
+	Graphics/Private/Direct3D12/d3d12_headers.h
+	Graphics/Private/Direct3D12/d3dx12.h
+	Graphics/Private/Direct3D12/GraphicsDevice.h
 	Math/JFAffineTransform2.h
 	Math/JFAffineTransform2.inl
 	Math/JFAffineTransform3.h
@@ -26,12 +37,6 @@ set(INCLUDE
 	Math/JFVector3.inl
 	Math/JFVector4.h
 	Math/JFVector4.inl
-	Window/JFWindow.h
-	Window/JFWindowContextInterface.h
-	Window/Private/WindowPlatform.h
-	Window/Private/Cocoa/WindowContext.h
-	Window/Private/CocoaTouch/WindowContext.h
-	Window/Private/Win32/WindowContext.h
 )
 
 set(SOURCE
@@ -43,6 +48,8 @@ set(SOURCE
 	Window/Private/Cocoa/WindowContext.m
 	Window/Private/CocoaTouch/WindowContext.m
 	Window/Private/Win32/WindowContext.cpp
+	Graphics/JFGraphicsDevice.cpp
+	Graphics/Private/Direct3D12/GraphicsDevice.cpp
 )
 
 add_library(JFL ${SOURCE} ${INCLUDE})

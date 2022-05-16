@@ -54,12 +54,23 @@
     <ClInclude Include="Window\Private\WindowPlatform.h">
       <Filter>Window\Private</Filter>
     </ClInclude>
-    <ClInclude Include="Window\Private\Win32\WindowContext.h">
+    <ClInclude Include="Window\Private\Win32\Window.h">
       <Filter>Window\Private\Win32</Filter>
     </ClInclude>
-    <ClInclude Include="Window\JFWindowContextInterface.h">
-      <Filter>Window</Filter>
+    <ClInclude Include="Graphics\Private\Direct3D12\d3dx12.h" />
+    <ClInclude Include="Graphics\Private\Direct3D12\GraphicsDevice.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\JFGraphicsDevice.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\GraphicsAPI.h">
+      <Filter>Graphics\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFGraphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\d3d12_headers.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -115,6 +126,15 @@
     <Filter Include="Window\Private\Win32">
       <UniqueIdentifier>{093e49e5-eefc-4b7f-9507-62b091083a56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{72af4509-7507-4ff7-b9d2-70401dd9d632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Private">
+      <UniqueIdentifier>{c17b0b37-b73e-4cf8-beb1-cf83a2ff174f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Private\Direct3D12">
+      <UniqueIdentifier>{de69d695-0dc9-48c3-86cc-fe52e3f643a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\JFApplication.cpp">
@@ -126,8 +146,14 @@
     <ClCompile Include="Window\JFWindow.cpp">
       <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="Window\Private\Win32\WindowContext.cpp">
+    <ClCompile Include="Window\Private\Win32\Window.cpp">
       <Filter>Window\Private\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Direct3D12\GraphicsDevice.cpp">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\JFGraphicsDevice.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

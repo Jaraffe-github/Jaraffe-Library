@@ -6,18 +6,17 @@
 //
 
 #pragma once
-#if defined(_WIN32)
+#include "../../JFWindow.h"
 #include "JFInclude.h"
-#include "../../JFWindowContextInterface.h"
 #include <windows.h>
 
 namespace JFL
 {
-	class WindowContext : public JFWindowContextInterface
+	class Window : public JFWindow
 	{
 	public:
-		WindowContext();
-		~WindowContext() = default;
+		Window();
+		~Window() = default;
 
 		void Create() override;
 		void Destory() override;
@@ -34,5 +33,3 @@ namespace JFL
 		HWND handle;
 	};
 }
-
-#endif

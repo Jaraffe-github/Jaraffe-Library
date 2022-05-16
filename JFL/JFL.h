@@ -8,6 +8,7 @@
 #pragma once
 #include "Application/JFApplication.h"
 #include "Window/JFWindow.h"
+#include "Graphics/JFGraphics.h"
 #include "Math/JFMath.h"
 
 struct LibraryVersion
