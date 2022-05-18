@@ -8,6 +8,8 @@
 #include "JFGraphicsDevice.h"
 #include "Private/GraphicsAPI.h"
 
+#include "Private/Direct3D12/GraphicsDevice.h"
+
 using namespace JFL;
 
 JFGraphicsDevice* JFGraphicsDevice::CreateGraphicsDevice()

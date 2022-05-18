@@ -7,13 +7,19 @@
 
 #pragma once
 #include "JFInclude.h"
+#include "Object/JFObject.h"
+#include "JFCommandQueue.h"
+#include "JFCommandList.h"
 
 namespace JFL
 {
-	class JFL_API JFGraphicsDevice
+	class JFL_API JFGraphicsDevice : public JFRefCounter
 	{
 	public:
 		virtual ~JFGraphicsDevice() noexcept = default;
+
+		virtual JFObject<JFCommandQueue> CreateCommandQueue() = 0;
+		virtual JFObject<JFCommandList> CreateCommandList() = 0;
 
 		static JFGraphicsDevice* CreateGraphicsDevice();
 

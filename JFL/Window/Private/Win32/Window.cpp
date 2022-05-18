@@ -19,6 +19,8 @@ namespace JFL::Private
 
 Window::Window()
     : handle(nullptr)
+    , width(0)
+    , height(0)
 {
 }
 
@@ -69,6 +71,11 @@ void Window::Hide()
     ::ShowWindow(handle, SW_HIDE);
 }
 
+float Window::AspectRatio() const
+{
+    return static_cast<float>(width) / static_cast<float>(height);
+}
+
 void* Window::PlatformHandle() const
 {
     JFASSERT_DEBUG(handle);
@@ -82,6 +89,17 @@ LRESULT Window::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam
     {
         switch (message)
         {
+        case WM_SIZE:
+        {
+            uint32_t width = LOWORD(lParam);
+            uint32_t height = HIWORD(lParam);
+            if (window->width != width || window->height != height)
+            {
+                window->width = width;
+                window->height = height;
+            }
+            return 0;
+        }
         case WM_DESTROY:
             PostQuitMessage(0);
             return 0;

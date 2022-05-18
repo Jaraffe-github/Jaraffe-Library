@@ -18,20 +18,21 @@ public:
 		window->Show();
 
 		graphicsDevice = JFGraphicsDevice::CreateGraphicsDevice();
+		commandQueue = graphicsDevice->CreateCommandQueue();
+		commandList = graphicsDevice->CreateCommandList();
+		swapChain = commandQueue->CreateSwapChain(window);
 	}
 
 	void OnTerminate() override
 	{
-		delete graphicsDevice;
-		graphicsDevice = nullptr;
-
-		delete window;
-		window = nullptr;
 	}
 
 private:
-	JFWindow* window;
-	JFGraphicsDevice* graphicsDevice;
+	JFObject<JFWindow> window;
+	JFObject<JFGraphicsDevice> graphicsDevice;
+	JFObject<JFCommandQueue> commandQueue;
+	JFObject<JFCommandList> commandList;
+	JFObject<JFSwapChain> swapChain;
 };
 
 TEST(Application, Init)

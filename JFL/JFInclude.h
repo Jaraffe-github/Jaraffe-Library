@@ -27,7 +27,7 @@
 
 namespace JFL
 {
-	template <class T>
+	template<class T>
 	concept Arithmetic = std::is_arithmetic_v<T>;
 
 	template<Arithmetic T>

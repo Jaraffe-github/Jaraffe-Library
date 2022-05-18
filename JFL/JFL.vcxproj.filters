@@ -57,7 +57,6 @@
     <ClInclude Include="Window\Private\Win32\Window.h">
       <Filter>Window\Private\Win32</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\d3dx12.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\GraphicsDevice.h">
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClInclude>
@@ -70,7 +69,36 @@
     <ClInclude Include="Graphics\JFGraphics.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\d3d12_headers.h" />
+    <ClInclude Include="Graphics\Private\Direct3D12\CommandList.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\CommandQueue.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\d3d12_headers.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\d3dx12.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFCommandList.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFCommandQueue.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\JFObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\JFRefCounter.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFSwapChain.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\SwapChain.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -135,6 +163,9 @@
     <Filter Include="Graphics\Private\Direct3D12">
       <UniqueIdentifier>{de69d695-0dc9-48c3-86cc-fe52e3f643a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{f6462b99-5dc8-48ff-a6fe-30a0f7903ba0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\JFApplication.cpp">
@@ -154,6 +185,18 @@
     </ClCompile>
     <ClCompile Include="Graphics\JFGraphicsDevice.cpp">
       <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Direct3D12\CommandList.cpp">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Direct3D12\CommandQueue.cpp">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\JFRefCounter.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Direct3D12\SwapChain.cpp">
+      <Filter>Graphics\Private\Direct3D12</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -11,11 +11,14 @@
 
 namespace JFL
 {
-	class GraphicsDevice : public JFGraphicsDevice
+	class GraphicsDevice final : public JFGraphicsDevice
 	{
 	public:
 		GraphicsDevice();
 		~GraphicsDevice() noexcept = default;
+
+		JFObject<JFCommandQueue> CreateCommandQueue() override;
+		JFObject<JFCommandList> CreateCommandList() override;
 
 		ID3D12Device* Device() const { return device.Get(); }
 		ComPtr<IDXGIFactory6> Factory() const { return factory; }

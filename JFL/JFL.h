@@ -6,6 +6,7 @@
 //
 
 #pragma once
+#include "Object/JFObject.h"
 #include "Application/JFApplication.h"
 #include "Window/JFWindow.h"
 #include "Graphics/JFGraphics.h"
