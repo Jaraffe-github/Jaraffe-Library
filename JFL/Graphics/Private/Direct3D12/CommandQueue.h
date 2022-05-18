@@ -14,7 +14,7 @@ namespace JFL
 {
     class GraphicsDevice;
 
-	class JFL_API CommandQueue final : public JFCommandQueue
+	class CommandQueue final : public JFCommandQueue
 	{
 	public:
         CommandQueue(GraphicsDevice*, ID3D12CommandQueue*);

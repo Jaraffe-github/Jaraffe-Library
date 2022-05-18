@@ -21,6 +21,6 @@ namespace JFL
 		uint32_t RefCount() const;
 
 	private:
-		std::atomic_uint refCount;
+		struct JFL_API std::atomic<unsigned int> refCount;
 	}; 
 }

@@ -12,7 +12,7 @@
 
 namespace JFL
 {
-    class JFL_API CommandList final : public JFCommandList
+    class CommandList final : public JFCommandList
     {
     public:
         CommandList(ID3D12CommandAllocator*, ID3D12CommandList*, D3D12_COMMAND_LIST_TYPE);
