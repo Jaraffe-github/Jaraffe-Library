@@ -99,6 +99,8 @@
     <ClInclude Include="Graphics\Private\Direct3D12\SwapChain.h">
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClInclude>
+    <ClInclude Include="Log\JFLogVariant.h" />
+    <ClInclude Include="Log\JFLog.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -166,6 +168,9 @@
     <Filter Include="Object">
       <UniqueIdentifier>{f6462b99-5dc8-48ff-a6fe-30a0f7903ba0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Log">
+      <UniqueIdentifier>{65ba74be-33d2-4788-b5f9-488d34ef8f83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\JFApplication.cpp">
@@ -198,5 +203,7 @@
     <ClCompile Include="Graphics\Private\Direct3D12\SwapChain.cpp">
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClCompile>
+    <ClCompile Include="Log\JFLogVariant.cpp" />
+    <ClCompile Include="Log\JFLog.cpp" />
   </ItemGroup>
 </Project>

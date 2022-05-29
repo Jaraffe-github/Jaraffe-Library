@@ -8,6 +8,7 @@
 #include "GraphicsDevice.h"
 #include "CommandQueue.h"
 #include "CommandList.h"
+#include "Log/JFLog.h"
 
 using namespace JFL;
 
@@ -30,7 +31,7 @@ GraphicsDevice::GraphicsDevice()
         if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(&debugController))))
         {
             debugController->EnableDebugLayer();
-            //JFLogInfo("Enable D3D12 debug layer.");
+            JFLogInfo("Enable D3D12 debug layer.");
 
             // this is slow for gpu debug.
             if (GraphicsOption::ENABLE_GPU_VALIDATION)
@@ -39,13 +40,13 @@ GraphicsDevice::GraphicsDevice()
                 if (SUCCEEDED(debugController->QueryInterface(IID_PPV_ARGS(&debugController1))))
                 {
                     debugController1->SetEnableGPUBasedValidation(true);
-                    //JFLogInfo("Enable D3D12 GPU based validation.");
+                    JFLogInfo("Enable D3D12 GPU based validation.");
                 }
             }
         }
         else
         {
-            //JFLogWarning("Unable to enable D3D12 debug layer");
+            JFLogWarning("Unable to enable D3D12 debug layer");
         }
 
         ComPtr<IDXGIInfoQueue> dxgiInfoQueue;
@@ -84,7 +85,7 @@ GraphicsDevice::GraphicsDevice()
         {
             if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), GraphicsOption::MIN_FEATURE, IID_PPV_ARGS(&device))))
             {
-                //JFLogInfo(L"Usable hardware info: {} ({} MB)", desc.Description, desc.DedicatedVideoMemory >> 20);
+                JFLogInfo(L"Usable hardware info: {} ({} MB)", desc.Description, desc.DedicatedVideoMemory >> 20);
                 maxSize = desc.DedicatedVideoMemory;
             }
         }
@@ -95,12 +96,12 @@ GraphicsDevice::GraphicsDevice()
 
         DXGI_ADAPTER_DESC1 desc;
         adapter->GetDesc1(&desc);
-        //JFLogInfo(L"Selected hardware info: {} ({} MB)", desc.Description, desc.DedicatedVideoMemory >> 20);
+        JFLogInfo(L"Selected hardware info: {} ({} MB)", desc.Description, desc.DedicatedVideoMemory >> 20);
     }
     // software adapter.
     else
     {
-        //JFLogWarning("Failed to find a supportable hardware adapter");
+        JFLogWarning("Failed to find a supportable hardware adapter");
 
         ComPtr<IDXGIAdapter> warpAdapter;
         ThrowIfFailed(factory->EnumWarpAdapter(IID_PPV_ARGS(&warpAdapter)));
@@ -110,7 +111,7 @@ GraphicsDevice::GraphicsDevice()
             D3D_FEATURE_LEVEL_11_0,
             IID_PPV_ARGS(&device)));
 
-        //JFLogInfo("Instead used WARP software adapter");
+        JFLogInfo("Instead used WARP software adapter");
     }
 
 #if defined(DEBUG) || defined(_DEBUG)
@@ -176,6 +177,7 @@ JFObject<JFCommandList> GraphicsDevice::CreateCommandList()
 
     ComPtr<ID3D12GraphicsCommandList> commandList;
     ThrowIfFailed(device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, commandAllocator.Get(), nullptr, IID_PPV_ARGS(&commandList)));
+    commandList->Close();
 
     return new CommandList(commandAllocator.Get(), commandList.Get(), D3D12_COMMAND_LIST_TYPE_DIRECT);
 }
