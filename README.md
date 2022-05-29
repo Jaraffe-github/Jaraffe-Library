@@ -15,6 +15,8 @@ Only the code that corresponds to the study progress has been updated.
 - iOS 15.0+ for iPhone/iPad games
 
 ## Included External Libraries
+### JFL
+[fmt-8.0.1](https://github.com/fmtlib/fmt) instead of [std::format(issue)](https://github.com/microsoft/STL/issues/1814) <br />
 ### UnitTest
 [googletest-1.11.0](https://github.com/google/googletest) <br />
 
