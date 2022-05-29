@@ -21,6 +21,8 @@ public:
 		commandQueue = graphicsDevice->CreateCommandQueue();
 		commandList = graphicsDevice->CreateCommandList();
 		swapChain = commandQueue->CreateSwapChain(window);
+
+		vertexBuffer = graphicsDevice->CreateGPUBuffer(50000, JFGPUBuffer::CPUCacheMode::WriteCombined);
 	}
 
 	void OnTerminate() override
@@ -33,6 +35,8 @@ private:
 	JFObject<JFCommandQueue> commandQueue;
 	JFObject<JFCommandList> commandList;
 	JFObject<JFSwapChain> swapChain;
+
+	JFObject<JFGPUBuffer> vertexBuffer;
 };
 
 TEST(Application, Init)

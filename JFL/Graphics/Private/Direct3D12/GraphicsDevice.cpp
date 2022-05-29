@@ -8,6 +8,7 @@
 #include "GraphicsDevice.h"
 #include "CommandQueue.h"
 #include "CommandList.h"
+#include "GPUBuffer.h"
 #include "Log/JFLog.h"
 
 using namespace JFL;
@@ -180,4 +181,49 @@ JFObject<JFCommandList> GraphicsDevice::CreateCommandList()
     commandList->Close();
 
     return new CommandList(commandAllocator.Get(), commandList.Get(), D3D12_COMMAND_LIST_TYPE_DIRECT);
+}
+
+JFObject<JFGPUBuffer> GraphicsDevice::CreateGPUBuffer(size_t size, JFGPUBuffer::CPUCacheMode mode)
+{
+    D3D12_HEAP_PROPERTIES heapProperty{};
+    D3D12_RESOURCE_STATES initialResourceState{};
+    switch (mode)
+    {
+    case GPUBuffer::CPUCacheMode::None:
+        heapProperty = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
+        initialResourceState = D3D12_RESOURCE_STATE_GENERIC_READ;
+        break;
+    case GPUBuffer::CPUCacheMode::WriteCombined:
+        heapProperty = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
+        initialResourceState = D3D12_RESOURCE_STATE_GENERIC_READ;
+        break;
+    case GPUBuffer::CPUCacheMode::ReadCombined:
+        heapProperty = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_READBACK);
+        initialResourceState = D3D12_RESOURCE_STATE_COPY_DEST;
+        break;
+    }
+
+    D3D12_RESOURCE_DESC bufferDesc;
+    bufferDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
+    bufferDesc.Alignment = 0;
+    bufferDesc.Width = AlignGPUBufferSize(size);
+    bufferDesc.Height = 1;
+    bufferDesc.DepthOrArraySize = 1;
+    bufferDesc.MipLevels = 1;
+    bufferDesc.Format = DXGI_FORMAT_UNKNOWN;
+    bufferDesc.SampleDesc.Count = 1;
+    bufferDesc.SampleDesc.Quality = 0;
+    bufferDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
+    bufferDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
+
+    ComPtr<ID3D12Resource> buffer;
+    ThrowIfFailed(device->CreateCommittedResource(
+        &heapProperty,
+        D3D12_HEAP_FLAG_NONE,
+        &bufferDesc,
+        initialResourceState,
+        nullptr,
+        IID_PPV_ARGS(buffer.GetAddressOf())));
+
+    return new GPUBuffer(buffer.Get(), mode, initialResourceState);
 }

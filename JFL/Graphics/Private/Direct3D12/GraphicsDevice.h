@@ -20,6 +20,8 @@ namespace JFL
 		JFObject<JFCommandQueue> CreateCommandQueue() override;
 		JFObject<JFCommandList> CreateCommandList() override;
 
+		JFObject<JFGPUBuffer> CreateGPUBuffer(size_t, JFGPUBuffer::CPUCacheMode) override;
+
 		ID3D12Device* Device() const { return device.Get(); }
 		ComPtr<IDXGIFactory6> Factory() const { return factory; }
 

@@ -298,6 +298,7 @@
     <ClInclude Include="Graphics\Private\Direct3D12\CommandQueue.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\d3d12_headers.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\d3dx12.h" />
+    <ClInclude Include="Graphics\Private\Direct3D12\GPUBuffer.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\SwapChain.h" />
     <ClInclude Include="Graphics\Private\GraphicsAPI.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\GraphicsDevice.h" />
@@ -341,6 +342,7 @@
     <ClCompile Include="Graphics\JFGraphicsDevice.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\CommandList.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\CommandQueue.cpp" />
+    <ClCompile Include="Graphics\Private\Direct3D12\GPUBuffer.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\GraphicsDevice.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\SwapChain.cpp" />
     <ClCompile Include="Log\JFLog.cpp" />

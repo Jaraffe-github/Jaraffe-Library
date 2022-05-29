@@ -10,6 +10,7 @@
 #include "Object/JFObject.h"
 #include "JFCommandQueue.h"
 #include "JFCommandList.h"
+#include "JFGPUBuffer.h"
 
 namespace JFL
 {
@@ -18,10 +19,12 @@ namespace JFL
 	public:
 		virtual ~JFGraphicsDevice() noexcept = default;
 
+		static JFGraphicsDevice* CreateGraphicsDevice();
+
 		virtual JFObject<JFCommandQueue> CreateCommandQueue() = 0;
 		virtual JFObject<JFCommandList> CreateCommandList() = 0;
 
-		static JFGraphicsDevice* CreateGraphicsDevice();
+		virtual JFObject<JFGPUBuffer> CreateGPUBuffer(size_t size, JFGPUBuffer::CPUCacheMode mode) = 0;
 
 	protected:
 		JFGraphicsDevice() = default;
