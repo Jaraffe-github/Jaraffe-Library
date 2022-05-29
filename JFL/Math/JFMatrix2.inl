@@ -1,6 +1,6 @@
 //
 //  File: JFMatrix2.inl
-//  Author: Seungmin Choi (ccm1333@naver.com)
+//  Author: Seungmin Choi (jaraffe2@gmail.com)
 //
 //  Copyright (c) 2021 Seungmin Choi. All rights reserved.
 //

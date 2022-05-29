@@ -101,6 +101,7 @@
     </ClInclude>
     <ClInclude Include="Log\JFLogVariant.h" />
     <ClInclude Include="Log\JFLog.h" />
+    <ClInclude Include="Graphics\JFGPUBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
