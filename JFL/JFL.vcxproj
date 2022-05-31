@@ -294,12 +294,16 @@
     <ClInclude Include="Graphics\JFGPUBuffer.h" />
     <ClInclude Include="Graphics\JFGraphics.h" />
     <ClInclude Include="Graphics\JFGraphicsDevice.h" />
+    <ClInclude Include="Graphics\JFPixelFormat.h" />
+    <ClInclude Include="Graphics\JFTexture.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\CommandList.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\CommandQueue.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\d3d12_headers.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\d3dx12.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\GPUBuffer.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\SwapChain.h" />
+    <ClInclude Include="Graphics\Private\Direct3D12\Texture.h" />
+    <ClInclude Include="Graphics\Private\Direct3D12\Types.h" />
     <ClInclude Include="Graphics\Private\GraphicsAPI.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\GraphicsDevice.h" />
     <ClInclude Include="Graphics\JFSwapChain.h" />
@@ -345,6 +349,7 @@
     <ClCompile Include="Graphics\Private\Direct3D12\GPUBuffer.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\GraphicsDevice.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\SwapChain.cpp" />
+    <ClCompile Include="Graphics\Private\Direct3D12\Texture.cpp" />
     <ClCompile Include="Log\JFLog.cpp" />
     <ClCompile Include="Log\JFLogVariant.cpp" />
     <ClCompile Include="Object\JFRefCounter.cpp" />

@@ -99,10 +99,30 @@
     <ClInclude Include="Graphics\Private\Direct3D12\SwapChain.h">
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClInclude>
-    <ClInclude Include="Log\JFLogVariant.h" />
-    <ClInclude Include="Log\JFLog.h" />
-    <ClInclude Include="Graphics\JFGPUBuffer.h" />
-    <ClInclude Include="Graphics\Private\Direct3D12\GPUBuffer.h" />
+    <ClInclude Include="Graphics\JFPixelFormat.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFTexture.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\Types.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\Texture.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFGPUBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\GPUBuffer.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Log\JFLog.h">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Log\JFLogVariant.h">
+      <Filter>Log</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -205,8 +225,17 @@
     <ClCompile Include="Graphics\Private\Direct3D12\SwapChain.cpp">
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClCompile>
-    <ClCompile Include="Log\JFLogVariant.cpp" />
-    <ClCompile Include="Log\JFLog.cpp" />
-    <ClCompile Include="Graphics\Private\Direct3D12\GPUBuffer.cpp" />
+    <ClCompile Include="Graphics\Private\Direct3D12\Texture.cpp">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Direct3D12\GPUBuffer.cpp">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="Log\JFLog.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Log\JFLogVariant.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -9,6 +9,8 @@
 #include "CommandQueue.h"
 #include "CommandList.h"
 #include "GPUBuffer.h"
+#include "Texture.h"
+#include "Types.h"
 #include "Log/JFLog.h"
 
 using namespace JFL;
@@ -226,4 +228,61 @@ JFObject<JFGPUBuffer> GraphicsDevice::CreateGPUBuffer(size_t size, JFGPUBuffer::
         IID_PPV_ARGS(buffer.GetAddressOf())));
 
     return new GPUBuffer(buffer.Get(), mode, initialResourceState);
+}
+
+JFObject<JFTexture> GraphicsDevice::CreateTexture(const JFTextureDescriptor& desc)
+{
+    D3D12_RESOURCE_DESC bufferDesc{};
+    bufferDesc.Width = desc.width;
+    bufferDesc.Height = desc.height;
+    bufferDesc.DepthOrArraySize = desc.depth;
+    bufferDesc.MipLevels = desc.mipmapLevelCount;
+    bufferDesc.SampleDesc.Count = desc.sampleCount;
+    bufferDesc.SampleDesc.Quality = 0;
+    bufferDesc.Format = PixelFormat(desc.format);
+
+    switch (desc.type)
+    {
+    case Texture::Type1D: bufferDesc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE1D; break;
+    case Texture::Type2D: bufferDesc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D; break;
+    case Texture::Type3D: bufferDesc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE3D; break;
+    }
+
+    D3D12_RESOURCE_STATES initialState = D3D12_RESOURCE_STATE_COMMON;
+
+    // default - allow bind shader.
+    bufferDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
+    if (desc.usage & Texture::UsageShaderRead)
+    {
+        initialState = D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE | D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE;
+    }
+    else
+    {
+        // for optimize.
+        bufferDesc.Flags |= D3D12_RESOURCE_FLAG_DENY_SHADER_RESOURCE;
+    }
+    if (desc.usage & Texture::UsageRenderTarget)
+    {
+        bufferDesc.Flags |= D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET;
+        initialState = D3D12_RESOURCE_STATE_RENDER_TARGET;
+    }
+    if (desc.usage & Texture::UsageDepthStencil)
+    {
+        bufferDesc.Flags |= D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL;
+        initialState = D3D12_RESOURCE_STATE_DEPTH_WRITE;
+    }
+
+    ComPtr<ID3D12Resource> buffer;
+    {
+        CD3DX12_HEAP_PROPERTIES heapProperty(D3D12_HEAP_TYPE_DEFAULT);
+        ThrowIfFailed(device->CreateCommittedResource(
+            &heapProperty,
+            D3D12_HEAP_FLAG_NONE,
+            &bufferDesc,
+            initialState,
+            nullptr,
+            IID_PPV_ARGS(buffer.GetAddressOf())));
+    }
+
+    return new Texture(buffer.Get(), initialState);
 }

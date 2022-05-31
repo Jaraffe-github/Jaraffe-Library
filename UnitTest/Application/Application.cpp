@@ -23,6 +23,17 @@ public:
 		swapChain = commandQueue->CreateSwapChain(window);
 
 		vertexBuffer = graphicsDevice->CreateGPUBuffer(50000, JFGPUBuffer::CPUCacheMode::WriteCombined);
+
+		JFTextureDescriptor whiteTextureDesc;
+		whiteTextureDesc.type = JFTexture::Type2D;
+		whiteTextureDesc.format = JFPixelFormat::RGBA8Unorm;
+		whiteTextureDesc.width = 4; // texture minimum size.
+		whiteTextureDesc.height = 4; // texture minimum size.
+		whiteTextureDesc.depth = 1;
+		whiteTextureDesc.mipmapLevelCount = 1;
+		whiteTextureDesc.sampleCount = 1;
+		whiteTextureDesc.usage = JFTexture::UsageShaderRead;
+		whiteTexture = graphicsDevice->CreateTexture(whiteTextureDesc);
 	}
 
 	void OnTerminate() override
@@ -37,6 +48,7 @@ private:
 	JFObject<JFSwapChain> swapChain;
 
 	JFObject<JFGPUBuffer> vertexBuffer;
+	JFObject<JFTexture> whiteTexture;
 };
 
 TEST(Application, Init)

@@ -7,3 +7,7 @@
 
 #pragma once
 #include "JFGraphicsDevice.h"
+#include "JFCommandQueue.h"
+#include "JFCommandList.h"
+#include "JFGPUBuffer.h"
+#include "JFTexture.h"

@@ -21,6 +21,7 @@ namespace JFL
 		JFObject<JFCommandList> CreateCommandList() override;
 
 		JFObject<JFGPUBuffer> CreateGPUBuffer(size_t, JFGPUBuffer::CPUCacheMode) override;
+		JFObject<JFTexture> CreateTexture(const JFTextureDescriptor&) override;
 
 		ID3D12Device* Device() const { return device.Get(); }
 		ComPtr<IDXGIFactory6> Factory() const { return factory; }

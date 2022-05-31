@@ -11,6 +11,7 @@
 #include "JFCommandQueue.h"
 #include "JFCommandList.h"
 #include "JFGPUBuffer.h"
+#include "JFTexture.h"
 
 namespace JFL
 {
@@ -25,6 +26,7 @@ namespace JFL
 		virtual JFObject<JFCommandList> CreateCommandList() = 0;
 
 		virtual JFObject<JFGPUBuffer> CreateGPUBuffer(size_t size, JFGPUBuffer::CPUCacheMode mode) = 0;
+		virtual JFObject<JFTexture> CreateTexture(const JFTextureDescriptor& descriptor) = 0;
 
 	protected:
 		JFGraphicsDevice() = default;
