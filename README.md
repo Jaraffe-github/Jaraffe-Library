@@ -27,7 +27,7 @@ https://jaraffe.notion.site/Blog-d84b8b9381604112a3a75234c738a2c0
 https://jaraffe.notion.site/93c64f2245dc4223828edff581ea814f
 
 ## Author
-Seungmin Choi, (ccm1333@naver.com)
+Seungmin Choi, (jaraffe2@gmail.com)
 
 ## License
 [BSD-3 License](http://opensource.org/licenses/BSD-3-Clause)
