@@ -24,7 +24,7 @@ Only the code that corresponds to the study progress has been updated.
 https://jaraffe.notion.site/Blog-d84b8b9381604112a3a75234c738a2c0
 
 ## Study Note Address
-https://jaraffe.notion.site/1-04f805ef52094ffc90bb960fa273d022
+https://jaraffe.notion.site/93c64f2245dc4223828edff581ea814f
 
 ## Author
 Seungmin Choi, (ccm1333@naver.com)
