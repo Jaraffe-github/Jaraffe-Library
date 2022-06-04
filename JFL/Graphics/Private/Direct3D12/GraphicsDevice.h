@@ -11,26 +11,29 @@
 
 namespace JFL
 {
-	class GraphicsDevice final : public JFGraphicsDevice
+	namespace Direct3D12
 	{
-	public:
-		GraphicsDevice();
-		~GraphicsDevice() noexcept = default;
+		class GraphicsDevice final : public JFGraphicsDevice
+		{
+		public:
+			GraphicsDevice();
+			~GraphicsDevice() noexcept = default;
 
-		JFObject<JFCommandQueue> CreateCommandQueue() override;
-		JFObject<JFCommandList> CreateCommandList() override;
+			JFObject<JFCommandQueue> CreateCommandQueue() override;
+			JFObject<JFCommandList> CreateCommandList() override;
 
-		JFObject<JFGPUBuffer> CreateGPUBuffer(size_t, JFGPUBuffer::CPUCacheMode) override;
-		JFObject<JFTexture> CreateTexture(const JFTextureDescriptor&) override;
+			JFObject<JFGPUBuffer> CreateGPUBuffer(size_t, JFGPUBuffer::CPUCacheMode) override;
+			JFObject<JFTexture> CreateTexture(const JFTextureDescriptor&) override;
 
-		ID3D12Device* Device() const { return device.Get(); }
-		ComPtr<IDXGIFactory6> Factory() const { return factory; }
+			ID3D12Device* Device() const { return device.Get(); }
+			ComPtr<IDXGIFactory6> Factory() const { return factory; }
 
-	private:
-		ComPtr<ID3D12Device> device;
-		ComPtr<IDXGIFactory6> factory;
+		private:
+			ComPtr<ID3D12Device> device;
+			ComPtr<IDXGIFactory6> factory;
 
-		D3D12_FEATURE_DATA_D3D12_OPTIONS d3d12Options;
-		D3D12_FEATURE_DATA_ARCHITECTURE architecture;
-	};
+			D3D12_FEATURE_DATA_D3D12_OPTIONS d3d12Options;
+			D3D12_FEATURE_DATA_ARCHITECTURE architecture;
+		};
+	}
 }

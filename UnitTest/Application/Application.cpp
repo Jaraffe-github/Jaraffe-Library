@@ -17,7 +17,7 @@ public:
 		window->Create();
 		window->Show();
 
-		graphicsDevice = JFGraphicsDevice::CreateGraphicsDevice();
+		graphicsDevice = JFGraphicsDevice::CreateGraphicsDevice(JFL::JFGraphicsType::Vulkan);
 		commandQueue = graphicsDevice->CreateCommandQueue();
 		commandList = graphicsDevice->CreateCommandList();
 		swapChain = commandQueue->CreateSwapChain(window);

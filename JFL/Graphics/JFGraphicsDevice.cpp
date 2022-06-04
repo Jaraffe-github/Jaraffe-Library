@@ -12,7 +12,7 @@
 
 using namespace JFL;
 
-JFGraphicsDevice* JFGraphicsDevice::CreateGraphicsDevice()
+JFGraphicsDevice* JFGraphicsDevice::CreateGraphicsDevice(JFGraphicsType type)
 {
-    return JFL::Private::CreateGraphicsDevice();
+    return JFL::Private::CreateGraphicsDevice(type);
 }

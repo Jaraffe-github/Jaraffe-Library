@@ -8,6 +8,7 @@
 #include "GPUBuffer.h"
 
 using namespace JFL;
+using namespace JFL::Direct3D12;
 
 GPUBuffer::GPUBuffer(ID3D12Resource* buffer, CPUCacheMode mode, D3D12_RESOURCE_STATES initialState)
 	: writable(mode == CPUCacheMode::WriteCombined)

@@ -13,6 +13,13 @@
 #include <cmath>
 #include <memory>
 
+struct LibraryVersion
+{
+	enum { Major = 0 };
+	enum { Minor = 0 };
+	enum { Patch = 0 };
+};
+
 #ifdef JFL_DYNAMIC
 #   ifdef DLL_EXPORTS
 #       define JFL_API __declspec(dllexport)

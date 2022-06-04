@@ -11,10 +11,3 @@
 #include "Window/JFWindow.h"
 #include "Graphics/JFGraphics.h"
 #include "Math/JFMath.h"
-
-struct LibraryVersion
-{
-	enum { Major = 0 };
-	enum { Minor = 0 };
-	enum { Patch = 0 };
-};

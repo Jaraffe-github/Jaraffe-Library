@@ -12,17 +12,20 @@
 
 namespace JFL
 {
-    class CommandList final : public JFCommandList
+    namespace Direct3D12
     {
-    public:
-        CommandList(ID3D12CommandAllocator*, ID3D12CommandList*, D3D12_COMMAND_LIST_TYPE);
-        ~CommandList() noexcept = default;
+        class CommandList final : public JFCommandList
+        {
+        public:
+            CommandList(ID3D12CommandAllocator*, ID3D12CommandList*, D3D12_COMMAND_LIST_TYPE);
+            ~CommandList() noexcept = default;
 
-        void Reset();
+            void Reset();
 
-    private:
-        D3D12_COMMAND_LIST_TYPE type;
-        ComPtr<ID3D12CommandList> list;
-        ComPtr<ID3D12CommandAllocator> allocator;
-    };
+        private:
+            D3D12_COMMAND_LIST_TYPE type;
+            ComPtr<ID3D12CommandList> list;
+            ComPtr<ID3D12CommandAllocator> allocator;
+        };
+    }
 }

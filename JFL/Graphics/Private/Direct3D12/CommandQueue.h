@@ -12,20 +12,23 @@
 
 namespace JFL
 {
-    class GraphicsDevice;
+    namespace Direct3D12
+    {
+        class GraphicsDevice;
 
-	class CommandQueue final : public JFCommandQueue
-	{
-	public:
-        CommandQueue(GraphicsDevice*, ID3D12CommandQueue*);
-        ~CommandQueue() noexcept = default;
+        class CommandQueue final : public JFCommandQueue
+        {
+        public:
+            CommandQueue(GraphicsDevice*, ID3D12CommandQueue*);
+            ~CommandQueue() noexcept = default;
 
-        JFObject<JFSwapChain> CreateSwapChain(const JFWindow*) override;
+            JFObject<JFSwapChain> CreateSwapChain(const JFWindow*) override;
 
-        ID3D12CommandQueue* Queue() const { return queue.Get(); }
+            ID3D12CommandQueue* Queue() const { return queue.Get(); }
 
-    private:
-        ComPtr<ID3D12CommandQueue> queue;
-        JFObject<GraphicsDevice> device;
-	};
+        private:
+            ComPtr<ID3D12CommandQueue> queue;
+            JFObject<GraphicsDevice> device;
+        };
+    }
 }

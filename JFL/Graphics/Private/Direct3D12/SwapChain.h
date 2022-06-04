@@ -14,29 +14,33 @@
 namespace JFL
 {
 	class JFWindow;
-	class CommandQueue;
 
-	class SwapChain final : public JFSwapChain
+	namespace Direct3D12
 	{
-	public:
-		SwapChain(GraphicsDevice*, CommandQueue*, const JFWindow*);
-		~SwapChain() noexcept = default;
+		class CommandQueue;
 
-		uint32_t Width() override { return width; }
-		uint32_t Height() override { return height; }
+		class SwapChain final : public JFSwapChain
+		{
+		public:
+			SwapChain(GraphicsDevice*, CommandQueue*, const JFWindow*);
+			~SwapChain() noexcept = default;
 
-		void Resize(uint32_t width, uint32_t height) override;
+			uint32_t Width() override { return width; }
+			uint32_t Height() override { return height; }
 
-	private:
-		uint32_t width;
-		uint32_t height;
+			void Resize(uint32_t width, uint32_t height) override;
 
-		UINT currentColorTextureIndex;
-		mutable ComPtr<ID3D12Resource> colorTexture[FRAME_BUFFER_COUNT];
-		mutable ComPtr<ID3D12Resource> depthStencilTexture;
+		private:
+			uint32_t width;
+			uint32_t height;
 
-		ComPtr<IDXGISwapChain3> swapChain;
+			UINT currentColorTextureIndex;
+			mutable ComPtr<ID3D12Resource> colorTexture[FRAME_BUFFER_COUNT];
+			mutable ComPtr<ID3D12Resource> depthStencilTexture;
 
-		JFObject<GraphicsDevice> device;
-	};
+			ComPtr<IDXGISwapChain3> swapChain;
+
+			JFObject<GraphicsDevice> device;
+		};
+	}
 }

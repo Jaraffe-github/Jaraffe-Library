@@ -123,6 +123,8 @@
     <ClInclude Include="Log\JFLogVariant.h">
       <Filter>Log</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\GraphicsDevice.h" />
+    <ClInclude Include="Graphics\Private\Vulkan\vulkan_headers.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -237,5 +239,6 @@
     <ClCompile Include="Log\JFLogVariant.cpp">
       <Filter>Log</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\Private\Vulkan\GraphicsDevice.cpp" />
   </ItemGroup>
 </Project>

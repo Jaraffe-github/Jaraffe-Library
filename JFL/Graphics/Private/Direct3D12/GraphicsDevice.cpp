@@ -12,10 +12,13 @@
 #include "Texture.h"
 #include "Types.h"
 #include "Log/JFLog.h"
+#include "GraphicsDevice.h"
+#include "GraphicsDevice.h"
 
 using namespace JFL;
+using namespace JFL::Direct3D12;
 
-namespace JFL::Private::Direct3D
+namespace JFL::Private::Direct3D12
 {
 	JFGraphicsDevice* CreateGraphicsDevice()
 	{

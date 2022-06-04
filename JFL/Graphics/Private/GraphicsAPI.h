@@ -7,11 +7,12 @@
 
 #pragma once
 #include "../JFGraphicsDevice.h"
+#include "Log/JFLog.h"
 
 namespace JFL::Private
 {
 #if defined(_WIN32)
-	namespace Direct3D
+	namespace Direct3D12
 	{
 		JFGraphicsDevice* CreateGraphicsDevice();
 	}
@@ -19,7 +20,7 @@ namespace JFL::Private
 
 	namespace Vulkan
 	{
-
+		JFGraphicsDevice* CreateGraphicsDevice();
 	}
 
 	namespace Metal
@@ -27,8 +28,18 @@ namespace JFL::Private
 
 	}
 
-	JFGraphicsDevice* CreateGraphicsDevice()
+	JFGraphicsDevice* CreateGraphicsDevice(JFGraphicsType type)
 	{
-		return Direct3D::CreateGraphicsDevice();
+		switch (type)
+		{
+#if defined(_WIN32)
+		case JFGraphicsType::Direct3D12:
+			return Direct3D12::CreateGraphicsDevice();
+#endif
+		case JFGraphicsType::Vulkan:
+			return Vulkan::CreateGraphicsDevice();
+		}
+		JFLogError(L"not supported graphics type [{}].", static_cast<int>(type));
+		return nullptr;
 	}
 }

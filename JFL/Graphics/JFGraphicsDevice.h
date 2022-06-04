@@ -15,12 +15,18 @@
 
 namespace JFL
 {
+	enum class JFGraphicsType
+	{
+		Direct3D12,
+		Vulkan
+	};
+
 	class JFL_API JFGraphicsDevice : public JFRefCounter
 	{
 	public:
 		virtual ~JFGraphicsDevice() noexcept = default;
 
-		static JFGraphicsDevice* CreateGraphicsDevice();
+		static JFGraphicsDevice* CreateGraphicsDevice(JFGraphicsType type);
 
 		virtual JFObject<JFCommandQueue> CreateCommandQueue() = 0;
 		virtual JFObject<JFCommandList> CreateCommandList() = 0;
