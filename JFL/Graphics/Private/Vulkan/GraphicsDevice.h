@@ -30,6 +30,7 @@ namespace JFL::Vulkan
 		void SetupDebugMessenger();
 		
 		VkInstance instance;
+		VkPhysicalDevice physicalDevice;
 #if defined(DEBUG) || defined(_DEBUG)
 		VkDebugUtilsMessengerEXT debugMessenger;
 #endif

@@ -34,6 +34,10 @@ namespace JFL::Private
 
 GraphicsDevice::GraphicsDevice()
 	: instance(nullptr)
+	, physicalDevice(nullptr)
+#if defined(DEBUG) || defined(_DEBUG)
+	, debugMessenger(nullptr)
+#endif
 {
 	VkInstanceCreateInfo createInfo{};
 	createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
@@ -71,6 +75,31 @@ GraphicsDevice::GraphicsDevice()
 #if defined(DEBUG) || defined(_DEBUG)
 	SetupDebugMessenger();
 #endif
+
+	uint32_t deviceCount = 0;
+	vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
+
+	if (deviceCount == 0)
+		throw std::runtime_error("failed to find GPUs with Vulkan support!");
+
+	std::vector<VkPhysicalDevice> devices(deviceCount);
+	vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+
+	for (const auto& device : devices)
+	{
+		VkPhysicalDeviceProperties deviceProperties;
+		vkGetPhysicalDeviceProperties(device, &deviceProperties);
+
+		VkPhysicalDeviceFeatures deviceFeatures;
+		vkGetPhysicalDeviceFeatures(device, &deviceFeatures);
+
+		if (deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU && deviceFeatures.geometryShader)
+		{
+			physicalDevice = device;
+			JFLogInfo("Usable hardware info: {}", deviceProperties.deviceName);
+			break;
+		}
+	}
 }	
 
 GraphicsDevice::~GraphicsDevice()
