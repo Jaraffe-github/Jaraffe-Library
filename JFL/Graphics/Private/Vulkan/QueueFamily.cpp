@@ -70,7 +70,7 @@ std::vector<float>& QueueFamily::QueuePriorities()
 
 VkDeviceQueueCreateInfo QueueFamily::DeviceQueueCreateInfo() const
 {
-	VkDeviceQueueCreateInfo createInfo;
+	VkDeviceQueueCreateInfo createInfo{};
 	createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
 	createInfo.queueFamilyIndex = familyIndex;
 	createInfo.queueCount = static_cast<uint32_t>(usableQueues.size());
