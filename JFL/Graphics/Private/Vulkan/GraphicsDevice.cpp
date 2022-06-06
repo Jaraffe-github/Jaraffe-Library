@@ -260,7 +260,7 @@ bool GraphicsDevice::CheckValidationLayersSupport(const std::vector<const char*>
 						 availableLayers.end(),
 						 [layerName](VkLayerProperties property)
 						 {
-							 return property.layerName == layerName;
+							 return strcmp(property.layerName, layerName);
 						 }) != availableLayers.end())
 		{
 			JFLogInfo("Supported validation layer: {}", layerName);
@@ -288,7 +288,7 @@ bool GraphicsDevice::CheckExtensionsSupport(const std::vector<const char*>& exte
 						 availableExtensions.end(),
 						 [extensionName](VkExtensionProperties property) 
 						 { 
-							 return property.extensionName == extensionName; 
+							 return strcmp(property.extensionName, extensionName); 
 						 }) != availableExtensions.end())
 		{
 			JFLogInfo("Supported extension {}", extensionName);
