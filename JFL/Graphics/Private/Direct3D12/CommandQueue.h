@@ -10,25 +10,22 @@
 #include "d3d12_headers.h"
 #include "GraphicsDevice.h"
 
-namespace JFL
+namespace JFL::Private::Direct3D12
 {
-    namespace Direct3D12
-    {
-        class GraphicsDevice;
+	class GraphicsDevice;
 
-        class CommandQueue final : public JFCommandQueue
-        {
-        public:
-            CommandQueue(GraphicsDevice*, ID3D12CommandQueue*);
-            ~CommandQueue() noexcept = default;
+	class CommandQueue final : public JFCommandQueue
+	{
+	public:
+		CommandQueue(GraphicsDevice*, ID3D12CommandQueue*);
+		~CommandQueue() noexcept = default;
 
-            JFObject<JFSwapChain> CreateSwapChain(const JFWindow*) override;
+		JFObject<JFSwapChain> CreateSwapChain(const JFWindow*) override;
 
-            ID3D12CommandQueue* Queue() const { return queue.Get(); }
+		ID3D12CommandQueue* Queue() const { return queue.Get(); }
 
-        private:
-            ComPtr<ID3D12CommandQueue> queue;
-            JFObject<GraphicsDevice> device;
-        };
-    }
+	private:
+		ComPtr<ID3D12CommandQueue> queue;
+		JFObject<GraphicsDevice> device;
+	};
 }

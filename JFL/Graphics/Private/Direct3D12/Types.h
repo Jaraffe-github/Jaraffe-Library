@@ -9,7 +9,7 @@
 #include "../../JFPixelFormat.h"
 #include "d3d12_headers.h"
 
-namespace JFL
+namespace JFL::Private::Direct3D12
 {
     inline DXGI_FORMAT PixelFormat(JFPixelFormat format)
     {

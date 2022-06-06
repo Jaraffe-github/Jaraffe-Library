@@ -15,7 +15,7 @@ namespace JFL
 {
 	class JFWindow;
 
-	namespace Direct3D12
+	namespace Private::Direct3D12
 	{
 		class CommandQueue;
 

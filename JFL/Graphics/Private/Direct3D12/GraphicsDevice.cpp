@@ -5,6 +5,7 @@
 //  Copyright (c) 2022 Seungmin Choi. All rights reserved.
 //
 
+#include "../GraphicsAPI.h"
 #include "GraphicsDevice.h"
 #include "CommandQueue.h"
 #include "CommandList.h"
@@ -15,9 +16,6 @@
 #include "GraphicsDevice.h"
 #include "GraphicsDevice.h"
 
-using namespace JFL;
-using namespace JFL::Direct3D12;
-
 namespace JFL::Private::Direct3D12
 {
 	JFGraphicsDevice* CreateGraphicsDevice()
@@ -26,12 +24,14 @@ namespace JFL::Private::Direct3D12
 	}
 }
 
+using namespace JFL;
+using namespace JFL::Private::Direct3D12;
+
 GraphicsDevice::GraphicsDevice()
 {
     UINT dxgiFactoryFlags = 0;
 
-#if defined(DEBUG) || defined(_DEBUG)
-    if (GraphicsOption::ENABLE_DEBUG_LAYER)
+    if (GraphicsSettings::VALIDATION)
     {
         ComPtr<ID3D12Debug> debugController;
         if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(&debugController))))
@@ -40,14 +40,11 @@ GraphicsDevice::GraphicsDevice()
             JFLogInfo("Enable D3D12 debug layer.");
 
             // this is slow for gpu debug.
-            if (GraphicsOption::ENABLE_GPU_VALIDATION)
+            ComPtr<ID3D12Debug1> debugController1;
+            if (SUCCEEDED(debugController->QueryInterface(IID_PPV_ARGS(&debugController1))))
             {
-                ComPtr<ID3D12Debug1> debugController1;
-                if (SUCCEEDED(debugController->QueryInterface(IID_PPV_ARGS(&debugController1))))
-                {
-                    debugController1->SetEnableGPUBasedValidation(true);
-                    JFLogInfo("Enable D3D12 GPU based validation.");
-                }
+                debugController1->SetEnableGPUBasedValidation(true);
+                JFLogInfo("Enable D3D12 GPU based validation.");
             }
         }
         else
@@ -73,7 +70,6 @@ GraphicsDevice::GraphicsDevice()
             dxgiInfoQueue->AddStorageFilterEntries(DXGI_DEBUG_DXGI, &filter);
         }
     }
-#endif
 
     ThrowIfFailed(CreateDXGIFactory2(dxgiFactoryFlags, IID_PPV_ARGS(&factory)));
 
@@ -89,7 +85,7 @@ GraphicsDevice::GraphicsDevice()
 
         if ((desc.DedicatedVideoMemory > maxSize))
         {
-            if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), GraphicsOption::MIN_FEATURE, IID_PPV_ARGS(&device))))
+            if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(&device))))
             {
                 JFLogInfo(L"Usable hardware info: {} ({} MB)", desc.Description, desc.DedicatedVideoMemory >> 20);
                 maxSize = desc.DedicatedVideoMemory;

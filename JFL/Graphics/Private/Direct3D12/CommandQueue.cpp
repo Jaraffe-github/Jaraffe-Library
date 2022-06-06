@@ -9,7 +9,7 @@
 #include "SwapChain.h"
 
 using namespace JFL;
-using namespace JFL::Direct3D12;
+using namespace JFL::Private::Direct3D12;
 
 CommandQueue::CommandQueue(GraphicsDevice* device, ID3D12CommandQueue* queue)
 	: queue(queue)

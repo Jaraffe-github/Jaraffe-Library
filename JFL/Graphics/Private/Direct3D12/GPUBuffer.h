@@ -9,33 +9,30 @@
 #include "../../JFGPUBuffer.h"
 #include "d3d12_headers.h"
 
-namespace JFL
+namespace JFL::Private::Direct3D12
 {
-	namespace Direct3D12
+	class GPUBuffer final : public JFGPUBuffer
 	{
-		class GPUBuffer final : public JFGPUBuffer
-		{
-		public:
-			GPUBuffer(ID3D12Resource*, CPUCacheMode, D3D12_RESOURCE_STATES);
-			~GPUBuffer() noexcept = default;
+	public:
+		GPUBuffer(ID3D12Resource*, CPUCacheMode, D3D12_RESOURCE_STATES);
+		~GPUBuffer() noexcept = default;
 
-			size_t Size() const override { return size; }
-			bool IsWritable() const override { return writable; };
-			bool IsReadable() const override { return readable; };
+		size_t Size() const override { return size; }
+		bool IsWritable() const override { return writable; };
+		bool IsReadable() const override { return readable; };
 
-			bool WriteData(const void* data, size_t size) override;
-			bool WriteDataForTexture(const void* data, uint32_t width, uint32_t height, uint32_t formatSize) override;
-			bool ReadData(void* data, size_t size) override;
+		bool WriteData(const void* data, size_t size) override;
+		bool WriteDataForTexture(const void* data, uint32_t width, uint32_t height, uint32_t formatSize) override;
+		bool ReadData(void* data, size_t size) override;
 
-			ID3D12Resource* Buffer() const { return buffer.Get(); }
-			D3D12_RESOURCE_STATES InitialState() const { return initialState; }
+		ID3D12Resource* Buffer() const { return buffer.Get(); }
+		D3D12_RESOURCE_STATES InitialState() const { return initialState; }
 
-		private:
-			size_t size;
-			bool writable;
-			bool readable;
-			ComPtr<ID3D12Resource> buffer;
-			D3D12_RESOURCE_STATES initialState;
-		};
-	}
+	private:
+		size_t size;
+		bool writable;
+		bool readable;
+		ComPtr<ID3D12Resource> buffer;
+		D3D12_RESOURCE_STATES initialState;
+	};
 }

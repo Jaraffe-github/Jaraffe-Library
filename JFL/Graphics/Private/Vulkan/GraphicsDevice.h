@@ -8,8 +8,10 @@
 #pragma once
 #include "../../JFGraphicsDevice.h"
 #include "vulkan_headers.h"
+#include "QueueFamily.h"
+#include <vector>
 
-namespace JFL::Vulkan
+namespace JFL::Private::Vulkan
 {
 	class GraphicsDevice final : public JFGraphicsDevice
 	{
@@ -27,12 +29,9 @@ namespace JFL::Vulkan
 		bool CheckValidationLayersSupport(const std::vector<const char*>& validationLayers) const;
 		bool CheckExtensionsSupport(const std::vector<const char*>& extensions) const;
 
-		void SetupDebugMessenger();
-		
 		VkInstance instance;
-		VkPhysicalDevice physicalDevice;
-#if defined(DEBUG) || defined(_DEBUG)
-		VkDebugUtilsMessengerEXT debugMessenger;
-#endif
+		VkDevice device;
+
+		std::vector<QueueFamily> queueFamilies;
 	};
 }

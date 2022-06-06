@@ -32,7 +32,7 @@ namespace Private
 		{
 		case JFLogLevel::Info:
 			return "Info";
-		case JFLogLevel::Debug:
+		case JFLogLevel::Verbose:
 			return "Debug";
 		case JFLogLevel::Warning:
 			return "Warning";
@@ -48,7 +48,7 @@ namespace Private
 		{
 		case JFLogLevel::Info:
 			return fmt::color::light_green;
-		case JFLogLevel::Debug:
+		case JFLogLevel::Verbose:
 			return fmt::color::beige;
 		case JFLogLevel::Warning:
 			return fmt::color::green_yellow;
@@ -77,8 +77,7 @@ namespace Private
 	}
 }
 
-
-void JFL::JFLog(JFLogLevel logLevel, const char* format, const std::vector<JFLogVariant>& arguments)
+void JFL::JFLogInternal(JFLogLevel logLevel, const char* format, const std::vector<JFLogVariant>& arguments)
 {
 	fmt::dynamic_format_arg_store<fmt::buffer_context<char>> dynamicArguments;
 	for (JFLogVariant v : arguments)
@@ -119,7 +118,7 @@ void JFL::JFLog(JFLogLevel logLevel, const char* format, const std::vector<JFLog
 	Private::LogPrint(logLevel, fmt::vformat(format, dynamicArguments).c_str());
 }
 
-void JFL::JFLog(JFLogLevel logLevel, const wchar_t* format, const std::vector<JFLogVariant>& arguments)
+void JFL::JFLogInternal(JFLogLevel logLevel, const wchar_t* format, const std::vector<JFLogVariant>& arguments)
 {
 	fmt::dynamic_format_arg_store<fmt::buffer_context<wchar_t>> dynamicArguments;
 	for (JFLogVariant v : arguments)

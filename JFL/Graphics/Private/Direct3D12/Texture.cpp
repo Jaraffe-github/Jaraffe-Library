@@ -9,7 +9,7 @@
 #include "Types.h"
 
 using namespace JFL;
-using namespace JFL::Direct3D12;
+using namespace JFL::Private::Direct3D12;
 
 Texture::Texture(ID3D12Resource* buffer, D3D12_RESOURCE_STATES initialState)
 	: buffer(buffer)

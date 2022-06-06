@@ -42,10 +42,3 @@ constexpr inline uint32_t AlignTextureRowPitch(size_t size)
 #endif
     return (size + alignmentSize) & ~(alignmentSize);
 }
-
-namespace GraphicsOption
-{
-    constexpr bool ENABLE_DEBUG_LAYER = 1;
-    constexpr bool ENABLE_GPU_VALIDATION = 1;
-    constexpr D3D_FEATURE_LEVEL MIN_FEATURE = D3D_FEATURE_LEVEL_11_0;
-}

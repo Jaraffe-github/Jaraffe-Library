@@ -313,6 +313,7 @@
     <ClInclude Include="Application\JFApplicationContextInterface.h" />
     <ClInclude Include="Application\Private\ApplicationPlatform.h" />
     <ClInclude Include="Application\Private\Win32\ApplicationContext.h" />
+    <ClInclude Include="Graphics\Private\Vulkan\CommandQueue.h" />
     <ClInclude Include="Graphics\Private\Vulkan\GraphicsDevice.h" />
     <ClInclude Include="Graphics\JFCommandList.h" />
     <ClInclude Include="Graphics\JFCommandQueue.h" />
@@ -332,6 +333,7 @@
     <ClInclude Include="Graphics\Private\GraphicsAPI.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\GraphicsDevice.h" />
     <ClInclude Include="Graphics\JFSwapChain.h" />
+    <ClInclude Include="Graphics\Private\Vulkan\QueueFamily.h" />
     <ClInclude Include="Graphics\Private\Vulkan\vulkan_headers.h" />
     <ClInclude Include="JFInclude.h" />
     <ClInclude Include="JFL.h" />
@@ -376,7 +378,9 @@
     <ClCompile Include="Graphics\Private\Direct3D12\GraphicsDevice.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\SwapChain.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\Texture.cpp" />
+    <ClCompile Include="Graphics\Private\Vulkan\CommandQueue.cpp" />
     <ClCompile Include="Graphics\Private\Vulkan\GraphicsDevice.cpp" />
+    <ClCompile Include="Graphics\Private\Vulkan\QueueFamily.cpp" />
     <ClCompile Include="Log\JFLog.cpp" />
     <ClCompile Include="Log\JFLogVariant.cpp" />
     <ClCompile Include="Object\JFRefCounter.cpp" />

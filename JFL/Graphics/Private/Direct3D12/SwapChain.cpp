@@ -10,7 +10,7 @@
 #include "CommandQueue.h"
 
 using namespace JFL;
-using namespace JFL::Direct3D12;
+using namespace JFL::Private::Direct3D12;
 
 SwapChain::SwapChain(GraphicsDevice* device, CommandQueue* queue, const JFWindow* window)
 	: width(window->Width())

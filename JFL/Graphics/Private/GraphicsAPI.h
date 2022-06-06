@@ -14,13 +14,13 @@ namespace JFL::Private
 #if defined(_WIN32)
 	namespace Direct3D12
 	{
-		JFGraphicsDevice* CreateGraphicsDevice();
+		extern JFGraphicsDevice* CreateGraphicsDevice();
 	}
 #endif
 
 	namespace Vulkan
 	{
-		JFGraphicsDevice* CreateGraphicsDevice();
+		extern JFGraphicsDevice* CreateGraphicsDevice();
 	}
 
 	namespace Metal
@@ -28,7 +28,7 @@ namespace JFL::Private
 
 	}
 
-	JFGraphicsDevice* CreateGraphicsDevice(JFGraphicsType type)
+	static JFGraphicsDevice* CreateGraphicsDevice(JFGraphicsType type)
 	{
 		switch (type)
 		{
@@ -42,4 +42,13 @@ namespace JFL::Private
 		JFLogError(L"not supported graphics type [{}].", static_cast<int>(type));
 		return nullptr;
 	}
+}
+
+namespace GraphicsSettings
+{
+#if defined(DEBUG) || defined(_DEBUG)
+	constexpr bool VALIDATION = true;
+#else
+	constexpr bool VALIDATION = false;
+#endif
 }

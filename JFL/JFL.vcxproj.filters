@@ -125,6 +125,8 @@
     </ClInclude>
     <ClInclude Include="Graphics\Private\Vulkan\GraphicsDevice.h" />
     <ClInclude Include="Graphics\Private\Vulkan\vulkan_headers.h" />
+    <ClInclude Include="Graphics\Private\Vulkan\CommandQueue.h" />
+    <ClInclude Include="Graphics\Private\Vulkan\QueueFamily.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -240,5 +242,7 @@
       <Filter>Log</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Private\Vulkan\GraphicsDevice.cpp" />
+    <ClCompile Include="Graphics\Private\Vulkan\CommandQueue.cpp" />
+    <ClCompile Include="Graphics\Private\Vulkan\QueueFamily.cpp" />
   </ItemGroup>
 </Project>

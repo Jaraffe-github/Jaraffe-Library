@@ -15,22 +15,22 @@ namespace JFL
 	enum class JFLogLevel
 	{
 		Info,
-		Debug,
+		Verbose,
 		Warning,
 		Error
 	};
 
-	template<JFLogLevel> void JFLog(const char* format);
-	template<JFLogLevel> void JFLog(const wchar_t* format);
+	static void JFLog(JFLogLevel logLevel, const char* format);
+	static void JFLog(JFLogLevel logLevel, const wchar_t* format);
 
-	template<JFLogLevel, class... Args> void JFLog(const char* format, Args&&... args);
-	template<JFLogLevel, class... Args> void JFLog(const wchar_t* format, Args&&... args);
+	template<class... Args> void JFLog(JFLogLevel logLevel, const char* format, Args&&... args);
+	template<class... Args> void JFLog(JFLogLevel logLevel, const wchar_t* format, Args&&... args);
 
 	template<class... Args> void JFLogInfo(const char* format, Args&&... args);
 	template<class... Args> void JFLogInfo(const wchar_t* format, Args&&... args);
 
-	template<class... Args> void JFLogDebug(const char* format, Args&&... args);
-	template<class... Args> void JFLogDebug(const wchar_t* format, Args&&... args);
+	template<class... Args> void JFLogVerbose(const char* format, Args&&... args);
+	template<class... Args> void JFLogVerbose(const wchar_t* format, Args&&... args);
 
 	template<class... Args> void JFLogWarning(const char* format, Args&&... args);
 	template<class... Args> void JFLogWarning(const wchar_t* format, Args&&... args);
@@ -41,72 +41,70 @@ namespace JFL
 	//=============================================================================
 	// Implementation)
 	//=============================================================================
-	void JFLog(JFLogLevel, const char*, const std::vector<JFLogVariant>&);
-	void JFLog(JFLogLevel, const wchar_t*, const std::vector<JFLogVariant>&);
+	void JFLogInternal(JFLogLevel, const char*, const std::vector<JFLogVariant>&);
+	void JFLogInternal(JFLogLevel, const wchar_t*, const std::vector<JFLogVariant>&);
 
-	template<JFLogLevel LogLevel>
-	void JFLog(const char* format)
+	void JFLog(JFLogLevel logLevel, const char* format)
 	{
-		JFLog(LogLevel, format, std::vector<JFLogVariant>());
+		JFLogInternal(logLevel, format, std::vector<JFLogVariant>());
 	}
-	template<JFLogLevel LogLevel>
-	void JFLog(const wchar_t* format)
+	void JFLog(JFLogLevel logLevel, const wchar_t* format)
 	{
-		JFLog(LogLevel, format, std::vector<JFLogVariant>());
+		JFLogInternal(logLevel, format, std::vector<JFLogVariant>());
 	}
 
-	template<JFLogLevel LogLevel, class... Args>
-	void JFLog(const char* format, Args&&... args)
+	template<class... Args>
+	void JFLog(JFLogLevel logLevel, const char* format, Args&&... args)
 	{
-		JFLog(LogLevel, format, std::vector<JFLogVariant>{JFLogVariant(std::forward<Args>(args))...});
+		JFLogInternal(logLevel, format, std::vector<JFLogVariant>{JFLogVariant(std::forward<Args>(args))...});
 	}
-	template<JFLogLevel LogLevel, class... Args>
-	void JFLog(const wchar_t* format, Args&&... args)
+	template<class... Args>
+	void JFLog(JFLogLevel logLevel, const wchar_t* format, Args&&... args)
 	{
-		JFLog(LogLevel, format, std::vector<JFLogVariant>{JFLogVariant(std::forward<Args>(args))...});
+		JFLogInternal(logLevel, format, std::vector<JFLogVariant>{JFLogVariant(std::forward<Args>(args))...});
 	}
 
 	template<class... Args>
 	void JFLogInfo(const char* format, Args&&... args)
 	{
-		JFLog<JFLogLevel::Info>(format, std::forward<Args>(args)...);
+		JFLog(JFLogLevel::Info, format, std::forward<Args>(args)...);
 	}
 	template<class... Args>
 	void JFLogInfo(const wchar_t* format, Args&&... args)
 	{
-		JFLog<JFLogLevel::Info>(format, std::forward<Args>(args)...);
+		JFLog(JFLogLevel::Info, format, std::forward<Args>(args)...);
 	}
 
 	template<class... Args>
-	void JFLogDebug(const char* format, Args&&... args)
+	void JFLogVerbose(const char* format, Args&&... args)
 	{
-		JFLog<JFLogLevel::Debug>(format, std::forward<Args>(args)...);
+		JFLog(JFLogLevel::Debug, format, std::forward<Args>(args)...);
 	}
 	template<class... Args>
-	void JFLogDebug(const wchar_t* format, Args&&... args)
+	void JFLogVerbose(const wchar_t* format, Args&&... args)
 	{
-		JFLog<JFLogLevel::Debug>(format, std::forward<Args>(args)...);
+		JFLog(JFLogLevel::Debug, format, std::forward<Args>(args)...);
 	}
 
 	template<class... Args>
 	void JFLogWarning(const char* format, Args&&... args)
 	{
-		JFLog<JFLogLevel::Warning>(format, std::forward<Args>(args)...);
+		JFLog(JFLogLevel::Warning, format, std::forward<Args>(args)...);
 	}
 	template<class... Args>
 	void JFLogWarning(const wchar_t* format, Args&&... args)
 	{
-		JFLog<JFLogLevel::Warning>(format, std::forward<Args>(args)...);
+		JFLog(JFLogLevel::Warning, format, std::forward<Args>(args)...);
 	}
 
 	template<class... Args>
 	void JFLogError(const wchar_t* format, Args&&... args)
 	{
-		JFLog<JFLogLevel::Error>(format, std::forward<Args>(args)...);
+		JFLog(JFLogLevel::Error, format, std::forward<Args>(args)...);
 	}
 	template<class... Args>
 	void JFLogError(const char* format, Args&&... args)
 	{
-		JFLog<JFLogLevel::Error>(format, std::forward<Args>(args)...);
+		JFLog(JFLogLevel::Error, format, std::forward<Args>(args)...);
 	}
 }
