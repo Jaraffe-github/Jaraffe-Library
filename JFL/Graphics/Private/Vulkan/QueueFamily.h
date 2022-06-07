@@ -8,36 +8,34 @@
 #pragma once
 #include "JFInclude.h"
 #include "vulkan_headers.h"
+#include "Object/JFRefCounter.h"
+#include "Lock/JFLock.h"
 #include <optional>
 #include <vector>
 
 namespace JFL::Private::Vulkan
 {
-	class QueueFamily final
+	class CommandQueue;
+
+	class QueueFamily final : public JFRefCounter
 	{
 	public:
-		QueueFamily(VkPhysicalDevice physicalDevice, VkQueueFlags queueFlags, uint32_t familyIndex, uint32_t queueCount, float defaultQueuePriority = 0.0f);
+		QueueFamily(VkDevice device, const VkQueueFamilyProperties& queueProperty, uint32_t familyIndex);
 		~QueueFamily() = default;
 
-		VkPhysicalDevice PhysicalDevice() const;
 		uint32_t FamilyIndex() const;
-
 		size_t QueueCount() const;
-		std::optional<uint32_t> GetUsableQueueIndex();
-		void ReleaseQueueIndex(uint32_t queueIndex);
-
-		const std::vector<float>& QueuePriorities() const;
-		std::vector<float>& QueuePriorities();
 
 		bool IsFlagSupported(VkQueueFlags queueFlag);
 
-		VkDeviceQueueCreateInfo DeviceQueueCreateInfo() const;
+		CommandQueue* CreateCommandQueue();
+		void ReleaseCommandQueue(CommandQueue* queue);
 
 	private:
-		VkPhysicalDevice physicalDevice;
-		VkQueueFlags queueFlags;
+		VkQueueFamilyProperties queueProperty;
 		uint32_t familyIndex;
-		std::vector<bool> usableQueues;
-		std::vector<float> queuePriorities;
+
+		JFSpinLock queueLock;
+		std::vector<VkQueue> usableQueues;
 	};
 }

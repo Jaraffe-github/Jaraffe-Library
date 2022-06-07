@@ -6,27 +6,48 @@
 //
 
 #include "QueueFamily.h"
+#include "CommandQueue.h"
 
 using namespace JFL;
 using namespace JFL::Private::Vulkan;
 
-QueueFamily::QueueFamily(VkPhysicalDevice physicalDevice, VkQueueFlags queueFlags, uint32_t familyIndex, uint32_t queueCount, float defaultQueuePriority)
-	: physicalDevice(physicalDevice)
-	, queueFlags(queueFlags)
+QueueFamily::QueueFamily(VkDevice device, const VkQueueFamilyProperties& queueProperty, uint32_t familyIndex)
+	: queueProperty(queueProperty)
 	, familyIndex(familyIndex)
-	, usableQueues(queueCount, true)
-	, queuePriorities(queueCount, defaultQueuePriority)
 {
+	JFScopedLock guard(queueLock);
+	usableQueues.resize(queueProperty.queueCount);
+	for (uint32_t i = 0; i < queueProperty.queueCount; ++i)
+	{
+		vkGetDeviceQueue(device, familyIndex, i, &usableQueues[i]);
+		JFASSERT(usableQueues[i]);
+	}
 }
 
 bool QueueFamily::IsFlagSupported(VkQueueFlags queueFlag)
 {
-	return this->queueFlags & queueFlag;
+	return queueProperty.queueFlags & queueFlag;
 }
 
-VkPhysicalDevice QueueFamily::PhysicalDevice() const
+CommandQueue* QueueFamily::CreateCommandQueue()
 {
-	return physicalDevice;
+	JFScopedLock guard(queueLock);
+	if (usableQueues.size() > 0)
+	{
+		VkQueue& queue = usableQueues.back();
+		usableQueues.pop_back();
+		guard.Unlock();
+
+		return new CommandQueue(queue, this);
+	}
+	JFASSERT(false);
+	return nullptr;
+}
+
+void QueueFamily::ReleaseCommandQueue(CommandQueue* queue)
+{
+	JFScopedLock guard(queueLock);
+	usableQueues.push_back(queue->Queue());
 }
 
 uint32_t QueueFamily::FamilyIndex() const
@@ -36,44 +57,5 @@ uint32_t QueueFamily::FamilyIndex() const
 
 size_t QueueFamily::QueueCount() const
 {
-	return usableQueues.size();
-}
-
-std::optional<uint32_t> QueueFamily::GetUsableQueueIndex()
-{
-	for (int i = 0; i < usableQueues.size(); ++i)
-	{
-		if (usableQueues[i])
-		{
-			usableQueues[i] = false;
-			return i;
-		}
-	}
-	return std::nullopt;
-}
-
-void QueueFamily::ReleaseQueueIndex(uint32_t queueIndex)
-{
-	JFASSERT(usableQueues.size() > queueIndex);
-	usableQueues[queueIndex] = true;
-}
-
-const std::vector<float>& QueueFamily::QueuePriorities() const
-{
-	return queuePriorities;
-}
-
-std::vector<float>& QueueFamily::QueuePriorities()
-{
-	return queuePriorities;
-}
-
-VkDeviceQueueCreateInfo QueueFamily::DeviceQueueCreateInfo() const
-{
-	VkDeviceQueueCreateInfo createInfo{};
-	createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-	createInfo.queueFamilyIndex = familyIndex;
-	createInfo.queueCount = static_cast<uint32_t>(usableQueues.size());
-	createInfo.pQueuePriorities = queuePriorities.data();
-	return createInfo;
+	return queueProperty.queueCount;
 }

@@ -8,6 +8,7 @@
 #include "../GraphicsAPI.h"
 #include "GraphicsDevice.h"
 #include "Log/JFLog.h"
+#include "CommandQueue.h"
 
 namespace JFL::Private::Vulkan
 {
@@ -187,18 +188,19 @@ GraphicsDevice::GraphicsDevice()
 	std::vector<VkQueueFamilyProperties> queueFamilyProperties(queueFamilyCount);
 	vkGetPhysicalDeviceQueueFamilyProperties(selectedPhysicalDevice, &queueFamilyCount, queueFamilyProperties.data());
 
-	std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
-	queueCreateInfos.reserve(queueFamilyCount);
-	queueFamilies.reserve(queueFamilyCount);
+	std::vector<VkDeviceQueueCreateInfo> queueCreateInfos(queueFamilyCount, VkDeviceQueueCreateInfo{});
 
+	std::vector<std::vector<float>> queuePriorities(queueFamilyCount);
 	for (size_t i = 0; i < queueFamilyProperties.size(); ++i)
 	{
-		VkQueueFamilyProperties queueFamilyProperty = queueFamilyProperties[i];
-		QueueFamily& queueFamily = queueFamilies.emplace_back(selectedPhysicalDevice, 
-															  queueFamilyProperty.queueFlags, 
-															  static_cast<uint32_t>(i), 
-															  queueFamilyProperty.queueCount);
-		queueCreateInfos.push_back(queueFamily.DeviceQueueCreateInfo());
+		VkQueueFamilyProperties& queueFamilyProperty = queueFamilyProperties[i];
+		queuePriorities[i].resize(queueFamilyProperty.queueCount, 0.0f);
+
+		VkDeviceQueueCreateInfo& createInfo = queueCreateInfos[i];
+		createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+		createInfo.queueFamilyIndex = static_cast<uint32_t>(i);
+		createInfo.queueCount = queueFamilyProperty.queueCount;
+		createInfo.pQueuePriorities = queuePriorities[i].data();
 	}
 
 	VkDeviceCreateInfo deviceCreateInfo{};
@@ -214,6 +216,13 @@ GraphicsDevice::GraphicsDevice()
 	deviceCreateInfo.ppEnabledLayerNames = validationLayers.data();
 
 	ThrowIfFailed(vkCreateDevice(selectedPhysicalDevice, &deviceCreateInfo, nullptr, &device));
+
+	queueFamilies.reserve(queueFamilyCount);
+	for (size_t i = 0; i < queueFamilyProperties.size(); ++i)
+	{
+		VkQueueFamilyProperties& queueFamilyProperty = queueFamilyProperties[i];
+		queueFamilies.push_back(new QueueFamily(device, queueFamilyProperty, static_cast<uint32_t>(i)));
+	}
 }
 
 GraphicsDevice::~GraphicsDevice()
@@ -225,8 +234,12 @@ GraphicsDevice::~GraphicsDevice()
 
 JFObject<JFCommandQueue> GraphicsDevice::CreateCommandQueue()
 {
-	//VkQueue graphicsQueue;
-	//vkGetDeviceQueue(device, queueFamilyIndices.graphicsFamilyIndex.value(), 0, &graphicsQueue);
+	for (JFObject<QueueFamily> queueFamily : queueFamilies)
+	{
+		// TODO: support other types.
+		if (queueFamily->IsFlagSupported(VK_QUEUE_GRAPHICS_BIT))
+			return queueFamily->CreateCommandQueue();
+	}
 	return nullptr;
 }
 

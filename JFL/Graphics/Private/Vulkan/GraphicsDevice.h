@@ -32,6 +32,6 @@ namespace JFL::Private::Vulkan
 		VkInstance instance;
 		VkDevice device;
 
-		std::vector<QueueFamily> queueFamilies;
+		std::vector<JFObject<QueueFamily>> queueFamilies;
 	};
 }

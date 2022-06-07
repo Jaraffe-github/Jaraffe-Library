@@ -6,3 +6,22 @@
 //
 
 #include "CommandQueue.h"
+
+using namespace JFL;
+using namespace JFL::Private::Vulkan;
+
+CommandQueue::CommandQueue(VkQueue queue, QueueFamily* queueFamily)
+	: queue(queue)
+	, queueFamily(queueFamily)
+{
+}
+
+CommandQueue::~CommandQueue()
+{
+	queueFamily->ReleaseCommandQueue(this);
+}
+
+JFObject<JFSwapChain> CommandQueue::CreateSwapChain(const JFWindow* window)
+{
+	return nullptr;
+}
