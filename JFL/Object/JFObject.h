@@ -31,7 +31,7 @@ namespace JFL
 		{
 			InternalAddRef();
 		}
-		JFObject(const JFObject&& obj) noexcept
+		JFObject(JFObject&& obj) noexcept
 			: target(obj.target)
 		{
 			obj.target = nullptr;
@@ -51,7 +51,7 @@ namespace JFL
 			InternalAddRef();
 		}
 		template<Convertible U>
-		JFObject(const JFObject<U>&& obj) noexcept
+		JFObject(JFObject<U>&& obj) noexcept
 			: target(obj.target)
 		{
 			obj.target = nullptr;
