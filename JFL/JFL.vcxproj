@@ -337,6 +337,14 @@
     <ClInclude Include="Graphics\Private\Vulkan\vulkan_headers.h" />
     <ClInclude Include="JFInclude.h" />
     <ClInclude Include="JFL.h" />
+    <ClInclude Include="Lock\JFCondition.h" />
+    <ClInclude Include="Lock\JFDummyLock.h" />
+    <ClInclude Include="Lock\JFLock.h" />
+    <ClInclude Include="Lock\JFMutex.h" />
+    <ClInclude Include="Lock\JFRecursiveMutex.h" />
+    <ClInclude Include="Lock\JFScopedLock.h" />
+    <ClInclude Include="Lock\JFSharedMutex.h" />
+    <ClInclude Include="Lock\JFSpinLock.h" />
     <ClInclude Include="Log\JFLog.h" />
     <ClInclude Include="Log\JFLogVariant.h" />
     <ClInclude Include="Math\JFAffineTransform2.h" />
@@ -381,6 +389,11 @@
     <ClCompile Include="Graphics\Private\Vulkan\CommandQueue.cpp" />
     <ClCompile Include="Graphics\Private\Vulkan\GraphicsDevice.cpp" />
     <ClCompile Include="Graphics\Private\Vulkan\QueueFamily.cpp" />
+    <ClCompile Include="Lock\JFCondition.cpp" />
+    <ClCompile Include="Lock\JFMutex.cpp" />
+    <ClCompile Include="Lock\JFRecursiveMutex.cpp" />
+    <ClCompile Include="Lock\JFSharedMutex.cpp" />
+    <ClCompile Include="Lock\JFSpinLock.cpp" />
     <ClCompile Include="Log\JFLog.cpp" />
     <ClCompile Include="Log\JFLogVariant.cpp" />
     <ClCompile Include="Object\JFRefCounter.cpp" />
