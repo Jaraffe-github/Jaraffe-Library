@@ -25,9 +25,13 @@ namespace JFL::Private::Vulkan
 		JFObject<JFGPUBuffer> CreateGPUBuffer(size_t, JFGPUBuffer::CPUCacheMode) override;
 		JFObject<JFTexture> CreateTexture(const JFTextureDescriptor&) override;
 
+		VkDevice Device() const { return device; }
+		VkInstance Instance() const { return instance; }
+
 	private:
 		bool CheckValidationLayersSupport(const std::vector<const char*>& validationLayers) const;
-		bool CheckExtensionsSupport(const std::vector<const char*>& extensions) const;
+		bool CheckInstanceExtensionsSupport(const std::vector<const char*>& extensions) const;
+		bool CheckDeviceExtensionsSupport(VkPhysicalDevice physicalDevice, const std::vector<const char*>& extensions) const;
 
 		VkInstance instance;
 		VkDevice device;

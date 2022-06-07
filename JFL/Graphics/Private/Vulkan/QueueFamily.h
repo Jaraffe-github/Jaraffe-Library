@@ -10,12 +10,12 @@
 #include "vulkan_headers.h"
 #include "Object/JFRefCounter.h"
 #include "Lock/JFLock.h"
-#include <optional>
 #include <vector>
 
 namespace JFL::Private::Vulkan
 {
 	class CommandQueue;
+	class GraphicsDevice;
 
 	class QueueFamily final : public JFRefCounter
 	{
@@ -28,7 +28,7 @@ namespace JFL::Private::Vulkan
 
 		bool IsFlagSupported(VkQueueFlags queueFlag);
 
-		CommandQueue* CreateCommandQueue();
+		CommandQueue* CreateCommandQueue(GraphicsDevice* device);
 		void ReleaseCommandQueue(CommandQueue* queue);
 
 	private:

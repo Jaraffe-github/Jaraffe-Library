@@ -6,12 +6,14 @@
 //
 
 #include "CommandQueue.h"
+#include "SwapChain.h"
 
 using namespace JFL;
 using namespace JFL::Private::Vulkan;
 
-CommandQueue::CommandQueue(VkQueue queue, QueueFamily* queueFamily)
-	: queue(queue)
+CommandQueue::CommandQueue(GraphicsDevice* device, VkQueue queue, QueueFamily* queueFamily)
+	: device(device)
+	, queue(queue)
 	, queueFamily(queueFamily)
 {
 }
@@ -23,5 +25,5 @@ CommandQueue::~CommandQueue()
 
 JFObject<JFSwapChain> CommandQueue::CreateSwapChain(const JFWindow* window)
 {
-	return nullptr;
+	return new SwapChain(device, this, window);
 }

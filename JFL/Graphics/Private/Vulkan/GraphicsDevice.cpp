@@ -91,40 +91,40 @@ GraphicsDevice::GraphicsDevice()
 	VkInstanceCreateInfo instanceCreateInfo{};
 	instanceCreateInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 
-	std::vector<const char*> extensions =
+	std::vector<const char*> instanceExtensions =
 	{
 		VK_KHR_SURFACE_EXTENSION_NAME
 	};
 
 	// Enable surface extensions depending on os
 #if defined(_WIN32)
-	extensions.push_back(VK_KHR_WIN32_SURFACE_EXTENSION_NAME);
+	instanceExtensions.push_back(VK_KHR_WIN32_SURFACE_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_ANDROID_KHR)
-	extensions.push_back(VK_KHR_ANDROID_SURFACE_EXTENSION_NAME);
+	instanceExtensions.push_back(VK_KHR_ANDROID_SURFACE_EXTENSION_NAME);
 #elif defined(_DIRECT2DISPLAY)
-	extensions.push_back(VK_KHR_DISPLAY_EXTENSION_NAME);
+	instanceExtensions.push_back(VK_KHR_DISPLAY_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_DIRECTFB_EXT)
-	extensions.push_back(VK_EXT_DIRECTFB_SURFACE_EXTENSION_NAME);
+	instanceExtensions.push_back(VK_EXT_DIRECTFB_SURFACE_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_WAYLAND_KHR)
-	extensions.push_back(VK_KHR_WAYLAND_SURFACE_EXTENSION_NAME);
+	instanceExtensions.push_back(VK_KHR_WAYLAND_SURFACE_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_XCB_KHR)
-	extensions.push_back(VK_KHR_XCB_SURFACE_EXTENSION_NAME);
+	instanceExtensions.push_back(VK_KHR_XCB_SURFACE_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_IOS_MVK)
-	extensions.push_back(VK_MVK_IOS_SURFACE_EXTENSION_NAME);
+	instanceExtensions.push_back(VK_MVK_IOS_SURFACE_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_MACOS_MVK)
-	extensions.push_back(VK_MVK_MACOS_SURFACE_EXTENSION_NAME);
+	instanceExtensions.push_back(VK_MVK_MACOS_SURFACE_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_HEADLESS_EXT)
-	extensions.push_back(VK_EXT_HEADLESS_SURFACE_EXTENSION_NAME);
+	instanceExtensions.push_back(VK_EXT_HEADLESS_SURFACE_EXTENSION_NAME);
 #endif
 
 	if (GraphicsSettings::VALIDATION)
-		extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+		instanceExtensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 
-	if (!CheckExtensionsSupport(extensions))
-		throw std::runtime_error("extensions requested, but not available!");
+	if (!CheckInstanceExtensionsSupport(instanceExtensions))
+		throw std::runtime_error("instance extensions requested, but not available!");
 
-	instanceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
-	instanceCreateInfo.ppEnabledExtensionNames = extensions.data();
+	instanceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(instanceExtensions.size());
+	instanceCreateInfo.ppEnabledExtensionNames = instanceExtensions.data();
 
 	std::vector<const char*> validationLayers;
 	if (GraphicsSettings::VALIDATION)
@@ -210,10 +210,22 @@ GraphicsDevice::GraphicsDevice()
 
 	VkPhysicalDeviceFeatures deviceFeatures{};
 	deviceCreateInfo.pEnabledFeatures = &deviceFeatures;
-	deviceCreateInfo.enabledExtensionCount = 0;
 
 	deviceCreateInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
 	deviceCreateInfo.ppEnabledLayerNames = validationLayers.data();
+
+	std::vector<const char*> deviceExtensions;
+
+	if (GraphicsSettings::USE_SWAP_CHAIN)
+	{
+		deviceExtensions.push_back(VK_KHR_SURFACE_EXTENSION_NAME);
+	}
+
+	if (!CheckDeviceExtensionsSupport(selectedPhysicalDevice, deviceExtensions))
+		throw std::runtime_error("device extensions requested, but not available!");
+
+	deviceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
+	deviceCreateInfo.ppEnabledExtensionNames = deviceExtensions.data();
 
 	ThrowIfFailed(vkCreateDevice(selectedPhysicalDevice, &deviceCreateInfo, nullptr, &device));
 
@@ -238,7 +250,7 @@ JFObject<JFCommandQueue> GraphicsDevice::CreateCommandQueue()
 	{
 		// TODO: support other types.
 		if (queueFamily->IsFlagSupported(VK_QUEUE_GRAPHICS_BIT))
-			return queueFamily->CreateCommandQueue();
+			return queueFamily->CreateCommandQueue(this);
 	}
 	return nullptr;
 }
@@ -287,7 +299,7 @@ bool GraphicsDevice::CheckValidationLayersSupport(const std::vector<const char*>
 	return true;
 }
 
-bool GraphicsDevice::CheckExtensionsSupport(const std::vector<const char*>& extensions) const
+bool GraphicsDevice::CheckInstanceExtensionsSupport(const std::vector<const char*>& extensions) const
 {
 	uint32_t extensionCount = 0;
 	vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
@@ -302,6 +314,34 @@ bool GraphicsDevice::CheckExtensionsSupport(const std::vector<const char*>& exte
 						 [extensionName](VkExtensionProperties property) 
 						 { 
 							 return strcmp(property.extensionName, extensionName); 
+						 }) != availableExtensions.end())
+		{
+			JFLogInfo("Supported extension {}", extensionName);
+		}
+		else
+		{
+			JFLogInfo("Not supported extension {}", extensionName);
+			return false;
+		}
+	}
+	return true;
+}
+
+bool GraphicsDevice::CheckDeviceExtensionsSupport(VkPhysicalDevice physicalDevice, const std::vector<const char*>& extensions) const
+{
+	uint32_t extensionCount = 0;
+	vkEnumerateDeviceExtensionProperties(physicalDevice, nullptr, &extensionCount, nullptr);
+
+	std::vector<VkExtensionProperties> availableExtensions(extensionCount);
+	vkEnumerateDeviceExtensionProperties(physicalDevice, nullptr, &extensionCount, availableExtensions.data());
+
+	for (const char* extensionName : extensions)
+	{
+		if (std::find_if(availableExtensions.begin(),
+						 availableExtensions.end(),
+						 [extensionName](VkExtensionProperties property)
+						 {
+							 return strcmp(property.extensionName, extensionName);
 						 }) != availableExtensions.end())
 		{
 			JFLogInfo("Supported extension {}", extensionName);

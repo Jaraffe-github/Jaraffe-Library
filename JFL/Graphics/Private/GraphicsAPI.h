@@ -51,4 +51,6 @@ namespace GraphicsSettings
 #else
 	constexpr bool VALIDATION = false;
 #endif
+
+	constexpr bool USE_SWAP_CHAIN = true;
 }

@@ -334,6 +334,7 @@
     <ClInclude Include="Graphics\Private\Direct3D12\GraphicsDevice.h" />
     <ClInclude Include="Graphics\JFSwapChain.h" />
     <ClInclude Include="Graphics\Private\Vulkan\QueueFamily.h" />
+    <ClInclude Include="Graphics\Private\Vulkan\SwapChain.h" />
     <ClInclude Include="Graphics\Private\Vulkan\vulkan_headers.h" />
     <ClInclude Include="JFInclude.h" />
     <ClInclude Include="JFL.h" />
@@ -389,6 +390,7 @@
     <ClCompile Include="Graphics\Private\Vulkan\CommandQueue.cpp" />
     <ClCompile Include="Graphics\Private\Vulkan\GraphicsDevice.cpp" />
     <ClCompile Include="Graphics\Private\Vulkan\QueueFamily.cpp" />
+    <ClCompile Include="Graphics\Private\Vulkan\SwapChain.cpp" />
     <ClCompile Include="Lock\JFCondition.cpp" />
     <ClCompile Include="Lock\JFMutex.cpp" />
     <ClCompile Include="Lock\JFRecursiveMutex.cpp" />

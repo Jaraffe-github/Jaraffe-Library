@@ -29,7 +29,7 @@ bool QueueFamily::IsFlagSupported(VkQueueFlags queueFlag)
 	return queueProperty.queueFlags & queueFlag;
 }
 
-CommandQueue* QueueFamily::CreateCommandQueue()
+CommandQueue* QueueFamily::CreateCommandQueue(GraphicsDevice* device)
 {
 	JFScopedLock guard(queueLock);
 	if (usableQueues.size() > 0)
@@ -38,7 +38,7 @@ CommandQueue* QueueFamily::CreateCommandQueue()
 		usableQueues.pop_back();
 		guard.Unlock();
 
-		return new CommandQueue(queue, this);
+		return new CommandQueue(device, queue, this);
 	}
 	JFASSERT(false);
 	return nullptr;

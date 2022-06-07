@@ -159,6 +159,7 @@
     <ClInclude Include="Graphics\Private\Vulkan\vulkan_headers.h">
       <Filter>Graphics\Private\Vulkan</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\SwapChain.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -303,5 +304,6 @@
     <ClCompile Include="Graphics\Private\Vulkan\QueueFamily.cpp">
       <Filter>Graphics\Private\Vulkan</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\Private\Vulkan\SwapChain.cpp" />
   </ItemGroup>
 </Project>
