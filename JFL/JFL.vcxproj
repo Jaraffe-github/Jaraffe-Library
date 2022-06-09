@@ -358,6 +358,9 @@
     <ClInclude Include="Math\JFMatrix2.h" />
     <ClInclude Include="Math\JFMatrix3.h" />
     <ClInclude Include="Math\JFMatrix4.h" />
+    <ClInclude Include="Math\JFPoint.h" />
+    <ClInclude Include="Math\JFRect.h" />
+    <ClInclude Include="Math\JFSize.h" />
     <ClInclude Include="Math\JFVector2.h" />
     <ClInclude Include="Math\JFVector3.h" />
     <ClInclude Include="Math\JFVector4.h" />

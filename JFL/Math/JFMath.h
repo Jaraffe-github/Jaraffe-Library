@@ -16,3 +16,6 @@
 #include "JFVector2.h"
 #include "JFVector3.h"
 #include "JFVector4.h"
+#include "JFPoint.h"
+#include "JFSize.h"
+#include "JFRect.h"
