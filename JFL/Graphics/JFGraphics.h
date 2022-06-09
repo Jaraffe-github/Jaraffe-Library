@@ -11,3 +11,5 @@
 #include "JFCommandList.h"
 #include "JFGPUBuffer.h"
 #include "JFTexture.h"
+#include "JFColor32.h"
+#include "JFLinearColor.h"
