@@ -315,6 +315,7 @@
     <ClInclude Include="Application\Private\Win32\ApplicationContext.h" />
     <ClInclude Include="Graphics\JFColor32.h" />
     <ClInclude Include="Graphics\JFLinearColor.h" />
+    <ClInclude Include="Graphics\JFViewport.h" />
     <ClInclude Include="Graphics\Private\Vulkan\CommandQueue.h" />
     <ClInclude Include="Graphics\Private\Vulkan\GraphicsDevice.h" />
     <ClInclude Include="Graphics\JFCommandList.h" />
