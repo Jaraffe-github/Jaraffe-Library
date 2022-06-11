@@ -27,3 +27,13 @@ JFObject<JFSwapChain> CommandQueue::CreateSwapChain(const JFWindow* window)
 {
 	return new SwapChain(device, this, window);
 }
+
+JFObject<JFCommandBuffer> CommandQueue::CreateCommandBuffer()
+{
+	return nullptr;
+}
+
+void CommandQueue::WaitComplete()
+{
+
+}

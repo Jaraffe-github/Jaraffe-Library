@@ -44,10 +44,12 @@ namespace JFL
     {
         x += p.x;
         y += p.y;
+        return *this;
     }
     constexpr JFPoint& JFPoint::operator-=(const JFPoint& p) noexcept
     {
         x -= p.x;
         y -= p.y;
+        return *this;
     }
 }

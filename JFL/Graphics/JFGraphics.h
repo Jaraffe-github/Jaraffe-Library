@@ -8,8 +8,9 @@
 #pragma once
 #include "JFGraphicsDevice.h"
 #include "JFCommandQueue.h"
-#include "JFCommandList.h"
+#include "JFCommandBuffer.h"
 #include "JFGPUBuffer.h"
 #include "JFTexture.h"
 #include "JFColor32.h"
-#include "JFLinearColor.h"#include "JFViewport.h"
+#include "JFLinearColor.h"
+#include "JFViewport.h"

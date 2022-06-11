@@ -255,11 +255,6 @@ JFObject<JFCommandQueue> GraphicsDevice::CreateCommandQueue()
 	return nullptr;
 }
 
-JFObject<JFCommandList> GraphicsDevice::CreateCommandList()
-{
-	return nullptr;
-}
-
 JFObject<JFGPUBuffer> GraphicsDevice::CreateGPUBuffer(size_t, JFGPUBuffer::CPUCacheMode)
 {
 	return nullptr;

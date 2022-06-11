@@ -23,7 +23,12 @@ namespace JFL::Private::Vulkan
 
 		uint32_t Width() override;
 		uint32_t Height() override;
+
+		const JFTexture* CurrentColorTexture() const override;
+		const JFTexture* DepthStencilTexture() const override;
+
 		void Resize(uint32_t width, uint32_t height) override;
+		void Present() override;
 
 	private:
 		VkSurfaceKHR surface;

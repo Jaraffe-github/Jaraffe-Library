@@ -8,6 +8,11 @@
 #include "SwapChain.h"
 #include "GraphicsDevice.h"
 #include "Window/JFWindow.h"
+#include "SwapChain.h"
+#include "SwapChain.h"
+#include "SwapChain.h"
+#include "SwapChain.h"
+#include "SwapChain.h"
 
 using namespace JFL;
 using namespace JFL::Private::Vulkan;
@@ -33,6 +38,21 @@ uint32_t SwapChain::Height()
     return uint32_t();
 }
 
+const JFTexture* SwapChain::CurrentColorTexture() const
+{
+	return nullptr;
+}
+
+const JFTexture* SwapChain::DepthStencilTexture() const
+{
+	return nullptr;
+}
+
 void SwapChain::Resize(uint32_t width, uint32_t height)
 {
+}
+
+void SwapChain::Present()
+{
+
 }

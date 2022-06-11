@@ -69,7 +69,7 @@
     <ClInclude Include="Graphics\JFGraphics.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\CommandList.h">
+    <ClInclude Include="Graphics\Private\Direct3D12\CommandBuffer.h">
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\Private\Direct3D12\CommandQueue.h">
@@ -81,7 +81,7 @@
     <ClInclude Include="Graphics\Private\Direct3D12\d3dx12.h">
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\JFCommandList.h">
+    <ClInclude Include="Graphics\JFCommandBuffer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\JFCommandQueue.h">
@@ -159,7 +159,33 @@
     <ClInclude Include="Graphics\Private\Vulkan\vulkan_headers.h">
       <Filter>Graphics\Private\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Private\Vulkan\SwapChain.h" />
+    <ClInclude Include="Math\JFRect.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\JFPoint.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\JFSize.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFColor32.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFLinearColor.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFRenderCommandEncoder.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\SwapChain.h">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\RenderCommandEncoder.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFViewport.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -256,7 +282,7 @@
     <ClCompile Include="Graphics\JFGraphicsDevice.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Private\Direct3D12\CommandList.cpp">
+    <ClCompile Include="Graphics\Private\Direct3D12\CommandBuffer.cpp">
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Private\Direct3D12\CommandQueue.cpp">
@@ -304,6 +330,14 @@
     <ClCompile Include="Graphics\Private\Vulkan\QueueFamily.cpp">
       <Filter>Graphics\Private\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Private\Vulkan\SwapChain.cpp" />
+    <ClCompile Include="Graphics\Private\Vulkan\SwapChain.cpp">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Direct3D12\RenderCommandEncoder.cpp">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\JFLinearColor.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

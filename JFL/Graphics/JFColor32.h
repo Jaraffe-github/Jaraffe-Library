@@ -17,8 +17,6 @@ namespace JFL
         constexpr explicit JFColor32(uint8_t r, uint8_t g, uint8_t b, uint8_t a = 255);
         constexpr explicit JFColor32(uint32_t value);
 
-        constexpr uint8_t Intensity() const;
-
         constexpr bool operator != (const JFColor32& c) const;
         constexpr bool operator == (const JFColor32& c) const;
 
@@ -39,19 +37,14 @@ namespace JFL
     };
 
     constexpr JFColor32::JFColor32()
-        : r(0.f), g(0.f), b(0.f), a(0.f)
+        : r(0), g(0), b(0), a(255)
     {}
-    constexpr JFColor32::JFColor32(uint8_t r, uint8_t g, uint8_t b, uint8_t a = 255)
+    constexpr JFColor32::JFColor32(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
         : r(r), g(g), b(b), a(a)
     {}
     constexpr JFColor32::JFColor32(uint32_t value)
         : value(value)
     {}
-
-    constexpr JFColor32::Intensity() const
-    {
-
-    }
 
     constexpr bool JFColor32::operator==(const JFColor32& c) const
     {

@@ -12,7 +12,7 @@
 
 namespace JFL
 {
-    class JFLinearColor final
+    class JFL_API JFLinearColor final
     {
     public:
         constexpr JFLinearColor();
@@ -38,11 +38,11 @@ namespace JFL
         constexpr JFVector3 Vector3() const { return { r, g, b }; }
         constexpr JFVector4 Vector4() const { return { r, g, b, a }; }
 
-        static const JFLinearColor White;
-        static const JFLinearColor Black;
-        static const JFLinearColor Red;
-        static const JFLinearColor Green;
-        static const JFLinearColor Blue;
+        static const JFLinearColor white;
+        static const JFLinearColor black;
+        static const JFLinearColor red;
+        static const JFLinearColor green;
+        static const JFLinearColor blue;
 
         union
         {
@@ -67,10 +67,10 @@ namespace JFL
 
         // https://www.notion.so/Color-Depth-bits-per-pixel-752c120da81c4d0aa954626fa723daf3
         float factor = 1.f / ((1 << colorDepth) - 1);
-        r = r * factor;
-        g = g * factor;
-        b = b * factor;
-        a = a * factor;
+        this->r = r * factor;
+        this->g = g * factor;
+        this->b = b * factor;
+        this->a = a * factor;
     }
     constexpr JFLinearColor::JFLinearColor(JFColor32 color32)
     {
@@ -146,10 +146,4 @@ namespace JFL
         a = a * f;
         return *this;
     }
-
-    const JFLinearColor JFLinearColor::White(1.f, 1.f, 1.f, 1.f);
-    const JFLinearColor JFLinearColor::Black(0.f, 0.f, 0.f, 1.f);
-    const JFLinearColor JFLinearColor::Red(1.f, 0.f, 0.f, 1.f);
-    const JFLinearColor JFLinearColor::Green(0.f, 1.f, 0.f, 1.f);
-    const JFLinearColor JFLinearColor::Blue(0.f, 0.f, 1.f, 1.f);
 }

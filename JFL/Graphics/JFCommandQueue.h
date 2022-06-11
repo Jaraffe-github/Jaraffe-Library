@@ -9,6 +9,7 @@
 #include "JFInclude.h"
 #include "Object/JFObject.h"
 #include "JFSwapChain.h"
+#include "JFCommandBuffer.h"
 
 namespace JFL
 {
@@ -21,5 +22,8 @@ namespace JFL
 		virtual ~JFCommandQueue() noexcept = default;
 
 		virtual JFObject<JFSwapChain> CreateSwapChain(const JFWindow*) = 0;
+		virtual JFObject<JFCommandBuffer> CreateCommandBuffer() = 0;
+
+		virtual void WaitComplete() = 0;
 	};
 }

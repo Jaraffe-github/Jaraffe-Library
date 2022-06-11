@@ -23,8 +23,8 @@ namespace JFL
 
         constexpr JFSize& operator+=(const JFSize& s) noexcept;
         constexpr JFSize& operator-=(const JFSize& s) noexcept;
-        constexpr JFSize& operator*=(float f) const noexcept;
-        constexpr JFSize& operator/=(float f) const noexcept;
+        constexpr JFSize& operator*=(float f) noexcept;
+        constexpr JFSize& operator/=(float f) noexcept;
 
         float width;
         float height;
@@ -57,20 +57,24 @@ namespace JFL
     {
         width += s.width;
         height += s.height;
+        return *this;
     }
     constexpr JFSize& JFSize::operator-=(const JFSize& s) noexcept
     {
         width -= s.width;
         height -= s.height;
+        return *this;
     }
-    constexpr JFSize& JFSize::operator*=(float f) const noexcept
+    constexpr JFSize& JFSize::operator*=(float f) noexcept
     {
         width -= f;
         height -= f;
+        return *this;
     }
-    constexpr JFSize& JFSize::operator/=(float f) const noexcept
+    constexpr JFSize& JFSize::operator/=(float f) noexcept
     {
         width /= f;
         height /= f;
+        return *this;
     }
 }

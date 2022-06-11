@@ -11,10 +11,7 @@
 #include <wrl.h>
 #include <system_error>
 #include <D3Dcompiler.h>
-
-#if defined(DEBUG) || defined(_DEBUG)
 #include <dxgidebug.h>
-#endif
 
 using namespace Microsoft::WRL;
 

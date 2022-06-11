@@ -20,7 +20,6 @@ namespace JFL::Private::Vulkan
 		~GraphicsDevice() noexcept;
 
 		JFObject<JFCommandQueue> CreateCommandQueue() override;
-		JFObject<JFCommandList> CreateCommandList() override;
 
 		JFObject<JFGPUBuffer> CreateGPUBuffer(size_t, JFGPUBuffer::CPUCacheMode) override;
 		JFObject<JFTexture> CreateTexture(const JFTextureDescriptor&) override;

@@ -23,9 +23,12 @@ namespace JFL::Private::Vulkan
 		CommandQueue(GraphicsDevice* device, VkQueue queue, QueueFamily* queueFamily);
 		~CommandQueue();
 
-		VkQueue Queue() const { return queue; }
-
 		JFObject<JFSwapChain> CreateSwapChain(const JFWindow* window) override;
+		JFObject<JFCommandBuffer> CreateCommandBuffer() override;
+
+		void WaitComplete() override;
+
+		VkQueue Queue() const { return queue; }
 
 	private:
 		VkQueue queue;
