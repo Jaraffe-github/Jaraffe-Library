@@ -49,7 +49,7 @@ namespace GraphicsSettings
 #if defined(DEBUG) || defined(_DEBUG)
 	constexpr bool VALIDATION = true;
 #else
-	constexpr bool VALIDATION = true;
+	constexpr bool VALIDATION = false;
 #endif
 
 	constexpr bool USE_SWAP_CHAIN = true;
