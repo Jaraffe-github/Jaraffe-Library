@@ -25,7 +25,7 @@ CommandQueue::~CommandQueue()
 
 JFObject<JFSwapChain> CommandQueue::CreateSwapChain(const JFWindow* window)
 {
-	return new SwapChain(device, this, window);
+	return new SwapChain(device, this, queueFamily, window);
 }
 
 JFObject<JFCommandBuffer> CommandQueue::CreateCommandBuffer()

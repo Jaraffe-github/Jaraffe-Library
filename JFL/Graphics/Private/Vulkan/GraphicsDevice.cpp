@@ -87,6 +87,7 @@ namespace Debug
 GraphicsDevice::GraphicsDevice()
 	: instance(nullptr)
 	, device(nullptr)
+	, physicalDevice(nullptr)
 {
 	VkInstanceCreateInfo instanceCreateInfo{};
 	instanceCreateInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
@@ -159,7 +160,6 @@ GraphicsDevice::GraphicsDevice()
 	std::vector<VkPhysicalDevice> physicalDevices(deviceCount);
 	ThrowIfFailed(vkEnumeratePhysicalDevices(instance, &deviceCount, physicalDevices.data()));
 
-	VkPhysicalDevice selectedPhysicalDevice = nullptr;	
 	for (const auto& physicalDevice : physicalDevices)
 	{
 		VkPhysicalDeviceMemoryProperties memoryProperties;
@@ -173,20 +173,20 @@ GraphicsDevice::GraphicsDevice()
 
 		if (deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU && deviceFeatures.geometryShader)
 		{
-			selectedPhysicalDevice = physicalDevice;
+			this->physicalDevice = physicalDevice;
 			JFLogInfo("Usable hardware info: {}", deviceProperties.deviceName);
 			break;
 		}
 	}
 
-	if (selectedPhysicalDevice == nullptr)
+	if (physicalDevice == nullptr)
 		throw std::runtime_error("failed to find physical device suitable");
 
 	uint32_t queueFamilyCount = 0;
-	vkGetPhysicalDeviceQueueFamilyProperties(selectedPhysicalDevice, &queueFamilyCount, nullptr);
+	vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, nullptr);
 
 	std::vector<VkQueueFamilyProperties> queueFamilyProperties(queueFamilyCount);
-	vkGetPhysicalDeviceQueueFamilyProperties(selectedPhysicalDevice, &queueFamilyCount, queueFamilyProperties.data());
+	vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, queueFamilyProperties.data());
 
 	std::vector<VkDeviceQueueCreateInfo> queueCreateInfos(queueFamilyCount, VkDeviceQueueCreateInfo{});
 
@@ -218,16 +218,16 @@ GraphicsDevice::GraphicsDevice()
 
 	if (GraphicsSettings::USE_SWAP_CHAIN)
 	{
-		deviceExtensions.push_back(VK_KHR_SURFACE_EXTENSION_NAME);
+		deviceExtensions.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
 	}
 
-	if (!CheckDeviceExtensionsSupport(selectedPhysicalDevice, deviceExtensions))
+	if (!CheckDeviceExtensionsSupport(physicalDevice, deviceExtensions))
 		throw std::runtime_error("device extensions requested, but not available!");
 
 	deviceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
 	deviceCreateInfo.ppEnabledExtensionNames = deviceExtensions.data();
 
-	ThrowIfFailed(vkCreateDevice(selectedPhysicalDevice, &deviceCreateInfo, nullptr, &device));
+	ThrowIfFailed(vkCreateDevice(physicalDevice, &deviceCreateInfo, nullptr, &device));
 
 	queueFamilies.reserve(queueFamilyCount);
 	for (size_t i = 0; i < queueFamilyProperties.size(); ++i)
@@ -267,7 +267,6 @@ JFObject<JFTexture> GraphicsDevice::CreateTexture(const JFTextureDescriptor&)
 
 bool GraphicsDevice::CheckValidationLayersSupport(const std::vector<const char*>& validationLayers) const
 {
-
 	uint32_t layerCount;
 	vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
 
@@ -280,14 +279,14 @@ bool GraphicsDevice::CheckValidationLayersSupport(const std::vector<const char*>
 						 availableLayers.end(),
 						 [layerName](VkLayerProperties property)
 						 {
-							 return strcmp(property.layerName, layerName);
+							 return strcmp(property.layerName, layerName) == 0;
 						 }) != availableLayers.end())
 		{
 			JFLogInfo("Supported validation layer: {}", layerName);
 		}
 		else
 		{
-			JFLogError("Not supported validation layer: {}", layerName);
+			JFLogWarning("Not supported validation layer: {}", layerName);
 			return false;
 		}
 	}
@@ -308,14 +307,14 @@ bool GraphicsDevice::CheckInstanceExtensionsSupport(const std::vector<const char
 						 availableExtensions.end(),
 						 [extensionName](VkExtensionProperties property) 
 						 { 
-							 return strcmp(property.extensionName, extensionName); 
+							 return strcmp(property.extensionName, extensionName) == 0; 
 						 }) != availableExtensions.end())
 		{
 			JFLogInfo("Supported extension {}", extensionName);
 		}
 		else
 		{
-			JFLogInfo("Not supported extension {}", extensionName);
+			JFLogWarning("Not supported extension {}", extensionName);
 			return false;
 		}
 	}
@@ -336,14 +335,14 @@ bool GraphicsDevice::CheckDeviceExtensionsSupport(VkPhysicalDevice physicalDevic
 						 availableExtensions.end(),
 						 [extensionName](VkExtensionProperties property)
 						 {
-							 return strcmp(property.extensionName, extensionName);
+							 return strcmp(property.extensionName, extensionName) == 0;
 						 }) != availableExtensions.end())
 		{
 			JFLogInfo("Supported extension {}", extensionName);
 		}
 		else
 		{
-			JFLogInfo("Not supported extension {}", extensionName);
+			JFLogWarning("Not supported extension {}", extensionName);
 			return false;
 		}
 	}

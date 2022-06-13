@@ -9,6 +9,7 @@
 #include "../../JFSwapChain.h"
 #include "JFInclude.h"
 #include "vulkan_headers.h"
+#include "GraphicsDevice.h"
 
 namespace JFL::Private::Vulkan
 {
@@ -18,8 +19,8 @@ namespace JFL::Private::Vulkan
 	class SwapChain final : public JFSwapChain
 	{
 	public:
-		SwapChain(GraphicsDevice* device, CommandQueue* queue, const JFWindow* window);
-		~SwapChain() = default;
+		SwapChain(GraphicsDevice* device, CommandQueue* queue, QueueFamily* queueFamily, const JFWindow* window);
+		~SwapChain();
 
 		uint32_t Width() override;
 		uint32_t Height() override;
@@ -31,6 +32,16 @@ namespace JFL::Private::Vulkan
 		void Present() override;
 
 	private:
+		bool CheckSurfaceFormatSupport(const std::vector<VkSurfaceFormatKHR>& surfaceFormats);
+		bool CheckSurfacePresentMode(const std::vector<VkPresentModeKHR>& presentModes);
+
 		VkSurfaceKHR surface;
+		VkSwapchainKHR swapChain;
+
+		std::vector<VkImage> colorImages;
+
+		uint32_t width;
+		uint32_t height;
+		JFObject<GraphicsDevice> device;
 	};
 }

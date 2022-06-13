@@ -24,8 +24,9 @@ namespace JFL::Private::Vulkan
 		JFObject<JFGPUBuffer> CreateGPUBuffer(size_t, JFGPUBuffer::CPUCacheMode) override;
 		JFObject<JFTexture> CreateTexture(const JFTextureDescriptor&) override;
 
-		VkDevice Device() const { return device; }
 		VkInstance Instance() const { return instance; }
+		VkDevice Device() const { return device; }
+		VkPhysicalDevice PhysicalDevice() const { return physicalDevice; }
 
 	private:
 		bool CheckValidationLayersSupport(const std::vector<const char*>& validationLayers) const;
@@ -34,6 +35,7 @@ namespace JFL::Private::Vulkan
 
 		VkInstance instance;
 		VkDevice device;
+		VkPhysicalDevice physicalDevice;
 
 		std::vector<JFObject<QueueFamily>> queueFamilies;
 	};
