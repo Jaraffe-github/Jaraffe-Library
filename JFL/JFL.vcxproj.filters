@@ -186,6 +186,9 @@
     <ClInclude Include="Graphics\JFViewport.h">
       <Filter>Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\Texture.h">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -338,6 +341,9 @@
     </ClCompile>
     <ClCompile Include="Graphics\JFLinearColor.cpp">
       <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Vulkan\Texture.cpp">
+      <Filter>Graphics\Private\Vulkan</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

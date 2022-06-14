@@ -10,6 +10,7 @@
 #include "JFInclude.h"
 #include "vulkan_headers.h"
 #include "GraphicsDevice.h"
+#include "Texture.h"
 
 namespace JFL::Private::Vulkan
 {
@@ -38,7 +39,7 @@ namespace JFL::Private::Vulkan
 		VkSurfaceKHR surface;
 		VkSwapchainKHR swapChain;
 
-		std::vector<VkImage> colorImages;
+		std::vector<Texture> colorTextures;
 
 		uint32_t width;
 		uint32_t height;

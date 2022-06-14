@@ -369,6 +369,7 @@
     <ClInclude Include="Math\JFVector4.h" />
     <ClInclude Include="Object\JFObject.h" />
     <ClInclude Include="Object\JFRefCounter.h" />
+    <ClInclude Include="Graphics\Private\Vulkan\Texture.h" />
     <ClInclude Include="Window\JFWindow.h" />
     <ClInclude Include="Window\Private\WindowPlatform.h" />
     <ClInclude Include="Window\Private\Win32\Window.h" />
@@ -409,6 +410,7 @@
     <ClCompile Include="Log\JFLog.cpp" />
     <ClCompile Include="Log\JFLogVariant.cpp" />
     <ClCompile Include="Object\JFRefCounter.cpp" />
+    <ClCompile Include="Graphics\Private\Vulkan\Texture.cpp" />
     <ClCompile Include="Window\JFWindow.cpp" />
     <ClCompile Include="Window\Private\Win32\Window.cpp" />
   </ItemGroup>
