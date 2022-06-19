@@ -7,7 +7,7 @@
 
 #pragma once
 #include "JFInclude.h"
-#include "JFLogVariant.h"
+#include "String/JFString.h"
 #include <vector>
 
 namespace JFL
@@ -41,27 +41,27 @@ namespace JFL
 	//=============================================================================
 	// Implementation)
 	//=============================================================================
-	void JFLogInternal(JFLogLevel, const char*, const std::vector<JFLogVariant>&);
-	void JFLogInternal(JFLogLevel, const wchar_t*, const std::vector<JFLogVariant>&);
+	void JFLogInternal(JFLogLevel, JFStringA&&);
+	void JFLogInternal(JFLogLevel, JFStringW&&);
 
 	void JFLog(JFLogLevel logLevel, const char* format)
 	{
-		JFLogInternal(logLevel, format, std::vector<JFLogVariant>());
+		JFLogInternal(logLevel, JFStringA(format));
 	}
 	void JFLog(JFLogLevel logLevel, const wchar_t* format)
 	{
-		JFLogInternal(logLevel, format, std::vector<JFLogVariant>());
+		JFLogInternal(logLevel, JFStringW(format));
 	}
 
 	template<class... Args>
 	void JFLog(JFLogLevel logLevel, const char* format, Args&&... args)
 	{
-		JFLogInternal(logLevel, format, std::vector<JFLogVariant>{JFLogVariant(std::forward<Args>(args))...});
+		JFLogInternal(logLevel, JFStringFormat::Format(format, std::forward<Args>(args)...));
 	}
 	template<class... Args>
 	void JFLog(JFLogLevel logLevel, const wchar_t* format, Args&&... args)
 	{
-		JFLogInternal(logLevel, format, std::vector<JFLogVariant>{JFLogVariant(std::forward<Args>(args))...});
+		JFLogInternal(logLevel, JFStringFormat::Format(format, std::forward<Args>(args)...));
 	}
 
 	template<class... Args>
