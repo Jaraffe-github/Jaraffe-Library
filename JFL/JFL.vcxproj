@@ -313,6 +313,11 @@
     <ClInclude Include="Application\JFApplicationContextInterface.h" />
     <ClInclude Include="Application\Private\ApplicationPlatform.h" />
     <ClInclude Include="Application\Private\Win32\ApplicationContext.h" />
+    <ClInclude Include="Container\JFArray.h" />
+    <ClInclude Include="Container\JFContainer.h" />
+    <ClInclude Include="FileSystem\JFDirectory.h" />
+    <ClInclude Include="FileSystem\JFFile.h" />
+    <ClInclude Include="FileSystem\JFFileSystem.h" />
     <ClInclude Include="Graphics\JFColor32.h" />
     <ClInclude Include="Graphics\JFLinearColor.h" />
     <ClInclude Include="Graphics\JFRenderCommandEncoder.h" />
@@ -352,7 +357,9 @@
     <ClInclude Include="Lock\JFSharedMutex.h" />
     <ClInclude Include="Lock\JFSpinLock.h" />
     <ClInclude Include="Log\JFLog.h" />
-    <ClInclude Include="Log\JFLogVariant.h" />
+    <ClInclude Include="Memory\JFMemory.h" />
+    <ClInclude Include="Type\JFFunction.h" />
+    <ClInclude Include="Type\JFPrimitiveVariant.h" />
     <ClInclude Include="Math\JFAffineTransform2.h" />
     <ClInclude Include="Math\JFAffineTransform3.h" />
     <ClInclude Include="Math\JFLinearTransform2.h" />
@@ -370,6 +377,15 @@
     <ClInclude Include="Object\JFObject.h" />
     <ClInclude Include="Object\JFRefCounter.h" />
     <ClInclude Include="Graphics\Private\Vulkan\Texture.h" />
+    <ClInclude Include="String\JFString.h" />
+    <ClInclude Include="String\JFStringA.h" />
+    <ClInclude Include="String\JFStringFormat.h" />
+    <ClInclude Include="String\JFStringW.h" />
+    <ClInclude Include="Type\JFTuple.h" />
+    <ClInclude Include="Type\JFType.h" />
+    <ClInclude Include="Type\JFTypes.h" />
+    <ClInclude Include="Type\JFTypeTraits.h" />
+    <ClInclude Include="Type\JFTypeTuple.h" />
     <ClInclude Include="Window\JFWindow.h" />
     <ClInclude Include="Window\Private\WindowPlatform.h" />
     <ClInclude Include="Window\Private\Win32\Window.h" />
@@ -389,6 +405,8 @@
   <ItemGroup>
     <ClCompile Include="Application\JFApplication.cpp" />
     <ClCompile Include="Application\Private\Win32\ApplicationContext.cpp" />
+    <ClCompile Include="FileSystem\JFDirectory.cpp" />
+    <ClCompile Include="FileSystem\JFFile.cpp" />
     <ClCompile Include="Graphics\JFGraphicsDevice.cpp" />
     <ClCompile Include="Graphics\JFLinearColor.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\CommandBuffer.cpp" />
@@ -408,9 +426,12 @@
     <ClCompile Include="Lock\JFSharedMutex.cpp" />
     <ClCompile Include="Lock\JFSpinLock.cpp" />
     <ClCompile Include="Log\JFLog.cpp" />
-    <ClCompile Include="Log\JFLogVariant.cpp" />
+    <ClCompile Include="Type\JFPrimitiveVariant.cpp" />
     <ClCompile Include="Object\JFRefCounter.cpp" />
     <ClCompile Include="Graphics\Private\Vulkan\Texture.cpp" />
+    <ClCompile Include="String\JFStringA.cpp" />
+    <ClCompile Include="String\JFStringFormat.cpp" />
+    <ClCompile Include="String\JFStringW.cpp" />
     <ClCompile Include="Window\JFWindow.cpp" />
     <ClCompile Include="Window\Private\Win32\Window.cpp" />
   </ItemGroup>

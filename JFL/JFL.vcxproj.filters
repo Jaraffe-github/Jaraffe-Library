@@ -120,7 +120,7 @@
     <ClInclude Include="Log\JFLog.h">
       <Filter>Log</Filter>
     </ClInclude>
-    <ClInclude Include="Log\JFLogVariant.h">
+    <ClInclude Include="Type\JFPrimitiveVariant.h">
       <Filter>Log</Filter>
     </ClInclude>
     <ClInclude Include="Lock\JFMutex.h">
@@ -189,6 +189,22 @@
     <ClInclude Include="Graphics\Private\Vulkan\Texture.h">
       <Filter>Graphics\Private\Vulkan</Filter>
     </ClInclude>
+    <ClInclude Include="FileSystem\JFDirectory.h" />
+    <ClInclude Include="FileSystem\JFFile.h" />
+    <ClInclude Include="String\JFStringA.h" />
+    <ClInclude Include="String\JFStringW.h" />
+    <ClInclude Include="String\JFStringFormat.h" />
+    <ClInclude Include="String\JFString.h" />
+    <ClInclude Include="Type\JFType.h" />
+    <ClInclude Include="Container\JFArray.h" />
+    <ClInclude Include="Memory\JFMemory.h" />
+    <ClInclude Include="Container\JFContainer.h" />
+    <ClInclude Include="FileSystem\JFFileSystem.h" />
+    <ClInclude Include="Type\JFFunction.h" />
+    <ClInclude Include="Type\JFTuple.h" />
+    <ClInclude Include="Type\JFTypes.h" />
+    <ClInclude Include="Type\JFTypeTraits.h" />
+    <ClInclude Include="Type\JFTypeTuple.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -306,7 +322,7 @@
     <ClCompile Include="Log\JFLog.cpp">
       <Filter>Log</Filter>
     </ClCompile>
-    <ClCompile Include="Log\JFLogVariant.cpp">
+    <ClCompile Include="Type\JFPrimitiveVariant.cpp">
       <Filter>Log</Filter>
     </ClCompile>
     <ClCompile Include="Lock\JFMutex.cpp">
@@ -345,5 +361,10 @@
     <ClCompile Include="Graphics\Private\Vulkan\Texture.cpp">
       <Filter>Graphics\Private\Vulkan</Filter>
     </ClCompile>
+    <ClCompile Include="FileSystem\JFDirectory.cpp" />
+    <ClCompile Include="FileSystem\JFFile.cpp" />
+    <ClCompile Include="String\JFStringA.cpp" />
+    <ClCompile Include="String\JFStringW.cpp" />
+    <ClCompile Include="String\JFStringFormat.cpp" />
   </ItemGroup>
 </Project>

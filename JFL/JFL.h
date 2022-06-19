@@ -11,3 +11,8 @@
 #include "Window/JFWindow.h"
 #include "Graphics/JFGraphics.h"
 #include "Math/JFMath.h"
+#include "Container/JFContainer.h"
+#include "FileSystem/JFFileSystem.h"
+#include "Memory/JFMemory.h"
+#include "String/JFString.h"
+#include "Type/JFType.h"
