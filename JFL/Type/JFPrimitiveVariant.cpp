@@ -1,35 +1,35 @@
 //
-//  File: JFLogVariant.cpp
+//  File: JFPrimitiveVariant.cpp
 //  Author: Seungmin Choi (jaraffe2@gmail.com)
 //
 //  Copyright (c) 2021 Seungmin Choi. All rights reserved.
 //
 
-#include "JFLogVariant.h"
+#include "JFPrimitiveVariant.h"
 
 using namespace JFL;
 
-JFLogVariant::JFLogVariant()
+JFPrimitiveVariant::JFPrimitiveVariant()
     : activeType(Type::None)
     , block{ 0 }
 {
 }
 
-JFLogVariant::JFLogVariant(const bool v) noexcept
+JFPrimitiveVariant::JFPrimitiveVariant(const bool v) noexcept
     : activeType(Type::Boolean)
     , block{ 0 }
 {
     new (block) bool(v);
 }
 
-JFLogVariant::JFLogVariant(const int32_t v) noexcept
+JFPrimitiveVariant::JFPrimitiveVariant(const int32_t v) noexcept
     : activeType(Type::Int32)
     , block{ 0 }
 {
     new (block) int32_t(v);
 }
 
-JFLogVariant::JFLogVariant(const int64_t v) noexcept
+JFPrimitiveVariant::JFPrimitiveVariant(const int64_t v) noexcept
     : activeType(Type::Int64)
     , block{ 0 }
 {
@@ -37,135 +37,135 @@ JFLogVariant::JFLogVariant(const int64_t v) noexcept
 }
 
 
-JFLogVariant::JFLogVariant(const uint32_t v) noexcept
+JFPrimitiveVariant::JFPrimitiveVariant(const uint32_t v) noexcept
     : activeType(Type::UInt32)
     , block{ 0 }
 {
     new (block) uint32_t(v);
 }
 
-JFLogVariant::JFLogVariant(const uint64_t v) noexcept
+JFPrimitiveVariant::JFPrimitiveVariant(const uint64_t v) noexcept
     : activeType(Type::UInt64)
     , block{ 0 }
 {
     new (block) uint64_t(v);
 }
 
-JFLogVariant::JFLogVariant(const long v) noexcept
+JFPrimitiveVariant::JFPrimitiveVariant(const long v) noexcept
     : activeType(Type::Long)
     , block{ 0 }
 {
     new (block) long(v);
 }
 
-JFLogVariant::JFLogVariant(const unsigned long v) noexcept
+JFPrimitiveVariant::JFPrimitiveVariant(const unsigned long v) noexcept
     : activeType(Type::ULong)
     , block{ 0 }
 {
     new (block) unsigned long(v);
 }
 
-JFLogVariant::JFLogVariant(const float v) noexcept
+JFPrimitiveVariant::JFPrimitiveVariant(const float v) noexcept
     : activeType(Type::Float)
     , block{ 0 }
 {
     new (block) float(v);
 }
 
-JFLogVariant::JFLogVariant(const double v) noexcept
+JFPrimitiveVariant::JFPrimitiveVariant(const double v) noexcept
     : activeType(Type::Double)
     , block{ 0 }
 {
     new (block) double(v);
 }
 
-JFLogVariant::JFLogVariant(const long double v) noexcept
+JFPrimitiveVariant::JFPrimitiveVariant(const long double v) noexcept
     : activeType(Type::Double)
     , block{ 0 }
 {
     new (block) double(v);
 }
 
-JFLogVariant::JFLogVariant(const char* v) noexcept
+JFPrimitiveVariant::JFPrimitiveVariant(const char* v) noexcept
     : activeType(Type::Char)
     , block{ 0 }
 {
     new (block) const char* (v);
 }
 
-JFLogVariant::JFLogVariant(const wchar_t* v) noexcept
+JFPrimitiveVariant::JFPrimitiveVariant(const wchar_t* v) noexcept
     : activeType(Type::WChar)
     , block{ 0 }
 {
     new (block) const wchar_t* (v);
 }
 
-JFLogVariant::JFLogVariant(const void* v) noexcept
-    : JFLogVariant((uintptr_t)v)
+JFPrimitiveVariant::JFPrimitiveVariant(const void* v) noexcept
+    : JFPrimitiveVariant((uintptr_t)v)
 {
 }
 
-bool JFLogVariant::Boolean()
+bool JFPrimitiveVariant::Boolean()
 {
     JFASSERT_DEBUG(activeType == Type::Boolean);
     return reinterpret_cast<bool*>(block)[0];
 }
 
-int32_t JFLogVariant::Int32()
+int32_t JFPrimitiveVariant::Int32()
 {
     JFASSERT_DEBUG(activeType == Type::Int32);
     return reinterpret_cast<int32_t*>(block)[0];
 }
 
-int64_t JFLogVariant::Int64()
+int64_t JFPrimitiveVariant::Int64()
 {
     JFASSERT_DEBUG(activeType == Type::Int64);
     return reinterpret_cast<int64_t*>(block)[0];
 }
 
-uint32_t JFLogVariant::UInt32()
+uint32_t JFPrimitiveVariant::UInt32()
 {
     JFASSERT_DEBUG(activeType == Type::UInt32);
     return reinterpret_cast<uint32_t*>(block)[0];
 }
 
-uint64_t JFLogVariant::UInt64()
+uint64_t JFPrimitiveVariant::UInt64()
 {
     JFASSERT_DEBUG(activeType == Type::UInt64);
     return reinterpret_cast<uint64_t*>(block)[0];
 }
 
-long JFLogVariant::Long()
+long JFPrimitiveVariant::Long()
 {
     JFASSERT_DEBUG(activeType == Type::Long);
     return reinterpret_cast<long*>(block)[0];
 }
 
-unsigned long JFLogVariant::ULong()
+unsigned long JFPrimitiveVariant::ULong()
 {
     JFASSERT_DEBUG(activeType == Type::ULong);
     return reinterpret_cast<unsigned long*>(block)[0];
 }
 
-float JFLogVariant::Float()
+float JFPrimitiveVariant::Float()
 {
     JFASSERT_DEBUG(activeType == Type::Float);
     return reinterpret_cast<float*>(block)[0];
 }
 
-double JFLogVariant::Double()
+double JFPrimitiveVariant::Double()
 {
     JFASSERT_DEBUG(activeType == Type::Double);
     return reinterpret_cast<double*>(block)[0];
 }
 
-const char* JFLogVariant::Char()
+const char* JFPrimitiveVariant::Char()
 {
     JFASSERT_DEBUG(activeType == Type::Char);
     return reinterpret_cast<const char**>(block)[0];
 }
 
-const wchar_t* JFLogVariant::WChar()
+const wchar_t* JFPrimitiveVariant::WChar()
 {
     JFASSERT_DEBUG(activeType == Type::WChar);
     return reinterpret_cast<const wchar_t**>(block)[0];
