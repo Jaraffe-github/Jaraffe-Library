@@ -35,6 +35,9 @@ public:
 		whiteTextureDesc.usage = JFTexture::UsageShaderRead;
 		whiteTexture = graphicsDevice->CreateTexture(whiteTextureDesc);
 
+		vertexShader = graphicsDevice->CreateShader(L"Resource/SimpleVertexShader.spv", L"main", JFShader::StageType::Vertex);
+		pixelShader = graphicsDevice->CreateShader(L"Resource/SimplePixelShader.spv", L"main", JFShader::StageType::Fragment);
+
 		loopThread = std::jthread([this](std::stop_token token) 
 		{
 			while (!token.stop_requested())
@@ -93,6 +96,9 @@ private:
 
 	JFObject<JFGPUBuffer> vertexBuffer;
 	JFObject<JFTexture> whiteTexture;
+
+	JFObject<JFShader> vertexShader;
+	JFObject<JFShader> pixelShader;
 };
 
 TEST(Application, Init)

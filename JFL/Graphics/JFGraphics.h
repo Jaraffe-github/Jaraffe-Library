@@ -14,3 +14,7 @@
 #include "JFColor32.h"
 #include "JFLinearColor.h"
 #include "JFViewport.h"
+#include "JFRenderCommandEncoder.h"
+#include "JFPixelFormat.h"
+#include "JFShader.h"
+#include "JFSwapChain.h"

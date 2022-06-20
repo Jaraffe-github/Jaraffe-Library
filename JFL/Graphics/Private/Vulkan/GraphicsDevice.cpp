@@ -8,7 +8,9 @@
 #include "../GraphicsAPI.h"
 #include "GraphicsDevice.h"
 #include "Log/JFLog.h"
+#include "FileSystem/JFFileSystem.h"
 #include "CommandQueue.h"
+#include "Shader.h"
 
 namespace JFL::Private::Vulkan
 {
@@ -347,4 +349,17 @@ bool GraphicsDevice::CheckDeviceExtensionsSupport(VkPhysicalDevice physicalDevic
 		}
 	}
 	return true;
+}
+
+JFObject<JFShader> GraphicsDevice::CreateShader(const JFArray<uint8_t>& code, const JFStringW& entry, JFShader::StageType stage)
+{
+	VkShaderModuleCreateInfo createInfo{};
+	createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	createInfo.codeSize = code.Count();
+	createInfo.pCode = reinterpret_cast<const uint32_t*>(code.Data());
+
+	VkShaderModule shaderModule;
+	ThrowIfFailed(vkCreateShaderModule(device, &createInfo, nullptr, &shaderModule));
+
+	return new Shader(shaderModule, stage, entry);
 }

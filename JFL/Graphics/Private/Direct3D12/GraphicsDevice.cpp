@@ -14,6 +14,8 @@
 #include "Log/JFLog.h"
 #include "GraphicsDevice.h"
 #include "GraphicsDevice.h"
+#include "GraphicsDevice.h"
+#include "GraphicsDevice.h"
 
 namespace JFL::Private::Direct3D12
 {
@@ -375,4 +377,9 @@ JFObject<JFTexture> GraphicsDevice::CreateTexture(const JFTextureDescriptor& des
     }
 
     return newTexture.Ptr();
+}
+
+JFObject<JFShader> GraphicsDevice::CreateShader(const JFArray<uint8_t>& code, const JFStringW& entry, JFShader::StageType stage)
+{
+    return nullptr;
 }
