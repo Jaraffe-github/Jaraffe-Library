@@ -6,6 +6,7 @@
 //
 
 #include "CommandBuffer.h"
+#include "CopyCommandEncoder.h"
 #include "RenderCommandEncoder.h"
 
 using namespace JFL;
@@ -23,6 +24,12 @@ JFObject<JFRenderCommandEncoder> CommandBuffer::CreateRenderCommandEncoder()
 {
 	list->Reset(allocator.Get(), nullptr);
 	return new RenderCommandEncoder(this, list.Get());
+}
+
+JFObject<JFCopyCommandEncoder> CommandBuffer::CreateCopyCommandEncoder()
+{
+	list->Reset(allocator.Get(), nullptr);
+	return new CopyCommandEncoder(this, list.Get());
 }
 
 void CommandBuffer::Commit()

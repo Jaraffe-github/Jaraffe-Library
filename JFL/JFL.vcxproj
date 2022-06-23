@@ -319,10 +319,12 @@
     <ClInclude Include="FileSystem\JFFile.h" />
     <ClInclude Include="FileSystem\JFFileSystem.h" />
     <ClInclude Include="Graphics\JFColor32.h" />
+    <ClInclude Include="Graphics\JFCopyCommandEncoder.h" />
     <ClInclude Include="Graphics\JFLinearColor.h" />
     <ClInclude Include="Graphics\JFRenderCommandEncoder.h" />
     <ClInclude Include="Graphics\JFShader.h" />
     <ClInclude Include="Graphics\JFViewport.h" />
+    <ClInclude Include="Graphics\Private\Direct3D12\CopyCommandEncoder.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\RenderCommandEncoder.h" />
     <ClInclude Include="Graphics\Private\Vulkan\CommandQueue.h" />
     <ClInclude Include="Graphics\Private\Vulkan\GraphicsDevice.h" />
@@ -413,6 +415,7 @@
     <ClCompile Include="Graphics\JFLinearColor.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\CommandBuffer.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\CommandQueue.cpp" />
+    <ClCompile Include="Graphics\Private\Direct3D12\CopyCommandEncoder.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\GPUBuffer.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\GraphicsDevice.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\RenderCommandEncoder.cpp" />

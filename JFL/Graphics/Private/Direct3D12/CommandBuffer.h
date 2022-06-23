@@ -20,6 +20,7 @@ namespace JFL::Private::Direct3D12
 		~CommandBuffer() noexcept = default;
 
 		JFObject<JFRenderCommandEncoder> CreateRenderCommandEncoder() override;
+		JFObject<JFCopyCommandEncoder> CreateCopyCommandEncoder() override;
 
 		void Commit() override;
 

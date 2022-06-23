@@ -12,7 +12,7 @@
 
 namespace JFL::Private::Direct3D12
 {
-	class RenderCommandEncoder : public JFRenderCommandEncoder
+	class RenderCommandEncoder final : public JFRenderCommandEncoder
 	{
 	public:
 		RenderCommandEncoder(CommandBuffer*, ID3D12GraphicsCommandList*);

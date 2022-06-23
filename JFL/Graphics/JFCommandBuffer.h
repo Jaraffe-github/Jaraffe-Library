@@ -8,6 +8,7 @@
 #pragma once
 #include "JFInclude.h"
 #include "JFRenderCommandEncoder.h"
+#include "JFCopyCommandEncoder.h"
 #include "Object/JFObject.h"
 
 namespace JFL
@@ -19,6 +20,7 @@ namespace JFL
 		virtual ~JFCommandBuffer() noexcept = default;
 
 		virtual JFObject<JFRenderCommandEncoder> CreateRenderCommandEncoder() = 0;
+		virtual JFObject<JFCopyCommandEncoder> CreateCopyCommandEncoder() = 0;
 
 		virtual void Commit() = 0;
 	};
