@@ -8,6 +8,8 @@
 #include "CommandBuffer.h"
 #include "CopyCommandEncoder.h"
 #include "RenderCommandEncoder.h"
+#include "RenderPipeline.h"
+#include "GraphicsDevice.h"
 
 using namespace JFL;
 using namespace JFL::Private::Direct3D12;
@@ -20,9 +22,16 @@ CommandBuffer::CommandBuffer(CommandQueue* commandQueue, ID3D12CommandAllocator*
 {
 }
 
-JFObject<JFRenderCommandEncoder> CommandBuffer::CreateRenderCommandEncoder()
+JFObject<JFRenderCommandEncoder> CommandBuffer::CreateRenderCommandEncoder(JFRenderPipeline* pipelineState)
 {
-	list->Reset(allocator.Get(), nullptr);
+	if (RenderPipeline* ps = dynamic_cast<RenderPipeline*>(pipelineState))
+	{
+		list->Reset(allocator.Get(), ps->PipelineState());
+	}
+	else
+	{
+		list->Reset(allocator.Get(), nullptr);
+	}
 	return new RenderCommandEncoder(this, list.Get());
 }
 

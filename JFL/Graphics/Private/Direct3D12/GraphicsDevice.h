@@ -18,11 +18,12 @@ namespace JFL::Private::Direct3D12
 		~GraphicsDevice() noexcept = default;
 
 		JFObject<JFCommandQueue> CreateCommandQueue() override;
+		JFObject<JFRenderPipeline> CreateRenderPipeline(const JFRenderPipelineDescriptor&) override;
 
 		JFObject<JFGPUBuffer> CreateGPUBuffer(size_t, JFGPUBuffer::CPUCacheMode) override;
 		JFObject<JFTexture> CreateTexture(const JFTextureDescriptor&) override;
 
-		JFObject<JFShader> CreateShader(const JFArray<uint8_t>& code, const JFStringW& entry, JFShader::StageType stage) override;
+		JFObject<JFShader> CreateShader(const JFArray<uint8_t>& code, const JFStringA& entry, JFShader::StageType stage) override;
 
 		ID3D12Device* Device() const { return device.Get(); }
 		ComPtr<IDXGIFactory6> Factory() const { return factory; }

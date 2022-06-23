@@ -16,7 +16,7 @@ JFGraphicsDevice* JFGraphicsDevice::CreateGraphicsDevice(JFGraphicsType type)
     return JFL::Private::CreateGraphicsDevice(type);
 }
 
-JFObject<JFShader> JFGraphicsDevice::CreateShader(const JFStringW& path, const JFStringW& entry, JFShader::StageType stage)
+JFObject<JFShader> JFGraphicsDevice::CreateShader(const JFStringW& path, const JFStringA& entry, JFShader::StageType stage)
 {
 	if (JFObject<JFFile> file = JFFile::OpenBinary(path, JFFile::AccessMode::ReadOnly, JFFile::OpenMode::Existing))
 	{

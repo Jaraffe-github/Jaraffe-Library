@@ -10,7 +10,7 @@
 using namespace JFL;
 using namespace JFL::Private::Vulkan;
 
-Shader::Shader(VkShaderModule shaderModule, StageType stage, const JFStringW& entry)
+Shader::Shader(VkShaderModule shaderModule, StageType stage, const JFStringA& entry)
 	: shaderModule(shaderModule)
 	, stage(stage)
 	, entryName(entry)

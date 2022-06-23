@@ -11,6 +11,7 @@
 #include "FileSystem/JFFileSystem.h"
 #include "CommandQueue.h"
 #include "Shader.h"
+#include "GraphicsDevice.h"
 
 namespace JFL::Private::Vulkan
 {
@@ -351,7 +352,7 @@ bool GraphicsDevice::CheckDeviceExtensionsSupport(VkPhysicalDevice physicalDevic
 	return true;
 }
 
-JFObject<JFShader> GraphicsDevice::CreateShader(const JFArray<uint8_t>& code, const JFStringW& entry, JFShader::StageType stage)
+JFObject<JFShader> GraphicsDevice::CreateShader(const JFArray<uint8_t>& code, const JFStringA& entry, JFShader::StageType stage)
 {
 	VkShaderModuleCreateInfo createInfo{};
 	createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
@@ -362,4 +363,9 @@ JFObject<JFShader> GraphicsDevice::CreateShader(const JFArray<uint8_t>& code, co
 	ThrowIfFailed(vkCreateShaderModule(device, &createInfo, nullptr, &shaderModule));
 
 	return new Shader(shaderModule, stage, entry);
+}
+
+JFObject<JFRenderPipeline> GraphicsDevice::CreateRenderPipeline(const JFRenderPipelineDescriptor&)
+{
+	return JFObject<JFRenderPipeline>();
 }

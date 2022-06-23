@@ -20,11 +20,12 @@ namespace JFL::Private::Vulkan
 		~GraphicsDevice() noexcept;
 
 		JFObject<JFCommandQueue> CreateCommandQueue() override;
+		JFObject<JFRenderPipeline> CreateRenderPipeline(const JFRenderPipelineDescriptor&) override;
 
 		JFObject<JFGPUBuffer> CreateGPUBuffer(size_t, JFGPUBuffer::CPUCacheMode) override;
 		JFObject<JFTexture> CreateTexture(const JFTextureDescriptor&) override;
 
-		JFObject<JFShader> CreateShader(const JFArray<uint8_t>& path, const JFStringW& entry, JFShader::StageType stage) override;
+		JFObject<JFShader> CreateShader(const JFArray<uint8_t>& path, const JFStringA& entry, JFShader::StageType stage) override;
 
 		VkInstance Instance() const { return instance; }
 		VkDevice Device() const { return device; }

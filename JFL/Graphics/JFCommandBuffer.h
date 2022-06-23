@@ -13,13 +13,15 @@
 
 namespace JFL
 {
+	class JFRenderPipeline;
+
 	class JFL_API JFCommandBuffer : public JFRefCounter
 	{
 	public:
 		JFCommandBuffer() = default;
 		virtual ~JFCommandBuffer() noexcept = default;
 
-		virtual JFObject<JFRenderCommandEncoder> CreateRenderCommandEncoder() = 0;
+		virtual JFObject<JFRenderCommandEncoder> CreateRenderCommandEncoder(JFRenderPipeline* pipelineState) = 0;
 		virtual JFObject<JFCopyCommandEncoder> CreateCopyCommandEncoder() = 0;
 
 		virtual void Commit() = 0;

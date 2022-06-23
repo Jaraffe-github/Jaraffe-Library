@@ -13,6 +13,7 @@
 #include "JFGPUBuffer.h"
 #include "JFTexture.h"
 #include "JFShader.h"
+#include "JFRenderPipeline.h"
 
 namespace JFL
 {
@@ -30,13 +31,14 @@ namespace JFL
 		static JFGraphicsDevice* CreateGraphicsDevice(JFGraphicsType type);
 
 		virtual JFObject<JFCommandQueue> CreateCommandQueue() = 0;
+		virtual JFObject<JFRenderPipeline> CreateRenderPipeline(const JFRenderPipelineDescriptor& descriptor) = 0;
 
 		virtual JFObject<JFGPUBuffer> CreateGPUBuffer(size_t size, JFGPUBuffer::CPUCacheMode mode) = 0;
 		virtual JFObject<JFTexture> CreateTexture(const JFTextureDescriptor& descriptor) = 0;
 
 		// TODO: need SPIR-V
-		virtual JFObject<JFShader> CreateShader(const JFStringW& path, const JFStringW& entry, JFShader::StageType stage);
-		virtual JFObject<JFShader> CreateShader(const JFArray<uint8_t>& path, const JFStringW& entry, JFShader::StageType stage) = 0;
+		virtual JFObject<JFShader> CreateShader(const JFStringW& path, const JFStringA& entry, JFShader::StageType stage);
+		virtual JFObject<JFShader> CreateShader(const JFArray<uint8_t>& path, const JFStringA& entry, JFShader::StageType stage) = 0;
 
 	protected:
 		JFGraphicsDevice() = default;

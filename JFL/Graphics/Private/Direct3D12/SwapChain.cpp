@@ -8,12 +8,6 @@
 #include "SwapChain.h"
 #include "Window/JFWindow.h"
 #include "CommandQueue.h"
-#include "SwapChain.h"
-#include "SwapChain.h"
-#include "SwapChain.h"
-#include "SwapChain.h"
-#include "SwapChain.h"
-#include "SwapChain.h"
 
 using namespace JFL;
 using namespace JFL::Private::Direct3D12;

@@ -7,7 +7,6 @@
 
 #include "Texture.h"
 #include "Types.h"
-#include "Texture.h"
 
 using namespace JFL;
 using namespace JFL::Private::Direct3D12;

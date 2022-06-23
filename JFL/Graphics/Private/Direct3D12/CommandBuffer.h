@@ -8,7 +8,6 @@
 #pragma once
 #include "../../JFCommandBuffer.h"
 #include "d3d12_headers.h"
-#include "GraphicsDevice.h"
 #include "CommandQueue.h"
 
 namespace JFL::Private::Direct3D12
@@ -19,7 +18,7 @@ namespace JFL::Private::Direct3D12
 		CommandBuffer(CommandQueue*, ID3D12CommandAllocator*, ID3D12GraphicsCommandList*, D3D12_COMMAND_LIST_TYPE);
 		~CommandBuffer() noexcept = default;
 
-		JFObject<JFRenderCommandEncoder> CreateRenderCommandEncoder() override;
+		JFObject<JFRenderCommandEncoder> CreateRenderCommandEncoder(JFRenderPipeline* pipelineState) override;
 		JFObject<JFCopyCommandEncoder> CreateCopyCommandEncoder() override;
 
 		void Commit() override;

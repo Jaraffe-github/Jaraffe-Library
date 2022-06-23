@@ -18,7 +18,7 @@ public:
 		window->Create();
 		window->Show();
 
-		graphicsDevice = JFGraphicsDevice::CreateGraphicsDevice(JFL::JFGraphicsType::Vulkan);
+		graphicsDevice = JFGraphicsDevice::CreateGraphicsDevice(JFL::JFGraphicsType::Direct3D12);
 		commandQueue = graphicsDevice->CreateCommandQueue();
 		swapChain = commandQueue->CreateSwapChain(window);
 
@@ -35,8 +35,23 @@ public:
 		whiteTextureDesc.usage = JFTexture::UsageShaderRead;
 		whiteTexture = graphicsDevice->CreateTexture(whiteTextureDesc);
 
-		vertexShader = graphicsDevice->CreateShader(L"Resource/SimpleVertexShader.spv", L"main", JFShader::StageType::Vertex);
-		pixelShader = graphicsDevice->CreateShader(L"Resource/SimplePixelShader.spv", L"main", JFShader::StageType::Fragment);
+		vertexShader = graphicsDevice->CreateShader(L"Resource/SimpleShader.hlsl", "VS", JFShader::StageType::Vertex);
+		pixelShader = graphicsDevice->CreateShader(L"Resource/SimpleShader.hlsl", "PS", JFShader::StageType::Fragment);
+
+		JFRenderPipelineDescriptor descriptor{};
+		descriptor.sampleCount = 1;
+		descriptor.vertexShader = vertexShader;
+		descriptor.fragmentShader = pixelShader;
+		descriptor.vertexDescriptor.attributes = {
+			{JFVertexFormat::Float3, "POSITION", 0, 0},
+			{JFVertexFormat::Float3, "NORMAL", 0, 12 },
+			{JFVertexFormat::Float4, "COLOR", 0, 24 },
+		};
+		descriptor.colorAttachments = {{ JFPixelFormat::RGBA8Unorm, false }};
+		descriptor.depthStencilAttachmentPixelFormat = JFPixelFormat::Depth24UnormStencil8;
+		descriptor.inputPrimitiveTopology = JFPrimitiveTopologyType::Triangle;
+
+		renderPipeline = graphicsDevice->CreateRenderPipeline(descriptor);
 
 		loopThread = std::jthread([this](std::stop_token token) 
 		{
@@ -63,7 +78,7 @@ public:
 	{
 		if (JFObject<JFCommandBuffer> commandBuffer = commandQueue->CreateCommandBuffer())
 		{
-			if (JFObject<JFRenderCommandEncoder> encoder = commandBuffer->CreateRenderCommandEncoder())
+			if (JFObject<JFRenderCommandEncoder> encoder = commandBuffer->CreateRenderCommandEncoder(renderPipeline))
 			{
 				JFViewport viewport(0, 0, (float)window->Width(), (float)window->Height(), 0.f, 1.f);
 				encoder->SetViewport(viewport);
@@ -93,6 +108,8 @@ private:
 	JFObject<JFGraphicsDevice> graphicsDevice;
 	JFObject<JFCommandQueue> commandQueue;
 	JFObject<JFSwapChain> swapChain;
+
+	JFObject<JFRenderPipeline> renderPipeline;
 
 	JFObject<JFGPUBuffer> vertexBuffer;
 	JFObject<JFTexture> whiteTexture;

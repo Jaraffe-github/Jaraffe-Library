@@ -17,12 +17,12 @@ namespace JFL::Private::Vulkan
 	class Shader final : public JFShader
 	{
 	public:
-		Shader(VkShaderModule, StageType stage, const JFStringW& entry);
+		Shader(VkShaderModule, StageType stage, const JFStringA& entry);
 		~Shader() = default;
 
 	private:
 		VkShaderModule shaderModule;
 		StageType stage;
-		JFStringW entryName;
+		JFStringA entryName;
 	};
 }
