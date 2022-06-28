@@ -179,4 +179,19 @@ namespace JFL
 			   (_21 * _12 * _33) -
 			   (_11 * _32 * _23);
 	}
+    
+    constexpr JFVector3 JFMatrix3::Row1() const noexcept
+    {
+        return { value[0], value[1], value[2] };
+    }
+    
+    constexpr JFVector3 JFMatrix3::Row2() const noexcept
+    {
+        return { value[3], value[4], value[5] };
+    }
+    
+    constexpr JFVector3 JFMatrix3::Row3() const noexcept
+    {
+        return { value[6], value[7], value[8] };
+    }
 }

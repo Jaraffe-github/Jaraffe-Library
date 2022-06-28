@@ -133,4 +133,14 @@ namespace JFL
     {
         return _11 * _22 - _12 * _21;
     }
+
+    constexpr JFVector2 JFMatrix2::Row1() const noexcept
+    {
+        return { value[0], value[1] };
+    }
+
+    constexpr JFVector2 JFMatrix2::Row2() const noexcept
+    {
+        return { value[2], value[3] };
+    }
 }

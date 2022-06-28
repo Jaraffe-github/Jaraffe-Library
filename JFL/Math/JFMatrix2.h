@@ -35,6 +35,9 @@ namespace JFL
         constexpr JFMatrix2 InverseMatrix() const noexcept;
         constexpr float Determinant() const noexcept;
 
+        constexpr JFVector2 Row1() const noexcept;
+        constexpr JFVector2 Row2() const noexcept;
+
     public:
         union
         {

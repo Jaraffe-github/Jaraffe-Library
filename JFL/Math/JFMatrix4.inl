@@ -201,4 +201,24 @@ namespace JFL
             (_14 * _22 * _31 * _43) - (_12 * _24 * _31 * _43) - (_14 * _21 * _32 * _43) + (_11 * _24 * _32 * _43) + (_12 * _21 * _34 * _43) - (_11 * _22 * _34 * _43) -
             (_13 * _22 * _31 * _44) + (_12 * _23 * _31 * _44) + (_13 * _21 * _32 * _44) - (_11 * _23 * _32 * _44) - (_12 * _21 * _33 * _44) + (_11 * _22 * _33 * _44);
     }
+
+    constexpr JFVector4 JFMatrix4::Row1() const noexcept
+    {
+        return JFVector4(value[0], value[1], value[2], value[3]);
+    }
+
+    constexpr JFVector4 JFMatrix4::Row2() const noexcept
+    {
+        return JFVector4(value[4], value[5], value[6], value[7]);
+    }
+
+    constexpr JFVector4 JFMatrix4::Row3() const noexcept
+    {
+        return JFVector4(value[8], value[9], value[10], value[11]);
+    }
+
+    constexpr JFVector4 JFMatrix4::Row4() const noexcept
+    {
+        return JFVector4(value[12], value[13], value[14], value[15]);
+    }
 }
