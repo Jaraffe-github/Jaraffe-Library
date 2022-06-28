@@ -319,6 +319,7 @@
     <ClInclude Include="FileSystem\JFFile.h" />
     <ClInclude Include="FileSystem\JFFileSystem.h" />
     <ClInclude Include="Graphics\JFBlendState.h" />
+    <ClInclude Include="Graphics\JFCamera.h" />
     <ClInclude Include="Graphics\JFColor32.h" />
     <ClInclude Include="Graphics\JFCopyCommandEncoder.h" />
     <ClInclude Include="Graphics\JFLinearColor.h" />
@@ -416,6 +417,7 @@
     <ClCompile Include="Application\Private\Win32\ApplicationContext.cpp" />
     <ClCompile Include="FileSystem\JFDirectory.cpp" />
     <ClCompile Include="FileSystem\JFFile.cpp" />
+    <ClCompile Include="Graphics\JFCamera.cpp" />
     <ClCompile Include="Graphics\JFGraphicsDevice.cpp" />
     <ClCompile Include="Graphics\JFLinearColor.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\CommandBuffer.cpp" />
