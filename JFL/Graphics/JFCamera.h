@@ -19,7 +19,8 @@ namespace JFL
 
 		void SetupViewMatrix(const JFVector3& pos, const JFVector3& targetPos, const JFVector3& worldUp);
 
-		void SetPerspective(float vFov, float aspect, float nearZ, float farZ);  // use reversed-Z, Depth clear should be zero.
+		/// use reversed-Z, it requires clearing Z to 0.0f and using a GREATER variant depth test.
+		void SetPerspective(float vFov, float aspect, float nearZ, float farZ);
 		void SetOrthographics(float width, float height, float nearZ, float farZ);
 		bool IsPerspective() const;
 		bool IsOrthographic() const;
