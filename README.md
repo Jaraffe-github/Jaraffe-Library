@@ -19,6 +19,7 @@ Only the code that corresponds to the study progress has been updated.
 [fmt-8.0.1](https://github.com/fmtlib/fmt) instead of [std::format(issue)](https://github.com/microsoft/STL/issues/1814) <br />
 ### UnitTest
 [googletest-1.11.0](https://github.com/google/googletest) <br />
+[tinyobjloader-2.0.0](https://github.com/tinyobjloader/tinyobjloader) <br />
 
 ## My Blog Address
 https://jaraffe.notion.site/Blog-d84b8b9381604112a3a75234c738a2c0

@@ -6,7 +6,8 @@
 //
 
 #include "RenderCommandEncoder.h"
-#include "texture.h"
+#include "Texture.h"
+#include "GPUBuffer.h"
 
 using namespace JFL;
 using namespace JFL::Private::Direct3D12;
@@ -131,13 +132,80 @@ void RenderCommandEncoder::ClearDepthStencilView(const JFTexture* depthStencil, 
 	JFASSERT_DEBUG(ds);
 
 	commandList->ClearDepthStencilView(ds->DepthStencilView(), flag, clearDepth, clearStencil, 0, nullptr);
-}	 
+}
+
+void RenderCommandEncoder::SetVertexBuffer(const JFGPUBuffer* vertexBuffer, uint32_t vertexSize)
+{
+	const GPUBuffer* vb = dynamic_cast<const GPUBuffer*>(vertexBuffer);
+	JFASSERT_DEBUG(vb);
+
+	D3D12_VERTEX_BUFFER_VIEW view;
+	view.BufferLocation = vb->Buffer()->GetGPUVirtualAddress();
+	view.StrideInBytes = vertexSize;
+	view.SizeInBytes = static_cast<UINT>(vb->Size());
+	commandList->IASetVertexBuffers(0, 1, &view);
+}
+
+void RenderCommandEncoder::SetIndexBuffer(const JFGPUBuffer* indexBuffer, uint32_t indexSize)
+{
+	JFASSERT_DEBUG(indexSize == 2 || indexSize == 4);
+
+	const GPUBuffer* ib = dynamic_cast<const GPUBuffer*>(indexBuffer);
+	JFASSERT_DEBUG(ib);
+
+	D3D12_INDEX_BUFFER_VIEW view;
+	view.BufferLocation = ib->Buffer()->GetGPUVirtualAddress();
+	view.Format = indexSize == 2 ? DXGI_FORMAT_R16_UINT : DXGI_FORMAT_R32_UINT;
+	view.SizeInBytes = static_cast<UINT>(ib->Size());
+	commandList->IASetIndexBuffer(&view);
+}
+
+void RenderCommandEncoder::SetConstantBuffer(uint32_t index, const JFGPUBuffer* constantBuffer)
+{
+	const GPUBuffer* cb = dynamic_cast<const GPUBuffer*>(constantBuffer);
+	JFASSERT_DEBUG(cb);
+	commandList->SetGraphicsRootConstantBufferView(index, cb->Buffer()->GetGPUVirtualAddress());
+}
+
+void RenderCommandEncoder::DrawPrimitives(PrimitiveType primitiveType, uint32_t vertexCount, uint32_t instanceCount, uint32_t vertexStart, uint32_t instanceStart)
+{
+	SetPrimitiveType(primitiveType);
+	commandList->DrawInstanced(vertexCount, instanceCount, vertexStart, instanceStart);
+}
+
+void RenderCommandEncoder::DrawIndexedPrimitives(PrimitiveType primitiveType, uint32_t indexCount, uint32_t instanceCount, uint32_t indexOffset, uint32_t vertexOffset, uint32_t instanceStart)
+{
+	SetPrimitiveType(primitiveType);
+	commandList->DrawIndexedInstanced(indexCount, instanceCount, indexOffset, vertexOffset, instanceStart);
+}
 	 
 void RenderCommandEncoder::EndEncoding()
 {
 	commandList->Close();
 	commandBuffer->AddEncodedCommandList(commandList.Get());
 	commandList = nullptr;
+}
+
+void RenderCommandEncoder::SetPrimitiveType(PrimitiveType primitiveType)
+{
+	switch (primitiveType)
+	{
+	case PrimitiveType::Point:
+		commandList->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
+		break;
+	case PrimitiveType::Line:
+		commandList->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
+		break;
+	case PrimitiveType::LineStrip:
+		commandList->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
+		break;
+	case PrimitiveType::Triangle:
+		commandList->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		break;
+	case PrimitiveType::TriangleStrip:
+		commandList->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+		break;
+	}
 }
 
 void RenderCommandEncoder::TransitionBufferState(ID3D12Resource* buffer, D3D12_RESOURCE_STATES after, D3D12_RESOURCE_STATES before)
