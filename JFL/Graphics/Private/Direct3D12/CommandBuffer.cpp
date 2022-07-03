@@ -27,12 +27,9 @@ JFObject<JFRenderCommandEncoder> CommandBuffer::CreateRenderCommandEncoder(JFRen
 	if (RenderPipeline* ps = dynamic_cast<RenderPipeline*>(pipelineState))
 	{
 		list->Reset(allocator.Get(), ps->PipelineState());
+		return new RenderCommandEncoder(ps, this, list.Get());
 	}
-	else
-	{
-		list->Reset(allocator.Get(), nullptr);
-	}
-	return new RenderCommandEncoder(this, list.Get());
+	return nullptr;
 }
 
 JFObject<JFCopyCommandEncoder> CommandBuffer::CreateCopyCommandEncoder()

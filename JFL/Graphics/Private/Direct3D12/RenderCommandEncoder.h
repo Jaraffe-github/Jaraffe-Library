@@ -9,13 +9,14 @@
 #include "../../JFRenderCommandEncoder.h"
 #include "d3d12_headers.h"
 #include "CommandBuffer.h"
+#include "RenderPipeline.h"
 
 namespace JFL::Private::Direct3D12
 {
 	class RenderCommandEncoder final : public JFRenderCommandEncoder
 	{
 	public:
-		RenderCommandEncoder(CommandBuffer*, ID3D12GraphicsCommandList*);
+		RenderCommandEncoder(RenderPipeline*, CommandBuffer*, ID3D12GraphicsCommandList*);
 		~RenderCommandEncoder() = default;
 
 		 void SetViewport(const JFViewport& viewport) override;

@@ -12,10 +12,11 @@
 using namespace JFL;
 using namespace JFL::Private::Direct3D12;
 
-RenderCommandEncoder::RenderCommandEncoder(CommandBuffer* commandBuffer, ID3D12GraphicsCommandList* commandList)
+RenderCommandEncoder::RenderCommandEncoder(RenderPipeline* renderPipeline, CommandBuffer* commandBuffer, ID3D12GraphicsCommandList* commandList)
 	: commandBuffer(commandBuffer)
 	, commandList(commandList)
 {
+	commandList->SetGraphicsRootSignature(renderPipeline->RootSignature());
 }
 
 void RenderCommandEncoder::SetViewport(const JFViewport& viewport)

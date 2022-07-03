@@ -12,6 +12,17 @@ struct Vertex
 	JFLinearColor color;
 };
 
+struct StaticMesh
+{
+	JFArray<Vertex> vertices;
+	JFObject<JFGPUBuffer> vertexBuffer;
+};
+
+struct Constants
+{
+	JFMatrix4 worldViewProj;
+};
+
 class TestApplication : public JFApplication
 {
 public:
@@ -59,6 +70,16 @@ public:
 
 		renderPipeline = graphicsDevice->CreateRenderPipeline(descriptor);
 
+		camera.SetupViewMatrix(JFVector3{ 0.f, 0.f, -5.f }, JFVector3{}, JFVector3{ 0.f, 1.f, 0.f });
+		camera.SetPerspective(0.25f * 3.1415926535f, window->AspectRatio(), 1.0f, 1000.f);
+
+		Constants constants;
+		constants.worldViewProj = camera.ViewMatrix() * camera.ProjectionMatrix();
+
+		// Update the constant buffer with the latest worldViewProj matrix.
+		constantsBuffer = graphicsDevice->CreateGPUBuffer(sizeof(Constants), JFGPUBuffer::CPUCacheMode::WriteCombined);
+		constantsBuffer->WriteData(&constants, sizeof(Constants));
+
 		LoadTestModel();
 
 		loopThread = std::jthread([this](std::stop_token token) 
@@ -94,10 +115,20 @@ public:
 				JFRect scissorRect(0, 0, (float)window->Width(), (float)window->Height());
 				encoder->SetScissorRect(scissorRect);
 
-				encoder->ClearRenderTargetView(swapChain->CurrentColorTexture(), JFLinearColor::green);
+				encoder->ClearRenderTargetView(swapChain->CurrentColorTexture(), JFLinearColor::black);
 				encoder->ClearDepthStencilView(swapChain->DepthStencilTexture(), JFRenderCommandEncoder::DepthStencilClearFlag::All, 0.f, 0);
 
 				encoder->SetRenderTargets({ swapChain->CurrentColorTexture() }, swapChain->DepthStencilTexture());
+
+				encoder->SetConstantBuffer(0, constantsBuffer);
+				
+				for (const StaticMesh& mesh : staticMeshes)
+				{
+					encoder->SetVertexBuffer(mesh.vertexBuffer, sizeof(Vertex));
+
+					encoder->DrawPrimitives(JFRenderCommandEncoder::PrimitiveType::Triangle,
+											(uint32_t)mesh.vertices.Count(), 1, 0, 0);
+				}
 
 				encoder->EndEncoding();
 			}
@@ -105,6 +136,7 @@ public:
 			commandBuffer->Commit();
 		}
 
+		// swap the back and front buffers.
 		swapChain->Present();
 		commandQueue->WaitComplete();
 	}
@@ -131,6 +163,9 @@ public:
 		// Loop over shapes
 		for (size_t s = 0; s < shapes.size(); ++s)
 		{
+			JFArray<Vertex> vertices;
+			vertices.Reserve(shapes[s].mesh.num_face_vertices.size() * 3);
+
 			// Loop over faces(polygon)
 			size_t index_offset = 0;
 			for (size_t f = 0; f < shapes[s].mesh.num_face_vertices.size(); ++f)
@@ -140,17 +175,20 @@ public:
 				// Loop over vertices in the face.
 				for (size_t v = 0; v < fv; ++v)
 				{
-					// access to vertex
+					Vertex vertex{};
+
 					tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + v];
-					tinyobj::real_t vx = attrib.vertices[3 * size_t(idx.vertex_index) + 0];
-					tinyobj::real_t vy = attrib.vertices[3 * size_t(idx.vertex_index) + 1];
-					tinyobj::real_t vz = attrib.vertices[3 * size_t(idx.vertex_index) + 2];
+
+					// access to vertex
+					vertex.pos = JFVector3(attrib.vertices[3 * size_t(idx.vertex_index) + 0],
+										   attrib.vertices[3 * size_t(idx.vertex_index) + 1],
+										   attrib.vertices[3 * size_t(idx.vertex_index) + 2]);
 
 					// Check if `normal_index` is zero or positive. negative = no normal data
 					if (idx.normal_index >= 0) {
-						tinyobj::real_t nx = attrib.normals[3 * size_t(idx.normal_index) + 0];
-						tinyobj::real_t ny = attrib.normals[3 * size_t(idx.normal_index) + 1];
-						tinyobj::real_t nz = attrib.normals[3 * size_t(idx.normal_index) + 2];
+						vertex.normal = JFVector3(attrib.normals[3 * size_t(idx.normal_index) + 0],
+												  attrib.normals[3 * size_t(idx.normal_index) + 1],
+												  attrib.normals[3 * size_t(idx.normal_index) + 2]);
 					}
 
 					// Check if `texcoord_index` is zero or positive. negative = no texcoord data
@@ -160,14 +198,19 @@ public:
 					}*/
 
 					// Optional: vertex colors
-					tinyobj::real_t red   = attrib.colors[3*size_t(idx.vertex_index)+0];
-					tinyobj::real_t green = attrib.colors[3*size_t(idx.vertex_index)+1];
-					tinyobj::real_t blue  = attrib.colors[3*size_t(idx.vertex_index)+2];
+					vertex.color = JFLinearColor(attrib.colors[3 * size_t(idx.vertex_index) + 0],
+												 attrib.colors[3 * size_t(idx.vertex_index) + 1],
+												 attrib.colors[3 * size_t(idx.vertex_index) + 2],
+												 1.f);
+
+					vertices.Add(vertex);
 				}
 				index_offset += fv;
 			}
 
-			vertexBuffer = graphicsDevice->CreateGPUBuffer(50000, JFGPUBuffer::CPUCacheMode::WriteCombined);
+			JFObject<JFGPUBuffer> vertexBuffer = graphicsDevice->CreateGPUBuffer(vertices.Bytes(), JFGPUBuffer::CPUCacheMode::WriteCombined);
+			vertexBuffer->WriteData(vertices.Data(), vertices.Bytes());
+			staticMeshes.EmplaceAdd(std::move(vertices), vertexBuffer);
 		}
 	}
 
@@ -182,11 +225,13 @@ private:
 	JFObject<JFRenderPipeline> renderPipeline;
 
 	JFObject<JFTexture> whiteTexture;
-	JFObject<JFGPUBuffer> vertexBuffer;
-	JFObject<JFGPUBuffer> indexBuffer;
 
 	JFObject<JFShader> vertexShader;
 	JFObject<JFShader> pixelShader;
+
+	JFCamera camera;
+	JFArray<StaticMesh> staticMeshes;
+	JFObject<JFGPUBuffer> constantsBuffer;
 };
 
 TEST(Application, Init)
