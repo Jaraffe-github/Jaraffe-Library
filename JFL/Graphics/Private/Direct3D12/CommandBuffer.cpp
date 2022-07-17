@@ -37,8 +37,7 @@ JFObject<JFRenderCommandEncoder> CommandBuffer::CreateRenderCommandEncoder(JFRen
 {
 	if (RenderPipeline* ps = dynamic_cast<RenderPipeline*>(pipelineState))
 	{
-		ComPtr<ID3D12GraphicsCommandList> commandList = device->GetCommandList(D3D12_COMMAND_LIST_TYPE_DIRECT);
-		if (commandList)
+		if (ComPtr<ID3D12GraphicsCommandList> commandList = device->GetCommandList(D3D12_COMMAND_LIST_TYPE_DIRECT))
 		{
 			commandList->Reset(allocator->Allocator(), ps->PipelineState());
 			return new RenderCommandEncoder(ps, this, commandList.Get());
@@ -49,8 +48,7 @@ JFObject<JFRenderCommandEncoder> CommandBuffer::CreateRenderCommandEncoder(JFRen
 
 JFObject<JFCopyCommandEncoder> CommandBuffer::CreateCopyCommandEncoder()
 {
-	ComPtr<ID3D12GraphicsCommandList> commandList = device->GetCommandList(D3D12_COMMAND_LIST_TYPE_DIRECT);
-	if (commandList)
+	if (ComPtr<ID3D12GraphicsCommandList> commandList = device->GetCommandList(D3D12_COMMAND_LIST_TYPE_DIRECT))
 	{
 		commandList->Reset(allocator->Allocator(), nullptr);
 		return new CopyCommandEncoder(this, commandList.Get());
