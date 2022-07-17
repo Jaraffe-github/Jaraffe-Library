@@ -12,16 +12,10 @@
 using namespace JFL;
 using namespace JFL::Private::Direct3D12;
 
-CommandQueue::CommandQueue(GraphicsDevice* device, 
-						   ID3D12CommandQueue* queue, 
-						   ID3D12CommandAllocator* commandAllocator,
-						   ID3D12GraphicsCommandList* commandList,
-						   ID3D12Fence* fence)
-	: fence(fence)
+CommandQueue::CommandQueue(GraphicsDevice* device, ID3D12CommandQueue* queue, ID3D12Fence* fence)
+	: device(device)
 	, queue(queue)
-	, device(device)
-	, commandAllocator(commandAllocator)
-	, commandList(commandList)
+	, fence(fence)
 	, currentFenceNumber(0)
 {
 	ThrowIfFailed(queue->Signal(fence, currentFenceNumber));
@@ -29,7 +23,7 @@ CommandQueue::CommandQueue(GraphicsDevice* device,
 
 JFObject<JFCommandBuffer> CommandQueue::CreateCommandBuffer()
 {
-	return new CommandBuffer(this, commandAllocator.Get(), commandList.Get(), D3D12_COMMAND_LIST_TYPE_DIRECT);
+	return new CommandBuffer(device, this, device->GetCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT));
 }
 
 JFObject<JFSwapChain> CommandQueue::CreateSwapChain(const JFWindow* window)

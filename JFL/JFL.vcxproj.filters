@@ -267,6 +267,9 @@
     <ClInclude Include="Application\Private\Win32\ApplicationContext.h">
       <Filter>Application\Private\Win32</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\CommandAllocator.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -408,6 +411,9 @@
     </ClCompile>
     <ClCompile Include="Application\Private\Win32\ApplicationContext.cpp">
       <Filter>Application\Private\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Direct3D12\CommandAllocator.cpp">
+      <Filter>Graphics\Private\Direct3D12</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

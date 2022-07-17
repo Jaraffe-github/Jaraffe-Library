@@ -8,6 +8,8 @@
 #pragma once
 #include "../../JFGraphicsDevice.h"
 #include "d3d12_headers.h"
+#include "CommandAllocator.h"
+#include "Lock/JFLock.h"
 
 namespace JFL::Private::Direct3D12
 {
@@ -25,10 +27,20 @@ namespace JFL::Private::Direct3D12
 
 		JFObject<JFShader> CreateShader(const JFArray<uint8_t>& code, const JFStringA& entry, JFShader::StageType stage) override;
 
+		ComPtr<ID3D12GraphicsCommandList> GetCommandList(D3D12_COMMAND_LIST_TYPE type);
+		JFObject<CommandAllocator> GetCommandAllocator(D3D12_COMMAND_LIST_TYPE type);
+		void ReleaseCommandList(ID3D12GraphicsCommandList* list);
+		void ReleaseCommandAllocator(CommandAllocator* allocator);
+
 		ID3D12Device* Device() const { return device.Get(); }
 		ComPtr<IDXGIFactory6> Factory() const { return factory; }
 
 	private:
+		JFSpinLock reusableListLock;
+		JFArray<JFObject<CommandAllocator>> reusableAllocatorList;
+		JFArray<ComPtr<ID3D12GraphicsCommandList>> reusableCommandList;
+		ComPtr<ID3D12CommandAllocator> dummyAllocator;
+
 		ComPtr<ID3D12Device> device;
 		ComPtr<IDXGIFactory6> factory;
 

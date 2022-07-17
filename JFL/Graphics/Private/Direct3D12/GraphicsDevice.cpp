@@ -218,30 +218,22 @@ GraphicsDevice::GraphicsDevice()
     device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS, &d3d12Options, sizeof(d3d12Options));
     // check UMA(Universal Memory Architecture) usually for mobile
     device->CheckFeatureSupport(D3D12_FEATURE_ARCHITECTURE, &architecture, sizeof(architecture));
+
+    ThrowIfFailed(device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&dummyAllocator)));
 }
 
 JFObject<JFCommandQueue> GraphicsDevice::CreateCommandQueue()
 {
-    ComPtr<ID3D12CommandQueue> queue;
-    {
-        D3D12_COMMAND_QUEUE_DESC desc{};
-        desc.Type = D3D12_COMMAND_LIST_TYPE_DIRECT;
-        desc.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;
-        ThrowIfFailed(device->CreateCommandQueue(&desc, IID_PPV_ARGS(&queue)));
-    }
-    ComPtr<ID3D12Fence> fence;
-    {
-        ThrowIfFailed(device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&fence)));
-    }
+	ComPtr<ID3D12CommandQueue> queue;
+	D3D12_COMMAND_QUEUE_DESC desc{};
+	desc.Type = D3D12_COMMAND_LIST_TYPE_DIRECT;
+	desc.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;
+	ThrowIfFailed(device->CreateCommandQueue(&desc, IID_PPV_ARGS(&queue)));
 
-    ComPtr<ID3D12CommandAllocator> commandAllocator;
-    ThrowIfFailed(device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&commandAllocator)));
+	ComPtr<ID3D12Fence> fence;
+	ThrowIfFailed(device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&fence)));
 
-    ComPtr<ID3D12GraphicsCommandList> commandList;
-    ThrowIfFailed(device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, commandAllocator.Get(), nullptr, IID_PPV_ARGS(&commandList)));
-    commandList->Close();
-
-    return new CommandQueue(this, queue.Get(), commandAllocator.Get(), commandList.Get(), fence.Get());
+	return new CommandQueue(this, queue.Get(), fence.Get());
 }
 
 JFObject<JFRenderPipeline> GraphicsDevice::CreateRenderPipeline(const JFRenderPipelineDescriptor& descriptor)
@@ -557,4 +549,53 @@ JFObject<JFShader> GraphicsDevice::CreateShader(const JFArray<uint8_t>& code, co
     ThrowIfFailed(hr);
 
     return new Shader(byteCode.Get(), stage, entry);
+}
+
+ComPtr<ID3D12GraphicsCommandList> GraphicsDevice::GetCommandList(D3D12_COMMAND_LIST_TYPE type)
+{
+    JFScopedLock guard(reusableListLock);
+    for (size_t i = 0; i < reusableCommandList.Count(); ++i)
+    {
+        if (auto list = reusableCommandList[i]; list->GetType() == type)
+        {
+            reusableCommandList.Remove(i);
+            return list;
+        }
+    }
+    guard.Unlock();
+
+    ComPtr<ID3D12GraphicsCommandList> commandList;
+    ThrowIfFailed(device->CreateCommandList(0, type, dummyAllocator.Get(), nullptr, IID_PPV_ARGS(&commandList)));
+    return commandList;
+}
+
+JFObject<CommandAllocator> GraphicsDevice::GetCommandAllocator(D3D12_COMMAND_LIST_TYPE type)
+{
+    JFScopedLock guard(reusableListLock);
+    for (size_t i = 0; i < reusableAllocatorList.Count(); ++i)
+    {
+        if (auto allocator = reusableAllocatorList[i]; allocator->Type() == type && allocator->IsUsable())
+        {
+            reusableAllocatorList.Remove(i);
+            allocator->Reset();
+            return allocator;
+        }
+    }
+    guard.Unlock();
+
+    ComPtr<ID3D12CommandAllocator> commandAllocator;
+    ThrowIfFailed(device->CreateCommandAllocator(type, IID_PPV_ARGS(&commandAllocator)));
+    return new CommandAllocator(commandAllocator.Get(), type);
+}
+
+void GraphicsDevice::ReleaseCommandList(ID3D12GraphicsCommandList* list)
+{
+    JFScopedLock guard(reusableListLock);
+    reusableCommandList.Add(list);
+}
+
+void GraphicsDevice::ReleaseCommandAllocator(CommandAllocator* allocator)
+{
+    JFScopedLock guard(reusableListLock);
+    reusableAllocatorList.Add(allocator);
 }

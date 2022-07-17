@@ -14,38 +14,62 @@
 using namespace JFL;
 using namespace JFL::Private::Direct3D12;
 
-CommandBuffer::CommandBuffer(CommandQueue* commandQueue, ID3D12CommandAllocator* allocator, ID3D12GraphicsCommandList* list, D3D12_COMMAND_LIST_TYPE type)
-	: type(type)
-	, commandQueue(commandQueue)
-	, list(list)
+CommandBuffer::CommandBuffer(GraphicsDevice* device, CommandQueue* queue, CommandAllocator* allocator)
+	: device(device)
+	, queue(queue)
 	, allocator(allocator)
+	, encodedCommandList()
 {
+}
+
+CommandBuffer::~CommandBuffer() noexcept
+{
+	JFASSERT_DEBUG(device);
+
+	for (const ComPtr<ID3D12GraphicsCommandList>& list : encodedCommandList)
+		device->ReleaseCommandList(list.Get());
+	encodedCommandList.Clear();
+
+	device->ReleaseCommandAllocator(allocator);
 }
 
 JFObject<JFRenderCommandEncoder> CommandBuffer::CreateRenderCommandEncoder(JFRenderPipeline* pipelineState)
 {
 	if (RenderPipeline* ps = dynamic_cast<RenderPipeline*>(pipelineState))
 	{
-		list->Reset(allocator.Get(), ps->PipelineState());
-		return new RenderCommandEncoder(ps, this, list.Get());
+		ComPtr<ID3D12GraphicsCommandList> commandList = device->GetCommandList(D3D12_COMMAND_LIST_TYPE_DIRECT);
+		if (commandList)
+		{
+			commandList->Reset(allocator->Allocator(), ps->PipelineState());
+			return new RenderCommandEncoder(ps, this, commandList.Get());
+		}
 	}
 	return nullptr;
 }
 
 JFObject<JFCopyCommandEncoder> CommandBuffer::CreateCopyCommandEncoder()
 {
-	list->Reset(allocator.Get(), nullptr);
-	return new CopyCommandEncoder(this, list.Get());
+	ComPtr<ID3D12GraphicsCommandList> commandList = device->GetCommandList(D3D12_COMMAND_LIST_TYPE_DIRECT);
+	if (commandList)
+	{
+		commandList->Reset(allocator->Allocator(), nullptr);
+		return new CopyCommandEncoder(this, commandList.Get());
+	}
+	return nullptr;
 }
 
 void CommandBuffer::Commit()
 {
-	ID3D12CommandList* cmdLists[] = { list.Get() };
-	commandQueue->ExecuteCommandLists(1, cmdLists);
+	if (encodedCommandList.Count() > 0 && allocator->IsUsable())
+	{
+		uint64_t committedFenceNumber = queue->ExecuteCommandLists(static_cast<UINT>(encodedCommandList.Count()),
+																   reinterpret_cast<ID3D12CommandList* const*>(encodedCommandList.Data()));
+		allocator->SetCommittedState(queue->Fence(), committedFenceNumber);
+	}
 }
 
 void CommandBuffer::AddEncodedCommandList(ID3D12GraphicsCommandList* commandList)
 {
-	// not yet.
+	encodedCommandList.Add(commandList);
 }
 

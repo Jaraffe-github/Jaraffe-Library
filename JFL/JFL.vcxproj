@@ -327,6 +327,7 @@
     <ClInclude Include="Graphics\JFShader.h" />
     <ClInclude Include="Graphics\JFVertexDescriptor.h" />
     <ClInclude Include="Graphics\JFViewport.h" />
+    <ClInclude Include="Graphics\Private\Direct3D12\CommandAllocator.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\CopyCommandEncoder.h" />
     <ClInclude Include="Graphics\JFRenderPipeline.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\RenderCommandEncoder.h" />
@@ -420,6 +421,7 @@
     <ClCompile Include="Graphics\JFCamera.cpp" />
     <ClCompile Include="Graphics\JFGraphicsDevice.cpp" />
     <ClCompile Include="Graphics\JFLinearColor.cpp" />
+    <ClCompile Include="Graphics\Private\Direct3D12\CommandAllocator.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\CommandBuffer.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\CommandQueue.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\CopyCommandEncoder.cpp" />

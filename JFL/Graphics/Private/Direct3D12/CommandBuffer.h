@@ -15,8 +15,8 @@ namespace JFL::Private::Direct3D12
 	class CommandBuffer final : public JFCommandBuffer
 	{
 	public:
-		CommandBuffer(CommandQueue*, ID3D12CommandAllocator*, ID3D12GraphicsCommandList*, D3D12_COMMAND_LIST_TYPE);
-		~CommandBuffer() noexcept = default;
+		CommandBuffer(GraphicsDevice*, CommandQueue*, CommandAllocator*);
+		~CommandBuffer() noexcept;
 
 		JFObject<JFRenderCommandEncoder> CreateRenderCommandEncoder(JFRenderPipeline* pipelineState) override;
 		JFObject<JFCopyCommandEncoder> CreateCopyCommandEncoder() override;
@@ -26,12 +26,11 @@ namespace JFL::Private::Direct3D12
 		void AddEncodedCommandList(ID3D12GraphicsCommandList* commandList);
 
 	private:
-		std::vector<ComPtr<ID3D12GraphicsCommandList>> encodedCommandList;
+		JFArray<ComPtr<ID3D12GraphicsCommandList>> encodedCommandList;
 
-		D3D12_COMMAND_LIST_TYPE type;
-		JFObject<CommandQueue> commandQueue;
-		ComPtr<ID3D12GraphicsCommandList> list;
-		ComPtr<ID3D12CommandAllocator> allocator;
+		JFObject<GraphicsDevice> device;
+		JFObject<CommandQueue> queue;
+		JFObject<CommandAllocator> allocator;
 	};
 
 }
