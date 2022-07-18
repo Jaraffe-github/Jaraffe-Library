@@ -34,7 +34,7 @@ namespace JFL
 	private:
 		float nearZ;
 		float farZ;
-		JFMatrix4 viewMatrix;
-		JFMatrix4 projectionMatrix;
+		class JFL_API JFMatrix4 viewMatrix;
+		class JFL_API JFMatrix4 projectionMatrix;
 	};
 }

@@ -20,7 +20,7 @@ inline void ThrowIfFailed(HRESULT hr)
     if (FAILED(hr))
     {
         auto msg = std::system_category().message(hr);
-        throw std::exception(msg.c_str());
+       throw std::exception(msg.c_str());
     }
 }
 

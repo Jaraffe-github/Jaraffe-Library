@@ -240,12 +240,14 @@ JFObject<JFRenderPipeline> GraphicsDevice::CreateRenderPipeline(const JFRenderPi
 {
     ComPtr<ID3D12RootSignature> rootSignature;
     {
-        CD3DX12_ROOT_PARAMETER slotRootParameters[1] = {};
+        CD3DX12_ROOT_PARAMETER slotRootParameters[3] = {};
         slotRootParameters[0].InitAsConstantBufferView(0);
+        slotRootParameters[1].InitAsConstantBufferView(1);
+        slotRootParameters[2].InitAsConstantBufferView(2);
 
         auto staticSamplers = ::Private::GetStaticSamplers();
 
-        CD3DX12_ROOT_SIGNATURE_DESC rootSigDesc(1, slotRootParameters,
+        CD3DX12_ROOT_SIGNATURE_DESC rootSigDesc(3, slotRootParameters,
                                                 static_cast<UINT>(staticSamplers.size()), staticSamplers.data(),
                                                 D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
 

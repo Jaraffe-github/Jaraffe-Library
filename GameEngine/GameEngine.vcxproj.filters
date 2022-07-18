@@ -1,2 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Application\JFGApplication.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\JFGTestScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application\JFGApplication.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\JFGTestScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="JFGInclude.h" />
+    <ClInclude Include="Light\JFGLight.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\JFGModel.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Application">
+      <UniqueIdentifier>{a4b8df24-a139-4fd3-bb0d-f7c82728814d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{90f84f0e-5ba9-4b33-b119-64de7a8a3e94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{ee50f664-1724-4b5f-b19c-0e1df392b143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{8ddcb607-e262-4466-b205-fec1cafb2a09}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -41,8 +41,8 @@ namespace JFL
 	//=============================================================================
 	// Implementation)
 	//=============================================================================
-	void JFLogInternal(JFLogLevel, JFStringA&&);
-	void JFLogInternal(JFLogLevel, JFStringW&&);
+	JFL_API void JFLogInternal(JFLogLevel, JFStringA&&);
+	JFL_API void JFLogInternal(JFLogLevel, JFStringW&&);
 
 	void JFLog(JFLogLevel logLevel, const char* format)
 	{

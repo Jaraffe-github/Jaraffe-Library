@@ -16,3 +16,4 @@
 #include "Memory/JFMemory.h"
 #include "String/JFString.h"
 #include "Type/JFType.h"
+#include "Log/JFLog.h"
