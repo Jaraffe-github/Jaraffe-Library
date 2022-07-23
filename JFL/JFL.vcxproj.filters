@@ -3,6 +3,21 @@
   <ItemGroup>
     <ClInclude Include="JFInclude.h" />
     <ClInclude Include="JFL.h" />
+    <ClInclude Include="Window\JFWindowDescriptor.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\JFWindow.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\JFWindowEvent.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Private\WindowPlatform.h">
+      <Filter>Window\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Private\Win32\Window.h">
+      <Filter>Window\Private\Win32</Filter>
+    </ClInclude>
     <ClInclude Include="Graphics\JFBlendState.h">
       <Filter>Graphics</Filter>
     </ClInclude>
@@ -60,6 +75,9 @@
     <ClInclude Include="Graphics\Private\GraphicsAPI.h">
       <Filter>Graphics\Private</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\CommandAllocator.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
     <ClInclude Include="Graphics\Private\Direct3D12\CopyCommandEncoder.h">
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClInclude>
@@ -97,9 +115,6 @@
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\Private\Direct3D12\GraphicsDevice.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\CommandAllocator.h">
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\Private\Vulkan\CommandQueue.h">
@@ -243,15 +258,6 @@
     <ClInclude Include="Lock\JFSpinLock.h">
       <Filter>Lock</Filter>
     </ClInclude>
-    <ClInclude Include="Window\JFWindow.h">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Window\Private\WindowPlatform.h">
-      <Filter>Window\Private</Filter>
-    </ClInclude>
-    <ClInclude Include="Window\Private\Win32\Window.h">
-      <Filter>Window\Private\Win32</Filter>
-    </ClInclude>
     <ClInclude Include="Object\JFObject.h">
       <Filter>Object</Filter>
     </ClInclude>
@@ -270,10 +276,6 @@
     <ClInclude Include="Application\Private\Win32\ApplicationContext.h">
       <Filter>Application\Private\Win32</Filter>
     </ClInclude>
-    <ClInclude Include="Window\JFWindowEvent.h">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Window\JFWindowDescriptor.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -308,6 +310,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Window\JFWindow.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\Private\Win32\Window.cpp">
+      <Filter>Window\Private\Win32</Filter>
+    </ClCompile>
     <ClCompile Include="Graphics\JFCamera.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
@@ -316,6 +324,9 @@
     </ClCompile>
     <ClCompile Include="Graphics\JFLinearColor.cpp">
       <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Direct3D12\CommandAllocator.cpp">
+      <Filter>Graphics\Private\Direct3D12</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Private\Direct3D12\CommandBuffer.cpp">
       <Filter>Graphics\Private\Direct3D12</Filter>
@@ -345,9 +356,6 @@
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Private\Direct3D12\Texture.cpp">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Private\Direct3D12\CommandAllocator.cpp">
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Private\Vulkan\CommandQueue.cpp">
@@ -404,12 +412,6 @@
     <ClCompile Include="Lock\JFSpinLock.cpp">
       <Filter>Lock</Filter>
     </ClCompile>
-    <ClCompile Include="Window\JFWindow.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Window\Private\Win32\Window.cpp">
-      <Filter>Window\Private\Win32</Filter>
-    </ClCompile>
     <ClCompile Include="Object\JFRefCounter.cpp">
       <Filter>Object</Filter>
     </ClCompile>
@@ -421,62 +423,62 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Graphics">
-      <UniqueIdentifier>{cd1c0d7f-bd09-4c3f-b473-d8c41dd085e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\Private">
-      <UniqueIdentifier>{f48a1070-dbbe-4441-8b6f-85d9bf87c6d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\Private\Direct3D12">
-      <UniqueIdentifier>{867366a0-859c-47f7-ae2f-a617df300ee6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\Private\Vulkan">
-      <UniqueIdentifier>{33166639-12c9-438e-8b64-f9f561289b05}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FileSystem">
-      <UniqueIdentifier>{d7bd904e-eef7-41e4-8364-a4608d5a9229}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Memory">
-      <UniqueIdentifier>{35c061ce-6479-43a4-bc77-845637143e98}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Container">
-      <UniqueIdentifier>{098ac362-91c7-4975-9665-398a82a76d2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Type">
-      <UniqueIdentifier>{dad5097b-2e54-4ef6-852b-874dca75026f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="String">
-      <UniqueIdentifier>{89b72cc9-e142-4e6d-b59d-4fda99909cc3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Log">
-      <UniqueIdentifier>{60b9fdeb-86d8-436e-b6a0-82a827ee6496}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Math">
-      <UniqueIdentifier>{6da9e22e-bcc6-4d12-8de4-e008dc1db8b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Lock">
-      <UniqueIdentifier>{598eef17-b05a-494e-862a-9c1f4d88e34e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Window">
-      <UniqueIdentifier>{839a0d9d-e002-4b81-8b79-fc6d1a8d9524}</UniqueIdentifier>
+      <UniqueIdentifier>{158bd6d6-22a4-423e-bb5e-cf936f58fcbd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Window\Private">
-      <UniqueIdentifier>{dc573f5c-0618-4a9c-a084-0c9a9d677f45}</UniqueIdentifier>
+      <UniqueIdentifier>{e9f9f54e-392b-4e5d-a1c8-709ff221db3b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Window\Private\Win32">
-      <UniqueIdentifier>{5a527657-89fe-4da9-be23-2944acc67478}</UniqueIdentifier>
+      <UniqueIdentifier>{56e6e231-e8a0-40df-a85b-100044a12370}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{f6ffed96-cd12-41d3-9733-ff87acdff1fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Private">
+      <UniqueIdentifier>{b33e962a-1d70-4aea-a209-20616a43d567}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Private\Direct3D12">
+      <UniqueIdentifier>{1b477819-3115-4992-a651-a03d7dcc8cea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Private\Vulkan">
+      <UniqueIdentifier>{59d41cb4-9f76-4c67-9866-9282037d87eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileSystem">
+      <UniqueIdentifier>{7609e94d-ab17-4b37-ac74-0049b0255f0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{0ad1dc04-2fec-4d58-b66f-e1f9bb818740}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Container">
+      <UniqueIdentifier>{972d43ea-cd78-4166-8872-f3e653d44daa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Type">
+      <UniqueIdentifier>{65ace8a1-136e-4b36-8afe-b9c050356ec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="String">
+      <UniqueIdentifier>{72d927e1-2909-412d-beb9-8d630dc9cb9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Log">
+      <UniqueIdentifier>{66d31e97-e4a6-4c58-8989-589f1ae88f62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{be7db8da-0822-43a9-874f-9659149e19f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lock">
+      <UniqueIdentifier>{de5660a2-8ee9-4f60-bc81-34d3998473f3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object">
-      <UniqueIdentifier>{27ebb96b-ea83-4b71-8149-b1e0542eee88}</UniqueIdentifier>
+      <UniqueIdentifier>{3f982398-6983-4f5f-a403-22b25c380b47}</UniqueIdentifier>
     </Filter>
     <Filter Include="Application">
-      <UniqueIdentifier>{9296a9a0-8a0b-46cf-ae81-092b47a8ca95}</UniqueIdentifier>
+      <UniqueIdentifier>{511f59a3-4535-42fa-bfd5-917b672c84d6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Application\Private">
-      <UniqueIdentifier>{f41b0758-91e9-4ec0-8c7a-bf2715e591b1}</UniqueIdentifier>
+      <UniqueIdentifier>{7b03b084-3480-4e50-b496-ac3294c2cc76}</UniqueIdentifier>
     </Filter>
     <Filter Include="Application\Private\Win32">
-      <UniqueIdentifier>{25ea9318-0dbd-4960-94cf-6d66ccae411b}</UniqueIdentifier>
+      <UniqueIdentifier>{75b8ab92-b720-4262-a019-1874e320b2d8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
