@@ -17,21 +17,28 @@
 
 namespace JFL
 {
+	namespace Private { struct WindowContext; }
+
 	class JFL_API JFWindow : public JFRefCounter
 	{
 	public:
 		using EventListener = const void*;
 		using WindowEventCallback = std::function<void(const JFWindowEvent&)>;
 
-		virtual ~JFWindow() noexcept = default;
+		virtual ~JFWindow() noexcept;
 
 		static JFWindow* CreatePlatformWindow();
 
 		virtual void Create(const JFWindowDescriptor& descriptor) = 0;
 		virtual void Destory() = 0;
 
+		virtual JFStringW Title() const = 0;
+		virtual void SetTitle(const JFStringW& title) = 0;
+
 		virtual void Show() = 0;
 		virtual void Hide() = 0;
+
+		virtual float DpiScale() const = 0;
 
 		virtual void* PlatformHandle() const = 0;
 
@@ -50,7 +57,7 @@ namespace JFL
 		uint32_t width;
 		uint32_t height;
 
-		JFSpinLock eventLock;
-		JFL_API std::map<EventListener, WindowEventCallback> windowEventListeners;
+		// std::map dll export issue. use pimpl.
+		Private::WindowContext* context;
 	};
 }

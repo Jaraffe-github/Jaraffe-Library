@@ -10,7 +10,7 @@
 #include "JFInclude.h"
 #include <windows.h>
 
-namespace JFL
+namespace JFL::Private::Win32
 {
 	class Window : public JFWindow
 	{
@@ -23,6 +23,11 @@ namespace JFL
 
 		void Show() override;
 		void Hide() override;
+
+		JFStringW Title() const override;
+		void SetTitle(const JFStringW& title) override;
+
+		float DpiScale() const override;
 
 		void* PlatformHandle() const override;
 

@@ -111,7 +111,8 @@ void JFGTestScene::OnWindowEvent(const JFWindowEvent& windowEvent)
 	switch (windowEvent.type)
 	{
 	case JFWindowEvent::Type::Resize:
-		resized = true;
+		if (windowEvent.width > 0 && windowEvent.height > 0)
+			resized = true;
 		break;
 	}
 }

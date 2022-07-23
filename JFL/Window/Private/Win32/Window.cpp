@@ -8,8 +8,6 @@
 #include "Window.h"
 #include "Log/JFLog.h"
 
-using namespace JFL;
-
 namespace JFL::Private::Win32
 {
     JFWindow* CreatePlatformWindow()
@@ -17,6 +15,9 @@ namespace JFL::Private::Win32
         return new Window();
     }
 }
+
+using namespace JFL;
+using namespace JFL::Private::Win32;
 
 Window::Window()
     : handle(nullptr)
@@ -117,6 +118,25 @@ void Window::Hide()
 {
     JFASSERT_DEBUG(handle);
     ::ShowWindow(handle, SW_HIDE);
+}
+
+JFStringW Window::Title() const
+{
+    wchar_t title[1024];
+    memset(title, 0, sizeof(char) * 1024);
+    GetWindowTextW(handle, title, 1024);
+    return title;
+}
+
+void Window::SetTitle(const JFStringW& title)
+{
+    SetWindowTextW(handle, title);
+}
+
+float Window::DpiScale() const
+{
+    int currentDpi = GetDpiForWindow(handle);
+    return static_cast<float>(currentDpi) / static_cast<float>(USER_DEFAULT_SCREEN_DPI);
 }
 
 void* Window::PlatformHandle() const

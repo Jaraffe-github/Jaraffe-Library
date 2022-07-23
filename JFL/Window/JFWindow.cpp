@@ -11,6 +11,15 @@
 
 using namespace JFL;
 
+namespace JFL::Private
+{
+	struct WindowContext
+	{
+		JFSpinLock eventLock;
+		std::map<JFWindow::EventListener, JFWindow::WindowEventCallback> windowEventListeners;
+	};
+}
+
 JFWindow* JFWindow::CreatePlatformWindow()
 {
 	return Private::CreatePlatformWindow();
@@ -20,6 +29,17 @@ JFWindow::JFWindow()
 	: width(1)
 	, height(1)
 {
+	context = new Private::WindowContext();
+}
+
+JFWindow::~JFWindow() noexcept
+{
+	JFASSERT(context);
+	if (context)
+	{
+		delete context;
+		context = nullptr;
+	}
 }
 
 uint32_t JFWindow::Width() const
@@ -39,14 +59,14 @@ float JFWindow::AspectRatio() const
 
 void JFWindow::AddWindowEventListener(EventListener listener, const WindowEventCallback& callback)
 {
-	JFScopedLock guard(eventLock);
-	windowEventListeners.emplace(listener, callback);
+	JFScopedLock guard(context->eventLock);
+	context->windowEventListeners.emplace(listener, callback);
 }
 
 void JFWindow::RemoveWindowEventListener(EventListener listener)
 {
-	JFScopedLock guard(eventLock);
-	windowEventListeners.erase(listener);
+	JFScopedLock guard(context->eventLock);
+	context->windowEventListeners.erase(listener);
 }
 
 void JFWindow::PostWindowEvent(const JFWindowEvent& windowEvent)
@@ -66,9 +86,9 @@ void JFWindow::PostWindowEvent(const JFWindowEvent& windowEvent)
 
 	JFArray<WindowEventCallback> callbacks;
 
-	JFScopedLock guard(eventLock);
-	callbacks.Reserve(windowEventListeners.size());
-	for (const auto& [listener, callback] : windowEventListeners)
+	JFScopedLock guard(context->eventLock);
+	callbacks.Reserve(context->windowEventListeners.size());
+	for (const auto& [listener, callback] : context->windowEventListeners)
 		callbacks.Add(callback);
 	guard.Unlock();
 
