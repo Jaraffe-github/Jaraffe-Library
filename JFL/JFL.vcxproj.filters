@@ -276,6 +276,9 @@
     <ClInclude Include="Application\Private\Win32\ApplicationContext.h">
       <Filter>Application\Private\Win32</Filter>
     </ClInclude>
+    <ClInclude Include="Window\JFVirtualKeyCode.h">
+      <Filter>Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">

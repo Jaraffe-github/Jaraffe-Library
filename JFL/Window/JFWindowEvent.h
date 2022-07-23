@@ -6,14 +6,13 @@
 //
 
 #pragma once
+#include "JFVirtualKeyCode.h"
 
 struct JFWindowEvent
 {
 	enum class Type
 	{
-		None = 0,
-
-		Create,
+		Create = 0,
 		Close,
 		Resize,
 	};
@@ -25,10 +24,18 @@ struct JFWindowEvent
 
 struct JFMouseEvent
 {
+	enum class Type
+	{
+		Down = 0,
+		Up,
+		Move,
+		Wheel,
+	};
 
+	Type type;
 };
 
 struct JFKeyboardEvent
 {
-
+	JFVirtualKeyCode keyCode;
 };

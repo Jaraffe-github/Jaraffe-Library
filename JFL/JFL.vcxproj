@@ -400,6 +400,7 @@
     <ClInclude Include="Type\JFTypeTraits.h" />
     <ClInclude Include="Type\JFTypeTuple.h" />
     <ClInclude Include="Window\JFWindow.h" />
+    <ClInclude Include="Window\JFVirtualKeyCode.h" />
     <ClInclude Include="Window\Private\WindowPlatform.h" />
     <ClInclude Include="Window\Private\Win32\Window.h" />
   </ItemGroup>
