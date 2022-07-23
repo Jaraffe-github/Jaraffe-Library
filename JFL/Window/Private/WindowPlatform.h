@@ -10,5 +10,11 @@
 
 namespace JFL::Private
 {
-	JFWindow* CreatePlatformWindow();
+#if defined(_WIN32)
+	namespace Win32
+	{
+		extern JFWindow* CreatePlatformWindow();
+	}
+	using namespace Win32;
+#endif
 }

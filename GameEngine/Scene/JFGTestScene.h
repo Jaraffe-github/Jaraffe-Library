@@ -62,6 +62,9 @@ namespace JFG
 		void Update();
 		void Render();
 
+	protected:
+		void OnWindowEvent(const JFWindowEvent& windowEvent);
+
 	private:
 		void CreateWhiteTexture();
 		void BuildConstantsBuffers();
@@ -90,5 +93,7 @@ namespace JFG
 		JFObject<JFGraphicsDevice> graphicsDevice;
 		
 		JFObject<JFTexture> whiteTexture;
+
+		std::atomic_bool resized;
 	};
 }

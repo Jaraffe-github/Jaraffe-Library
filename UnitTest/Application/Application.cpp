@@ -33,8 +33,10 @@ public:
 
 	void OnInitialize() override
 	{
+		JFWindowDescriptor windowDescriptor{};
+		windowDescriptor.title = L"Jaraffe unit test window";
 		window = JFWindow::CreatePlatformWindow();
-		window->Create();
+		window->Create(windowDescriptor);
 		window->Show();
 
 		graphicsDevice = JFGraphicsDevice::CreateGraphicsDevice(JFL::JFGraphicsType::Direct3D12);

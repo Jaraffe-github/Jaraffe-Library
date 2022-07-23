@@ -11,6 +11,7 @@
 using namespace JFG;
 
 JFGTestScene::JFGTestScene()
+	: resized(true)
 {
 }
 
@@ -20,17 +21,19 @@ JFGTestScene::~JFGTestScene()
 
 void JFGTestScene::Initialize()
 {
+	JFWindowDescriptor windowDescriptor{};
+	windowDescriptor.title = L"Jaraffe Game Engine";
 	window = JFWindow::CreatePlatformWindow();
-	window->Create();
+	window->Create(windowDescriptor);
 	window->Show();
+
+	window->AddWindowEventListener(this, std::bind(&JFGTestScene::OnWindowEvent, this, std::placeholders::_1));
 
 	graphicsDevice = JFGraphicsDevice::CreateGraphicsDevice(JFL::JFGraphicsType::Direct3D12);
 	commandQueue = graphicsDevice->CreateCommandQueue();
 	swapChain = commandQueue->CreateSwapChain(window);
 
 	CreateWhiteTexture();
-
-	camera.SetPerspective(0.25f * 3.1415926535f, window->AspectRatio(), 1.0f, 1000.f);
 
 	BuildConstantsBuffers();
 	BuildRenderPipeline();
@@ -40,10 +43,19 @@ void JFGTestScene::Initialize()
 
 void JFGTestScene::Terminate()
 {
+	if (window)
+		window->RemoveWindowEventListener(this);
 }
 
 void JFGTestScene::Update()
 {
+	if (resized)
+	{
+		camera.SetPerspective(0.25f * 3.1415926535f, window->AspectRatio(), 1.0f, 1000.f);
+		swapChain->Resize(window->Width(), window->Height());
+		resized = false;
+	}
+
 	UpdateCamera();
 	UpdateMainPassConstants();
 }
@@ -92,6 +104,16 @@ void JFGTestScene::Render()
 	// swap the back and front buffers.
 	swapChain->Present();
 	commandQueue->WaitComplete();
+}
+
+void JFGTestScene::OnWindowEvent(const JFWindowEvent& windowEvent)
+{
+	switch (windowEvent.type)
+	{
+	case JFWindowEvent::Type::Resize:
+		resized = true;
+		break;
+	}
 }
 
 void JFGTestScene::CreateWhiteTexture()

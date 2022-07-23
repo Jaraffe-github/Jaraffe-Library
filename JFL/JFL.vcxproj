@@ -359,6 +359,8 @@
     <ClInclude Include="Graphics\Private\Vulkan\vulkan_headers.h" />
     <ClInclude Include="JFInclude.h" />
     <ClInclude Include="JFL.h" />
+    <ClInclude Include="Window\JFWindowDescriptor.h" />
+    <ClInclude Include="Window\JFWindowEvent.h" />
     <ClInclude Include="Lock\JFCondition.h" />
     <ClInclude Include="Lock\JFDummyLock.h" />
     <ClInclude Include="Lock\JFLock.h" />

@@ -18,15 +18,11 @@ namespace JFL
 		Window();
 		~Window() = default;
 
-		void Create() override;
+		void Create(const JFWindowDescriptor& descriptor) override;
 		void Destory() override;
 
 		void Show() override;
 		void Hide() override;
-
-		uint32_t Width() const override { return width; }
-		uint32_t Height() const override { return height; }
-		float AspectRatio() const override;
 
 		void* PlatformHandle() const override;
 
@@ -35,8 +31,5 @@ namespace JFL
 
 	private:
 		HWND handle;
-
-		uint32_t width;
-		uint32_t height;
 	};
 }
