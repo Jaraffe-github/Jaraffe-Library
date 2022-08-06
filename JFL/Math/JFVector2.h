@@ -36,6 +36,7 @@ namespace JFL
         constexpr JFVector2& operator*=(float f) noexcept;
         constexpr JFVector2& operator/=(const JFVector2& v) noexcept;
 
+        inline float Angle() const noexcept;
         inline float Length() const noexcept;
         constexpr float LengthSq() const noexcept;
         constexpr JFVector2& Normalize() noexcept;

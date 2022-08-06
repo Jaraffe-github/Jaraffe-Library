@@ -7,6 +7,7 @@
 
 #pragma once
 #include "JFMatrix2.h"
+#include "JFVector2.h"
 
 namespace JFL
 {
@@ -100,6 +101,11 @@ namespace JFL
         x /= v.x;
         y /= v.y;
         return *this;
+    }
+
+    inline float JFVector2::Angle() const noexcept
+    {
+        return std::atan2f(y, x);
     }
 
     inline float JFVector2::Length() const noexcept
