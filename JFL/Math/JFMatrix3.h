@@ -56,7 +56,7 @@ namespace JFL
             {
                 float m[3][3];
             };
-            float value[9];
+            float scalars[9];
         };
     };
 }

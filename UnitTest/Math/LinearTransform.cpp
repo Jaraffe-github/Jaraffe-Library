@@ -51,7 +51,7 @@ TEST(LinearTransform, Scale)
         {
             for (int j = 0; j < dimension; ++j)
             {
-                r.m[i][j] = m.m[i][j] * s.value[j];
+                r.m[i][j] = m.m[i][j] * s.scalars[j];
             }
         }
         EXPECT_EQ(LT(r), LT(m).Scale(s));
@@ -66,12 +66,12 @@ TEST(LinearTransform, Rotate)
     {
         using M = decltype(m);
         auto identity = M();
-        int size = sizeof(m.value) / sizeof(m.value[0]);
+        int size = sizeof(m.scalars) / sizeof(m.scalars[0]);
         for (int i = 0; i < size; ++i)
         {
-            using elementType = typename std::remove_reference<decltype(m.value[i])>::type;
-            EXPECT_EQ(true, ApproximatelyEqualAbsRel<elementType>(identity.value[i],
-                                                                  m.value[i],
+            using elementType = typename std::remove_reference<decltype(m.scalars[i])>::type;
+            EXPECT_EQ(true, ApproximatelyEqualAbsRel<elementType>(identity.scalars[i],
+                                                                  m.scalars[i],
                                                                   1e-5f,
                                                                   1e-4f));
         }

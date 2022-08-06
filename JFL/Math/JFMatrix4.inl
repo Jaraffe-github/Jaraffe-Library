@@ -204,21 +204,21 @@ namespace JFL
 
     constexpr JFVector4 JFMatrix4::Row1() const noexcept
     {
-        return JFVector4(value[0], value[1], value[2], value[3]);
+        return JFVector4(scalars[0], scalars[1], scalars[2], scalars[3]);
     }
 
     constexpr JFVector4 JFMatrix4::Row2() const noexcept
     {
-        return JFVector4(value[4], value[5], value[6], value[7]);
+        return JFVector4(scalars[4], scalars[5], scalars[6], scalars[7]);
     }
 
     constexpr JFVector4 JFMatrix4::Row3() const noexcept
     {
-        return JFVector4(value[8], value[9], value[10], value[11]);
+        return JFVector4(scalars[8], scalars[9], scalars[10], scalars[11]);
     }
 
     constexpr JFVector4 JFMatrix4::Row4() const noexcept
     {
-        return JFVector4(value[12], value[13], value[14], value[15]);
+        return JFVector4(scalars[12], scalars[13], scalars[14], scalars[15]);
     }
 }

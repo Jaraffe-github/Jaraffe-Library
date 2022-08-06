@@ -141,13 +141,13 @@ TEST(Matrix, Inverse)
         using M = decltype(m);
         m = RandomObjectWithValues<M>();
         auto r = m * m.InverseMatrix();
-        int size = sizeof(m.value) / sizeof(m.value[0]);
+        int size = sizeof(m.scalars) / sizeof(m.scalars[0]);
         auto identity = M();
         for (int i = 0; i < size; ++i)
         {
-            using elementType = typename std::remove_reference<decltype(m.value[i])>::type;
-            EXPECT_EQ(true, ApproximatelyEqualAbsRel<elementType>(identity.value[i], 
-                                                                  r.value[i], 
+            using elementType = typename std::remove_reference<decltype(m.scalars[i])>::type;
+            EXPECT_EQ(true, ApproximatelyEqualAbsRel<elementType>(identity.scalars[i], 
+                                                                  r.scalars[i], 
                                                                   1e-5f,
                                                                   1e-4f));
         }

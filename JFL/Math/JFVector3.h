@@ -52,7 +52,7 @@ namespace JFL
             {
                 float x, y, z;
             };
-            float value[3];
+            float scalars[3];
         };
     };
 }

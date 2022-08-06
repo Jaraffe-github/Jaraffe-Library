@@ -36,10 +36,10 @@ template<class T>
 T RandomObjectWithValues()
 {
     T r;
-    int len = sizeof(r.value) / sizeof(r.value[0]);
+    int len = sizeof(r.scalars) / sizeof(r.scalars[0]);
     for (int i = 0; i < len; ++i)
     {
-        r.value[i] = RandomFloat();
+        r.scalars[i] = RandomFloat();
     }
     return r;
 }
@@ -50,7 +50,7 @@ void RandomObjectsWithValuesForEqualTest(T& a, T& b, T& c)
     a = RandomObjectWithValues<T>();
     b = a;
     c = RandomObjectWithValues<T>();
-    while (a.value[0] == c.value[0])
+    while (a.scalars[0] == c.scalars[0])
         c = RandomObjectWithValues<T>();
 }
 
@@ -58,10 +58,10 @@ template<class T>
 T SumEachValueOfObject(const T& a, const T& b)
 {
     T r;
-    int len = sizeof(r.value) / sizeof(r.value[0]);
+    int len = sizeof(r.scalars) / sizeof(r.scalars[0]);
     for (int i = 0; i < len; ++i)
     {
-        r.value[i] = a.value[i] + b.value[i];
+        r.scalars[i] = a.scalars[i] + b.scalars[i];
     }
     return r;
 }
@@ -70,10 +70,10 @@ template<class T>
 T SubEachValueOfObject(const T& a, const T& b)
 {
     T r;
-    int len = sizeof(r.value) / sizeof(r.value[0]);
+    int len = sizeof(r.scalars) / sizeof(r.scalars[0]);
     for (int i = 0; i < len; ++i)
     {
-        r.value[i] = a.value[i] - b.value[i];
+        r.scalars[i] = a.scalars[i] - b.scalars[i];
     }
     return r;
 }
@@ -82,10 +82,10 @@ template<class T>
 T MulEachValueOfObject(const T& a, float s)
 {
     T r;
-    int len = sizeof(r.value) / sizeof(r.value[0]);
+    int len = sizeof(r.scalars) / sizeof(r.scalars[0]);
     for (int i = 0; i < len; ++i)
     {
-        r.value[i] = a.value[i] * s;
+        r.scalars[i] = a.scalars[i] * s;
     }
     return r;
 }

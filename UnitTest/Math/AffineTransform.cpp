@@ -49,10 +49,10 @@ TEST(AffineTransform, Translate)
         at.Translate(v);
         auto r = AT(m);
 
-        int size = sizeof(r.translation.value) / sizeof(r.translation.value[0]);
+        int size = sizeof(r.translation.scalars) / sizeof(r.translation.scalars[0]);
         for (int i = 0; i < size; ++i)
         {
-            r.translation.value[i] += v.value[i];
+            r.translation.scalars[i] += v.scalars[i];
         }
         EXPECT_EQ(r, at);
     };

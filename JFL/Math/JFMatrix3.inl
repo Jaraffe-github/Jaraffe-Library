@@ -182,16 +182,16 @@ namespace JFL
     
     constexpr JFVector3 JFMatrix3::Row1() const noexcept
     {
-        return { value[0], value[1], value[2] };
+        return { scalars[0], scalars[1], scalars[2] };
     }
     
     constexpr JFVector3 JFMatrix3::Row2() const noexcept
     {
-        return { value[3], value[4], value[5] };
+        return { scalars[3], scalars[4], scalars[5] };
     }
     
     constexpr JFVector3 JFMatrix3::Row3() const noexcept
     {
-        return { value[6], value[7], value[8] };
+        return { scalars[6], scalars[7], scalars[8] };
     }
 }
