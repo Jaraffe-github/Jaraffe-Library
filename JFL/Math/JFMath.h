@@ -19,3 +19,4 @@
 #include "JFPoint.h"
 #include "JFSize.h"
 #include "JFRect.h"
+#include "JFCoordinateConverter.h"
