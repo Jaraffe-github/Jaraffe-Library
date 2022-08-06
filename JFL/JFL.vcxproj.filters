@@ -279,6 +279,9 @@
     <ClInclude Include="Window\JFVirtualKeyCode.h">
       <Filter>Window</Filter>
     </ClInclude>
+    <ClInclude Include="Math\JFCoordinateConverter.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">

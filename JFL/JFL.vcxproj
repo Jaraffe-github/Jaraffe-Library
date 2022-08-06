@@ -359,6 +359,7 @@
     <ClInclude Include="Graphics\Private\Vulkan\vulkan_headers.h" />
     <ClInclude Include="JFInclude.h" />
     <ClInclude Include="JFL.h" />
+    <ClInclude Include="Math\JFCoordinateConverter.h" />
     <ClInclude Include="Window\JFWindowDescriptor.h" />
     <ClInclude Include="Window\JFWindowEvent.h" />
     <ClInclude Include="Lock\JFCondition.h" />
