@@ -155,6 +155,6 @@ namespace JFL
 
 	constexpr bool JFVector4::IsNormalized(float tolerance) const noexcept
 	{
-		return Abs(LengthSq() - 1.0f) <= tolerance;
+		return JFNumeric::Abs(LengthSq() - 1.0f) <= tolerance;
 	}
 }

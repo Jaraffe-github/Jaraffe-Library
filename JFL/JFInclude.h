@@ -34,59 +34,6 @@ struct LibraryVersion
 
 namespace JFL
 {
-	static constexpr float PI = 3.14159265358979323846f;
-	static constexpr float DEG_TO_RAD = PI / 180.f;
-	static constexpr float RAD_TO_DEG = 180.f / PI;
-
-	constexpr float DegreesToRadians(float degrees)
-	{
-		return degrees * DEG_TO_RAD;
-	}
-
-	constexpr float RadiansToDegrees(float radians)
-	{
-		return radians * RAD_TO_DEG;
-	}
-
-	template<class T>
-	concept Arithmetic = std::is_arithmetic_v<T>;
-
-	template<Arithmetic T>
-	constexpr decltype(auto) Abs(T v) noexcept
-	{
-		return v > static_cast<T>(0) ? v : v * static_cast<T>(-1);
-	}
-
-	template<class T, class U>
-	constexpr decltype(auto) Min(const T& a, const U& b) noexcept
-	{
-		return (a < b) ? a : b;
-	}
-
-	template<class T, class U, class... V>
-	constexpr decltype(auto) Min(const T& a, const U& b, const V&... args) noexcept
-	{
-		return Min(a, Min(b, args...));
-	}
-
-	template<class T, class U>
-	constexpr decltype(auto) Max(const T& a, const U& b) noexcept
-	{
-		return (a > b) ? a : b;
-	}
-
-	template<class T, class U, class... V>
-	constexpr decltype(auto) Max(const T& a, const U& b, const V&... args) noexcept
-	{
-		return Max(a, Max(b, args...));
-	}
-
-	template<class T>
-	constexpr decltype(auto) Clamp(const T& value, const T& min, const T& max) noexcept
-	{
-		return value < min ? min : value > max ? max : value;
-	}
-
 	template<class T>
 	void Swap(T& a, T& b) noexcept
 	{
@@ -97,10 +44,63 @@ namespace JFL
 
 	namespace JFNumeric
 	{
+		static constexpr float PI = 3.14159265358979323846f;
+		static constexpr float DEG_TO_RAD = PI / 180.f;
+		static constexpr float RAD_TO_DEG = 180.f / PI;
+
+		constexpr float DegreesToRadians(float degrees)
+		{
+			return degrees * DEG_TO_RAD;
+		}
+
+		constexpr float RadiansToDegrees(float radians)
+		{
+			return radians * RAD_TO_DEG;
+		}
+
+		template<class T>
+		concept Arithmetic = std::is_arithmetic_v<T>;
+
+		template<Arithmetic T>
+		constexpr decltype(auto) Abs(T v) noexcept
+		{
+			return v > static_cast<T>(0) ? v : v * static_cast<T>(-1);
+		}
+
 		template<std::floating_point T>
 		constexpr bool IsClose(T a, T b, T tolerance = (T)1.0e-6)
 		{
-			return JFL::Abs(a - b) <= tolerance;
+			return Abs(a - b) <= tolerance;
+		}
+
+		template<class T, class U>
+		constexpr decltype(auto) Min(const T& a, const U& b) noexcept
+		{
+			return (a < b) ? a : b;
+		}
+
+		template<class T, class U, class... V>
+		constexpr decltype(auto) Min(const T& a, const U& b, const V&... args) noexcept
+		{
+			return Min(a, Min(b, args...));
+		}
+
+		template<class T, class U>
+		constexpr decltype(auto) Max(const T& a, const U& b) noexcept
+		{
+			return (a > b) ? a : b;
+		}
+
+		template<class T, class U, class... V>
+		constexpr decltype(auto) Max(const T& a, const U& b, const V&... args) noexcept
+		{
+			return Max(a, Max(b, args...));
+		}
+
+		template<class T>
+		constexpr decltype(auto) Clamp(const T& value, const T& min, const T& max) noexcept
+		{
+			return value < min ? min : value > max ? max : value;
 		}
 	}
 }

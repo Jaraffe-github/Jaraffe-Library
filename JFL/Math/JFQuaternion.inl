@@ -129,7 +129,7 @@ namespace JFL
 	{
 		return JFVector3(
 			std::atan2f(2.f * (w * x + y * z), 1.f - 2.f * (x * x + y * y)),	// x
-			Clamp(2.f * (w * y + y * z), -1.f, 1.f),							// y
+			JFNumeric::Clamp(2.f * (w * y + y * z), -1.f, 1.f),					// y
 			std::atan2f(2.f * (w * z + x * y), 1.f - 2.f * (y * y + z * z))		// z
 		);
 	}
@@ -168,6 +168,6 @@ namespace JFL
 
 	inline constexpr bool JFQuaternion::IsUnitQuaternion(float tolerance) const noexcept
 	{
-		return Abs(LengthSq() - 1.0f) <= tolerance;
+		return JFNumeric::IsClose(LengthSq(), 1.f, tolerance);
 	}
 }

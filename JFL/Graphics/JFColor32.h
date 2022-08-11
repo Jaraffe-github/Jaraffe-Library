@@ -58,34 +58,34 @@ namespace JFL
     constexpr JFColor32 JFColor32::operator+(const JFColor32& c) const
     {
         return JFColor32(
-            static_cast<uint8_t>(Clamp(r + c.r, 0, 255)),
-            static_cast<uint8_t>(Clamp(g + c.g, 0, 255)),
-            static_cast<uint8_t>(Clamp(b + c.b, 0, 255)),
-            static_cast<uint8_t>(Clamp(a + c.a, 0, 255)));
+            static_cast<uint8_t>(JFNumeric::Clamp(r + c.r, 0, 255)),
+            static_cast<uint8_t>(JFNumeric::Clamp(g + c.g, 0, 255)),
+            static_cast<uint8_t>(JFNumeric::Clamp(b + c.b, 0, 255)),
+            static_cast<uint8_t>(JFNumeric::Clamp(a + c.a, 0, 255)));
     }
     constexpr JFColor32 JFColor32::operator-(const JFColor32& c) const
     {
         return JFColor32(
-             static_cast<uint8_t>(Clamp(r - c.r, 0, 255)),
-             static_cast<uint8_t>(Clamp(g - c.g, 0, 255)),
-             static_cast<uint8_t>(Clamp(b - c.b, 0, 255)),
-             static_cast<uint8_t>(Clamp(a - c.a, 0, 255)));
+             static_cast<uint8_t>(JFNumeric::Clamp(r - c.r, 0, 255)),
+             static_cast<uint8_t>(JFNumeric::Clamp(g - c.g, 0, 255)),
+             static_cast<uint8_t>(JFNumeric::Clamp(b - c.b, 0, 255)),
+             static_cast<uint8_t>(JFNumeric::Clamp(a - c.a, 0, 255)));
     }
 
     constexpr JFColor32& JFColor32::operator+=(const JFColor32& c)
     {
-        r = static_cast<uint8_t>(Clamp(r + c.r, 0, 255));
-        g = static_cast<uint8_t>(Clamp(g + c.g, 0, 255));
-        b = static_cast<uint8_t>(Clamp(b + c.b, 0, 255));
-        a = static_cast<uint8_t>(Clamp(a + c.a, 0, 255));
+        r = static_cast<uint8_t>(JFNumeric::Clamp(r + c.r, 0, 255));
+        g = static_cast<uint8_t>(JFNumeric::Clamp(g + c.g, 0, 255));
+        b = static_cast<uint8_t>(JFNumeric::Clamp(b + c.b, 0, 255));
+        a = static_cast<uint8_t>(JFNumeric::Clamp(a + c.a, 0, 255));
         return *this;
     }
     constexpr JFColor32& JFColor32::operator-=(const JFColor32& c)
     {
-        r = static_cast<uint8_t>(Clamp(r - c.r, 0, 255));
-        g = static_cast<uint8_t>(Clamp(g - c.g, 0, 255));
-        b = static_cast<uint8_t>(Clamp(b - c.b, 0, 255));
-        a = static_cast<uint8_t>(Clamp(a - c.a, 0, 255));
+        r = static_cast<uint8_t>(JFNumeric::Clamp(r - c.r, 0, 255));
+        g = static_cast<uint8_t>(JFNumeric::Clamp(g - c.g, 0, 255));
+        b = static_cast<uint8_t>(JFNumeric::Clamp(b - c.b, 0, 255));
+        a = static_cast<uint8_t>(JFNumeric::Clamp(a - c.a, 0, 255));
         return *this;
     }
 }

@@ -1,160 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="JFInclude.h" />
     <ClInclude Include="JFL.h" />
-    <ClInclude Include="Window\JFWindowDescriptor.h">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Window\JFWindow.h">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Window\JFWindowEvent.h">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Window\Private\WindowPlatform.h">
-      <Filter>Window\Private</Filter>
-    </ClInclude>
-    <ClInclude Include="Window\Private\Win32\Window.h">
-      <Filter>Window\Private\Win32</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFBlendState.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFCamera.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFColor32.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFCopyCommandEncoder.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFLinearColor.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFRenderCommandEncoder.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFShader.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFVertexDescriptor.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFViewport.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFRenderPipeline.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFCommandBuffer.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFCommandQueue.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFGPUBuffer.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFGraphics.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFGraphicsDevice.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFPixelFormat.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFTexture.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\JFSwapChain.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\GraphicsAPI.h">
-      <Filter>Graphics\Private</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\CommandAllocator.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\CopyCommandEncoder.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\RenderCommandEncoder.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\RenderPipeline.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\Shader.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\CommandBuffer.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\CommandQueue.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\d3d12_headers.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\d3dx12.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\GPUBuffer.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\SwapChain.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\Texture.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\Types.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Direct3D12\GraphicsDevice.h">
-      <Filter>Graphics\Private\Direct3D12</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Vulkan\CommandQueue.h">
-      <Filter>Graphics\Private\Vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Vulkan\GraphicsDevice.h">
-      <Filter>Graphics\Private\Vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Vulkan\QueueFamily.h">
-      <Filter>Graphics\Private\Vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Vulkan\Shader.h">
-      <Filter>Graphics\Private\Vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Vulkan\SwapChain.h">
-      <Filter>Graphics\Private\Vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Vulkan\vulkan_headers.h">
-      <Filter>Graphics\Private\Vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Private\Vulkan\Texture.h">
-      <Filter>Graphics\Private\Vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\JFDirectory.h">
-      <Filter>FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\JFFile.h">
-      <Filter>FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\JFFileSystem.h">
-      <Filter>FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Memory\JFMemory.h">
-      <Filter>Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="Container\JFArray.h">
-      <Filter>Container</Filter>
-    </ClInclude>
-    <ClInclude Include="Container\JFContainer.h">
-      <Filter>Container</Filter>
+    <ClInclude Include="JFInclude.h" />
+    <ClInclude Include="Log\JFLog.h">
+      <Filter>Log</Filter>
     </ClInclude>
     <ClInclude Include="Type\JFFunction.h">
       <Filter>Type</Filter>
@@ -177,20 +27,11 @@
     <ClInclude Include="Type\JFTypeTuple.h">
       <Filter>Type</Filter>
     </ClInclude>
-    <ClInclude Include="String\JFString.h">
-      <Filter>String</Filter>
+    <ClInclude Include="Math\JFCoordinateConverter.h">
+      <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="String\JFStringA.h">
-      <Filter>String</Filter>
-    </ClInclude>
-    <ClInclude Include="String\JFStringFormat.h">
-      <Filter>String</Filter>
-    </ClInclude>
-    <ClInclude Include="String\JFStringW.h">
-      <Filter>String</Filter>
-    </ClInclude>
-    <ClInclude Include="Log\JFLog.h">
-      <Filter>Log</Filter>
+    <ClInclude Include="Math\JFQuaternion.h">
+      <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="Math\JFAffineTransform2.h">
       <Filter>Math</Filter>
@@ -258,11 +99,179 @@
     <ClInclude Include="Lock\JFSpinLock.h">
       <Filter>Lock</Filter>
     </ClInclude>
+    <ClInclude Include="Window\JFWindowDescriptor.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\JFWindowEvent.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\JFWindow.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\JFVirtualKeyCode.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Private\WindowPlatform.h">
+      <Filter>Window\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Private\Win32\Window.h">
+      <Filter>Window\Private\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\JFMemory.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="String\JFString.h">
+      <Filter>String</Filter>
+    </ClInclude>
+    <ClInclude Include="String\JFStringA.h">
+      <Filter>String</Filter>
+    </ClInclude>
+    <ClInclude Include="String\JFStringFormat.h">
+      <Filter>String</Filter>
+    </ClInclude>
+    <ClInclude Include="String\JFStringW.h">
+      <Filter>String</Filter>
+    </ClInclude>
     <ClInclude Include="Object\JFObject.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Object\JFRefCounter.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFBlendState.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFCamera.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFColor32.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFCopyCommandEncoder.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFLinearColor.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFRenderCommandEncoder.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFShader.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFVertexDescriptor.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFViewport.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFRenderPipeline.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFCommandBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFCommandQueue.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFGPUBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFGraphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFGraphicsDevice.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFPixelFormat.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFTexture.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\JFSwapChain.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\GraphicsAPI.h">
+      <Filter>Graphics\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\CommandQueue.h">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\GraphicsDevice.h">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\QueueFamily.h">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\Shader.h">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\SwapChain.h">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\vulkan_headers.h">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\Texture.h">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\CommandAllocator.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\CopyCommandEncoder.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\RenderCommandEncoder.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\RenderPipeline.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\Shader.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\CommandBuffer.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\CommandQueue.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\d3d12_headers.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\d3dx12.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\GPUBuffer.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\SwapChain.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\Texture.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\Types.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Direct3D12\GraphicsDevice.h">
+      <Filter>Graphics\Private\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\JFArray.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\JFContainer.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSystem\JFDirectory.h">
+      <Filter>FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSystem\JFFile.h">
+      <Filter>FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSystem\JFFileSystem.h">
+      <Filter>FileSystem</Filter>
     </ClInclude>
     <ClInclude Include="Application\JFApplication.h">
       <Filter>Application</Filter>
@@ -275,15 +284,6 @@
     </ClInclude>
     <ClInclude Include="Application\Private\Win32\ApplicationContext.h">
       <Filter>Application\Private\Win32</Filter>
-    </ClInclude>
-    <ClInclude Include="Window\JFVirtualKeyCode.h">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\JFCoordinateConverter.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\JFQuaternion.h">
-      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -308,6 +308,9 @@
     <None Include="Math\JFMatrix4.inl">
       <Filter>Math</Filter>
     </None>
+    <None Include="Math\JFQuaternion.inl">
+      <Filter>Math</Filter>
+    </None>
     <None Include="Math\JFVector2.inl">
       <Filter>Math</Filter>
     </None>
@@ -317,16 +320,49 @@
     <None Include="Math\JFVector4.inl">
       <Filter>Math</Filter>
     </None>
-    <None Include="Math\JFQuaternion.inl">
-      <Filter>Math</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Math\JFQuaternion.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Log\JFLog.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Type\JFPrimitiveVariant.cpp">
+      <Filter>Type</Filter>
+    </ClCompile>
+    <ClCompile Include="Lock\JFCondition.cpp">
+      <Filter>Lock</Filter>
+    </ClCompile>
+    <ClCompile Include="Lock\JFMutex.cpp">
+      <Filter>Lock</Filter>
+    </ClCompile>
+    <ClCompile Include="Lock\JFRecursiveMutex.cpp">
+      <Filter>Lock</Filter>
+    </ClCompile>
+    <ClCompile Include="Lock\JFSharedMutex.cpp">
+      <Filter>Lock</Filter>
+    </ClCompile>
+    <ClCompile Include="Lock\JFSpinLock.cpp">
+      <Filter>Lock</Filter>
+    </ClCompile>
     <ClCompile Include="Window\JFWindow.cpp">
       <Filter>Window</Filter>
     </ClCompile>
     <ClCompile Include="Window\Private\Win32\Window.cpp">
       <Filter>Window\Private\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="String\JFStringA.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
+    <ClCompile Include="String\JFStringFormat.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
+    <ClCompile Include="String\JFStringW.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\JFRefCounter.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\JFCamera.cpp">
       <Filter>Graphics</Filter>
@@ -336,6 +372,24 @@
     </ClCompile>
     <ClCompile Include="Graphics\JFLinearColor.cpp">
       <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Vulkan\CommandQueue.cpp">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Vulkan\GraphicsDevice.cpp">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Vulkan\QueueFamily.cpp">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Vulkan\Shader.cpp">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Vulkan\SwapChain.cpp">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Vulkan\Texture.cpp">
+      <Filter>Graphics\Private\Vulkan</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Private\Direct3D12\CommandAllocator.cpp">
       <Filter>Graphics\Private\Direct3D12</Filter>
@@ -370,62 +424,11 @@
     <ClCompile Include="Graphics\Private\Direct3D12\Texture.cpp">
       <Filter>Graphics\Private\Direct3D12</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Private\Vulkan\CommandQueue.cpp">
-      <Filter>Graphics\Private\Vulkan</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Private\Vulkan\GraphicsDevice.cpp">
-      <Filter>Graphics\Private\Vulkan</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Private\Vulkan\QueueFamily.cpp">
-      <Filter>Graphics\Private\Vulkan</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Private\Vulkan\Shader.cpp">
-      <Filter>Graphics\Private\Vulkan</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Private\Vulkan\SwapChain.cpp">
-      <Filter>Graphics\Private\Vulkan</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Private\Vulkan\Texture.cpp">
-      <Filter>Graphics\Private\Vulkan</Filter>
-    </ClCompile>
     <ClCompile Include="FileSystem\JFDirectory.cpp">
       <Filter>FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="FileSystem\JFFile.cpp">
       <Filter>FileSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Type\JFPrimitiveVariant.cpp">
-      <Filter>Type</Filter>
-    </ClCompile>
-    <ClCompile Include="String\JFStringA.cpp">
-      <Filter>String</Filter>
-    </ClCompile>
-    <ClCompile Include="String\JFStringFormat.cpp">
-      <Filter>String</Filter>
-    </ClCompile>
-    <ClCompile Include="String\JFStringW.cpp">
-      <Filter>String</Filter>
-    </ClCompile>
-    <ClCompile Include="Log\JFLog.cpp">
-      <Filter>Log</Filter>
-    </ClCompile>
-    <ClCompile Include="Lock\JFCondition.cpp">
-      <Filter>Lock</Filter>
-    </ClCompile>
-    <ClCompile Include="Lock\JFMutex.cpp">
-      <Filter>Lock</Filter>
-    </ClCompile>
-    <ClCompile Include="Lock\JFRecursiveMutex.cpp">
-      <Filter>Lock</Filter>
-    </ClCompile>
-    <ClCompile Include="Lock\JFSharedMutex.cpp">
-      <Filter>Lock</Filter>
-    </ClCompile>
-    <ClCompile Include="Lock\JFSpinLock.cpp">
-      <Filter>Lock</Filter>
-    </ClCompile>
-    <ClCompile Include="Object\JFRefCounter.cpp">
-      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Application\JFApplication.cpp">
       <Filter>Application</Filter>
@@ -433,65 +436,64 @@
     <ClCompile Include="Application\Private\Win32\ApplicationContext.cpp">
       <Filter>Application\Private\Win32</Filter>
     </ClCompile>
-    <ClCompile Include="Math\JFQuaternion.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Window">
-      <UniqueIdentifier>{158bd6d6-22a4-423e-bb5e-cf936f58fcbd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Window\Private">
-      <UniqueIdentifier>{e9f9f54e-392b-4e5d-a1c8-709ff221db3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Window\Private\Win32">
-      <UniqueIdentifier>{56e6e231-e8a0-40df-a85b-100044a12370}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics">
-      <UniqueIdentifier>{f6ffed96-cd12-41d3-9733-ff87acdff1fa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\Private">
-      <UniqueIdentifier>{b33e962a-1d70-4aea-a209-20616a43d567}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\Private\Direct3D12">
-      <UniqueIdentifier>{1b477819-3115-4992-a651-a03d7dcc8cea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\Private\Vulkan">
-      <UniqueIdentifier>{59d41cb4-9f76-4c67-9866-9282037d87eb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FileSystem">
-      <UniqueIdentifier>{7609e94d-ab17-4b37-ac74-0049b0255f0d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Memory">
-      <UniqueIdentifier>{0ad1dc04-2fec-4d58-b66f-e1f9bb818740}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Container">
-      <UniqueIdentifier>{972d43ea-cd78-4166-8872-f3e653d44daa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Type">
-      <UniqueIdentifier>{65ace8a1-136e-4b36-8afe-b9c050356ec4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="String">
-      <UniqueIdentifier>{72d927e1-2909-412d-beb9-8d630dc9cb9f}</UniqueIdentifier>
+    <Filter Include="Math">
+      <UniqueIdentifier>{02e647a5-f27e-4931-9876-4a36260e45ad}</UniqueIdentifier>
     </Filter>
     <Filter Include="Log">
-      <UniqueIdentifier>{66d31e97-e4a6-4c58-8989-589f1ae88f62}</UniqueIdentifier>
+      <UniqueIdentifier>{4b7e6279-b639-43eb-bd95-888d840f2df4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Math">
-      <UniqueIdentifier>{be7db8da-0822-43a9-874f-9659149e19f2}</UniqueIdentifier>
+    <Filter Include="Type">
+      <UniqueIdentifier>{7a637b27-6dcd-4f7a-8cd5-51ee05536518}</UniqueIdentifier>
     </Filter>
     <Filter Include="Lock">
-      <UniqueIdentifier>{de5660a2-8ee9-4f60-bc81-34d3998473f3}</UniqueIdentifier>
+      <UniqueIdentifier>{79431ad5-829d-4730-b277-b3d44adccf2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{79160640-d536-478f-a02c-72a47b001f33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Private">
+      <UniqueIdentifier>{8d66fe58-a47a-41aa-b9bd-069ad4a29822}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Private\Win32">
+      <UniqueIdentifier>{17d810b0-c17e-4afe-aeb3-774e535437ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{edbfa324-f356-4444-93b9-43928cc3bc12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="String">
+      <UniqueIdentifier>{05a01809-7288-4546-9887-04cd71a01e52}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object">
-      <UniqueIdentifier>{3f982398-6983-4f5f-a403-22b25c380b47}</UniqueIdentifier>
+      <UniqueIdentifier>{303f146d-a65d-433f-a4c9-0e4c55941dac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{08e46770-2dcc-464d-9506-632313d5c8fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Private">
+      <UniqueIdentifier>{33f7f350-7be1-4b42-bbdc-de0024dcbd07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Private\Vulkan">
+      <UniqueIdentifier>{a2e36903-1bc0-490c-ab46-be7e638cf661}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Private\Direct3D12">
+      <UniqueIdentifier>{ff1d33a3-eeb8-460a-910d-52e7790fdfc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Container">
+      <UniqueIdentifier>{a917f37a-e306-4edb-bf13-32045f3315b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileSystem">
+      <UniqueIdentifier>{c9a0f7e9-9533-4166-a051-e6fd7602d792}</UniqueIdentifier>
     </Filter>
     <Filter Include="Application">
-      <UniqueIdentifier>{511f59a3-4535-42fa-bfd5-917b672c84d6}</UniqueIdentifier>
+      <UniqueIdentifier>{d5f1c2df-66c5-4fe5-9db7-0eb13b6228c3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Application\Private">
-      <UniqueIdentifier>{7b03b084-3480-4e50-b496-ac3294c2cc76}</UniqueIdentifier>
+      <UniqueIdentifier>{878f2b6b-dcbe-4179-8635-58aae1832a96}</UniqueIdentifier>
     </Filter>
     <Filter Include="Application\Private\Win32">
-      <UniqueIdentifier>{75b8ab92-b720-4262-a019-1874e320b2d8}</UniqueIdentifier>
+      <UniqueIdentifier>{8c782666-c161-4079-b31b-6d802b1ea22d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

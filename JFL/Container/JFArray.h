@@ -256,7 +256,7 @@ namespace JFL
 			size_t necessaryCount = count + requirementCount;
 			if (capacity < necessaryCount)
 			{
-				Reserve(Max(count + count / 2, necessaryCount, MinimumCapacity));
+				Reserve(JFNumeric::Max(count + count / 2, necessaryCount, MinimumCapacity));
 			}
 		}
 

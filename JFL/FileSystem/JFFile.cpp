@@ -120,7 +120,7 @@ size_t JFFile::Read(void* buffer, size_t byteToRead) const
 	JFASSERT_DEBUG(buffer);
 
 	auto handle = reinterpret_cast<::Private::FileHandle*>(impl);
-	size_t readableSize = Min(byteToRead, RemainLength());
+	size_t readableSize = JFNumeric::Min(byteToRead, RemainLength());
 	if (readableSize > 0)
 		handle->stream.read((char*)buffer, readableSize);
 	return readableSize;
