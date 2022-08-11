@@ -360,6 +360,7 @@
     <ClInclude Include="JFInclude.h" />
     <ClInclude Include="JFL.h" />
     <ClInclude Include="Math\JFCoordinateConverter.h" />
+    <ClInclude Include="Math\JFQuaternion.h" />
     <ClInclude Include="Window\JFWindowDescriptor.h" />
     <ClInclude Include="Window\JFWindowEvent.h" />
     <ClInclude Include="Lock\JFCondition.h" />
@@ -413,6 +414,7 @@
     <None Include="Math\JFMatrix2.inl" />
     <None Include="Math\JFMatrix3.inl" />
     <None Include="Math\JFMatrix4.inl" />
+    <None Include="Math\JFQuaternion.inl" />
     <None Include="Math\JFVector2.inl" />
     <None Include="Math\JFVector3.inl" />
     <None Include="Math\JFVector4.inl" />
@@ -447,6 +449,7 @@
     <ClCompile Include="Lock\JFSharedMutex.cpp" />
     <ClCompile Include="Lock\JFSpinLock.cpp" />
     <ClCompile Include="Log\JFLog.cpp" />
+    <ClCompile Include="Math\JFQuaternion.cpp" />
     <ClCompile Include="Type\JFPrimitiveVariant.cpp" />
     <ClCompile Include="Object\JFRefCounter.cpp" />
     <ClCompile Include="Graphics\Private\Vulkan\Texture.cpp" />
