@@ -34,6 +34,20 @@ struct LibraryVersion
 
 namespace JFL
 {
+	static constexpr float PI = 3.14159265358979323846f;
+	static constexpr float DEG_TO_RAD = PI / 180.f;
+	static constexpr float RAD_TO_DEG = 180.f / PI;
+
+	constexpr float DegreesToRadians(float degrees)
+	{
+		return degrees * DEG_TO_RAD;
+	}
+
+	constexpr float RadiansToDegrees(float radians)
+	{
+		return radians * RAD_TO_DEG;
+	}
+
 	template<class T>
 	concept Arithmetic = std::is_arithmetic_v<T>;
 
@@ -79,6 +93,15 @@ namespace JFL
 		T temp(std::move(a));
 		a = std::move(b);
 		b = std::move(temp);
+	}
+
+	namespace JFNumeric
+	{
+		template<std::floating_point T>
+		constexpr bool IsClose(T a, T b, T tolerance = (T)1.0e-6)
+		{
+			return JFL::Abs(a - b) <= tolerance;
+		}
 	}
 }
 
