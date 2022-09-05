@@ -128,6 +128,12 @@ namespace JFL
 			return dynamic_cast<U*>(target);
 		}
 
+		template<class U>
+		const JFObject<U> DynamicCast() const
+		{
+			return dynamic_cast<U*>(target);
+		}
+
 		T* operator -> ()
 		{
 			return target;
