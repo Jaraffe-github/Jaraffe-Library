@@ -9,7 +9,6 @@
 #include "../../JFGraphicsDevice.h"
 #include "vulkan_headers.h"
 #include "QueueFamily.h"
-#include <vector>
 
 namespace JFL::Private::Vulkan
 {
@@ -32,14 +31,14 @@ namespace JFL::Private::Vulkan
 		VkPhysicalDevice PhysicalDevice() const { return physicalDevice; }
 
 	private:
-		bool CheckValidationLayersSupport(const std::vector<const char*>& validationLayers) const;
-		bool CheckInstanceExtensionsSupport(const std::vector<const char*>& extensions) const;
-		bool CheckDeviceExtensionsSupport(VkPhysicalDevice physicalDevice, const std::vector<const char*>& extensions) const;
+		bool CheckValidationLayersSupport(const JFArray<const char*>& validationLayers) const;
+		bool CheckInstanceExtensionsSupport(const JFArray<const char*>& extensions) const;
+		bool CheckDeviceExtensionsSupport(VkPhysicalDevice physicalDevice, const JFArray<const char*>& extensions) const;
 
 		VkInstance instance;
 		VkDevice device;
 		VkPhysicalDevice physicalDevice;
 
-		std::vector<JFObject<QueueFamily>> queueFamilies;
+		JFArray<JFObject<QueueFamily>> queueFamilies;
 	};
 }

@@ -10,7 +10,7 @@
 #include "vulkan_headers.h"
 #include "Object/JFRefCounter.h"
 #include "Lock/JFLock.h"
-#include <vector>
+#include "Container/JFArray.h"
 
 namespace JFL::Private::Vulkan
 {
@@ -36,6 +36,6 @@ namespace JFL::Private::Vulkan
 		uint32_t familyIndex;
 
 		JFSpinLock queueLock;
-		std::vector<VkQueue> usableQueues;
+		JFArray<VkQueue> usableQueues;
 	};
 }

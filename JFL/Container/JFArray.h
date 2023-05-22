@@ -25,6 +25,7 @@ namespace JFL
 			constexpr bool operator!=(const ArrayIterator& other) const { return index != other.index; };
 			constexpr ArrayIterator& operator++() { ++index; return *this; }
 			constexpr U& operator*() { JFASSERT_DEBUG(container.Count() >= index); return container[index]; }
+			constexpr ArrayIterator& operator=(const ArrayIterator& other) { container = other.container; index = other.index; return *this; }
 
 		private:
 			Contaioner& container;

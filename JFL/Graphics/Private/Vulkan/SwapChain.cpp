@@ -29,13 +29,13 @@ SwapChain::SwapChain(GraphicsDevice* device, CommandQueue* queue, QueueFamily* q
 	VkSurfaceCapabilitiesKHR capabilities;
 	vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device->PhysicalDevice(), surface, &capabilities);
 
-	std::vector<VkSurfaceFormatKHR> formats = {
+	JFArray<VkSurfaceFormatKHR> formats = {
 		{ VK_FORMAT_B8G8R8A8_UNORM, VK_COLOR_SPACE_SRGB_NONLINEAR_KHR }
 	};
 	if (!CheckSurfaceFormatSupport(formats))
 		throw std::runtime_error("surface format not supported!");
 
-	std::vector<VkPresentModeKHR> presentModes ={
+	JFArray<VkPresentModeKHR> presentModes ={
 		VK_PRESENT_MODE_MAILBOX_KHR
 	};
 	if (!CheckSurfacePresentMode(presentModes))
@@ -52,10 +52,9 @@ SwapChain::SwapChain(GraphicsDevice* device, CommandQueue* queue, QueueFamily* q
 	createInfo.imageArrayLayers = 1;
 	createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
-	uint32_t queueFamilyIndices[] = { queueFamily->FamilyIndex() };
 	createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
-	//createInfo.queueFamilyIndexCount = 1;
-	//createInfo.pQueueFamilyIndices = queueFamilyIndices;
+	createInfo.queueFamilyIndexCount = 0;
+	createInfo.pQueueFamilyIndices = nullptr;
 
 	createInfo.preTransform = capabilities.currentTransform;
 	createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
@@ -68,8 +67,8 @@ SwapChain::SwapChain(GraphicsDevice* device, CommandQueue* queue, QueueFamily* q
 
 	uint32_t imageCount;
 	vkGetSwapchainImagesKHR(device->Device(), swapChain, &imageCount, nullptr);
-	std::vector<VkImage> colorImages(imageCount);
-	vkGetSwapchainImagesKHR(device->Device(), swapChain, &imageCount, colorImages.data());
+	JFArray<VkImage> colorImages(imageCount);
+	vkGetSwapchainImagesKHR(device->Device(), swapChain, &imageCount, colorImages.Data());
 
 	for (VkImage colorImage : colorImages)
 	{
@@ -94,12 +93,14 @@ SwapChain::SwapChain(GraphicsDevice* device, CommandQueue* queue, QueueFamily* q
 		VkImageView imageView;
 		ThrowIfFailed(vkCreateImageView(device->Device(), &createInfo, nullptr, &imageView));
 
-		colorTextures.emplace_back(device, colorImage, imageView);
+		colorTextures.EmplaceAdd(device, colorImage, imageView);
 	}
 }
 
 SwapChain::~SwapChain()
 {
+	colorTextures.Clear();
+
 	vkDestroySwapchainKHR(device->Device(), swapChain, nullptr);
 	vkDestroySurfaceKHR(device->Instance(), surface, nullptr);
 }
@@ -133,13 +134,13 @@ void SwapChain::Present()
 
 }
 
-bool SwapChain::CheckSurfaceFormatSupport(const std::vector<VkSurfaceFormatKHR>& surfaceFormats)
+bool SwapChain::CheckSurfaceFormatSupport(const JFArray<VkSurfaceFormatKHR>& surfaceFormats)
 {
 	uint32_t formatCount;
 	vkGetPhysicalDeviceSurfaceFormatsKHR(device->PhysicalDevice(), surface, &formatCount, nullptr);
 
-	std::vector<VkSurfaceFormatKHR> availableFormats(formatCount);
-	vkGetPhysicalDeviceSurfaceFormatsKHR(device->PhysicalDevice(), surface, &formatCount, availableFormats.data());
+	JFArray<VkSurfaceFormatKHR> availableFormats(formatCount);
+	vkGetPhysicalDeviceSurfaceFormatsKHR(device->PhysicalDevice(), surface, &formatCount, availableFormats.Data());
 
 	for (const VkSurfaceFormatKHR& surfaceFormat : surfaceFormats)
 	{
@@ -161,13 +162,13 @@ bool SwapChain::CheckSurfaceFormatSupport(const std::vector<VkSurfaceFormatKHR>&
 	return true;
 }
 
-bool SwapChain::CheckSurfacePresentMode(const std::vector<VkPresentModeKHR>& presentModes)
+bool SwapChain::CheckSurfacePresentMode(const JFArray<VkPresentModeKHR>& presentModes)
 {
 	uint32_t presentModeCount;
 	vkGetPhysicalDeviceSurfacePresentModesKHR(device->PhysicalDevice(), surface, &presentModeCount, nullptr);
 
-	std::vector<VkPresentModeKHR> availablePresentModes(presentModeCount);
-	vkGetPhysicalDeviceSurfacePresentModesKHR(device->PhysicalDevice(), surface, &presentModeCount, availablePresentModes.data());
+	JFArray<VkPresentModeKHR> availablePresentModes(presentModeCount);
+	vkGetPhysicalDeviceSurfacePresentModesKHR(device->PhysicalDevice(), surface, &presentModeCount, availablePresentModes.Data());
 
 	for (const VkPresentModeKHR& presentMode : presentModes)
 	{

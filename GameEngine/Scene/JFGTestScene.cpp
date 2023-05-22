@@ -29,7 +29,7 @@ void JFGTestScene::Initialize()
 
 	window->AddWindowEventListener(this, std::bind(&JFGTestScene::OnWindowEvent, this, std::placeholders::_1));
 
-	graphicsDevice = JFGraphicsDevice::CreateGraphicsDevice(JFL::JFGraphicsType::Direct3D12);
+	graphicsDevice = JFGraphicsDevice::CreateGraphicsDevice(JFL::JFGraphicsType::Vulkan);
 	commandQueue = graphicsDevice->CreateCommandQueue();
 	swapChain = commandQueue->CreateSwapChain(window);
 

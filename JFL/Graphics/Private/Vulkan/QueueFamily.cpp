@@ -16,7 +16,7 @@ QueueFamily::QueueFamily(VkDevice device, const VkQueueFamilyProperties& queuePr
 	, familyIndex(familyIndex)
 {
 	JFScopedLock guard(queueLock);
-	usableQueues.resize(queueProperty.queueCount);
+	usableQueues.Add(VkQueue{}, queueProperty.queueCount);
 	for (uint32_t i = 0; i < queueProperty.queueCount; ++i)
 	{
 		vkGetDeviceQueue(device, familyIndex, i, &usableQueues[i]);
@@ -32,10 +32,10 @@ bool QueueFamily::IsFlagSupported(VkQueueFlags queueFlag)
 CommandQueue* QueueFamily::CreateCommandQueue(GraphicsDevice* device)
 {
 	JFScopedLock guard(queueLock);
-	if (usableQueues.size() > 0)
+	if (usableQueues.Count() > 0)
 	{
-		VkQueue& queue = usableQueues.back();
-		usableQueues.pop_back();
+		VkQueue& queue = usableQueues.Back();
+		usableQueues.PopBack();
 		guard.Unlock();
 
 		return new CommandQueue(device, queue, this);
@@ -47,7 +47,7 @@ CommandQueue* QueueFamily::CreateCommandQueue(GraphicsDevice* device)
 void QueueFamily::ReleaseCommandQueue(CommandQueue* queue)
 {
 	JFScopedLock guard(queueLock);
-	usableQueues.push_back(queue->Queue());
+	usableQueues.Add(queue->Queue());
 }
 
 uint32_t QueueFamily::FamilyIndex() const

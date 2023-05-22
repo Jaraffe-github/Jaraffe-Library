@@ -96,51 +96,52 @@ GraphicsDevice::GraphicsDevice()
 	VkInstanceCreateInfo instanceCreateInfo{};
 	instanceCreateInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 
-	std::vector<const char*> instanceExtensions =
+	JFArray<const char*> instanceExtensions =
 	{
 		VK_KHR_SURFACE_EXTENSION_NAME
 	};
 
 	// Enable surface extensions depending on os
 #if defined(_WIN32)
-	instanceExtensions.push_back(VK_KHR_WIN32_SURFACE_EXTENSION_NAME);
+	instanceExtensions.Add(VK_KHR_WIN32_SURFACE_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_ANDROID_KHR)
-	instanceExtensions.push_back(VK_KHR_ANDROID_SURFACE_EXTENSION_NAME);
+	instanceExtensions.Add(VK_KHR_ANDROID_SURFACE_EXTENSION_NAME);
 #elif defined(_DIRECT2DISPLAY)
-	instanceExtensions.push_back(VK_KHR_DISPLAY_EXTENSION_NAME);
+	instanceExtensions.Add(VK_KHR_DISPLAY_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_DIRECTFB_EXT)
-	instanceExtensions.push_back(VK_EXT_DIRECTFB_SURFACE_EXTENSION_NAME);
+	instanceExtensions.Add(VK_EXT_DIRECTFB_SURFACE_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_WAYLAND_KHR)
-	instanceExtensions.push_back(VK_KHR_WAYLAND_SURFACE_EXTENSION_NAME);
+	instanceExtensions.Add(VK_KHR_WAYLAND_SURFACE_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_XCB_KHR)
-	instanceExtensions.push_back(VK_KHR_XCB_SURFACE_EXTENSION_NAME);
+	instanceExtensions.Add(VK_KHR_XCB_SURFACE_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_IOS_MVK)
-	instanceExtensions.push_back(VK_MVK_IOS_SURFACE_EXTENSION_NAME);
+	instanceExtensions.Add(VK_MVK_IOS_SURFACE_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_MACOS_MVK)
-	instanceExtensions.push_back(VK_MVK_MACOS_SURFACE_EXTENSION_NAME);
+	instanceExtensions.Add(VK_MVK_MACOS_SURFACE_EXTENSION_NAME);
 #elif defined(VK_USE_PLATFORM_HEADLESS_EXT)
-	instanceExtensions.push_back(VK_EXT_HEADLESS_SURFACE_EXTENSION_NAME);
+	instanceExtensions.Add(VK_EXT_HEADLESS_SURFACE_EXTENSION_NAME);
 #endif
 
 	if (GraphicsSettings::VALIDATION)
-		instanceExtensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+		instanceExtensions.Add(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 
 	if (!CheckInstanceExtensionsSupport(instanceExtensions))
 		throw std::runtime_error("instance extensions requested, but not available!");
 
-	instanceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(instanceExtensions.size());
-	instanceCreateInfo.ppEnabledExtensionNames = instanceExtensions.data();
+	instanceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(instanceExtensions.Count());
+	instanceCreateInfo.ppEnabledExtensionNames = instanceExtensions.Data();
 
-	std::vector<const char*> validationLayers;
+	JFArray<const char*> validationLayers;
+
 	if (GraphicsSettings::VALIDATION)
 	{
-		validationLayers.push_back("VK_LAYER_KHRONOS_validation");
+		validationLayers.Add("VK_LAYER_KHRONOS_validation");
 
 		if (!CheckValidationLayersSupport(validationLayers))
 			throw std::runtime_error("validation layers requested, but not available!");
 
-		instanceCreateInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
-		instanceCreateInfo.ppEnabledLayerNames = validationLayers.data();
+		instanceCreateInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.Count());
+		instanceCreateInfo.ppEnabledLayerNames = validationLayers.Data();
 	}
 
 	ThrowIfFailed(vkCreateInstance(&instanceCreateInfo, nullptr, &instance));
@@ -161,8 +162,8 @@ GraphicsDevice::GraphicsDevice()
 	if (deviceCount == 0)
 		throw std::runtime_error("failed to find GPUs with Vulkan support!");
 
-	std::vector<VkPhysicalDevice> physicalDevices(deviceCount);
-	ThrowIfFailed(vkEnumeratePhysicalDevices(instance, &deviceCount, physicalDevices.data()));
+	JFArray<VkPhysicalDevice> physicalDevices(deviceCount);
+	ThrowIfFailed(vkEnumeratePhysicalDevices(instance, &deviceCount, physicalDevices.Data()));
 
 	for (const auto& physicalDevice : physicalDevices)
 	{
@@ -189,55 +190,55 @@ GraphicsDevice::GraphicsDevice()
 	uint32_t queueFamilyCount = 0;
 	vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, nullptr);
 
-	std::vector<VkQueueFamilyProperties> queueFamilyProperties(queueFamilyCount);
-	vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, queueFamilyProperties.data());
+	JFArray<VkQueueFamilyProperties> queueFamilyProperties(queueFamilyCount);
+	vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, queueFamilyProperties.Data());
 
-	std::vector<VkDeviceQueueCreateInfo> queueCreateInfos(queueFamilyCount, VkDeviceQueueCreateInfo{});
+	JFArray<VkDeviceQueueCreateInfo> queueCreateInfos(queueFamilyCount, VkDeviceQueueCreateInfo{});
 
-	std::vector<std::vector<float>> queuePriorities(queueFamilyCount);
-	for (size_t i = 0; i < queueFamilyProperties.size(); ++i)
+	JFArray<JFArray<float>> queuePriorities(queueFamilyCount);
+	for (size_t i = 0; i < queueFamilyProperties.Count(); ++i)
 	{
 		VkQueueFamilyProperties& queueFamilyProperty = queueFamilyProperties[i];
-		queuePriorities[i].resize(queueFamilyProperty.queueCount, 0.0f);
+		queuePriorities[i].Add(0.0f, queueFamilyProperty.queueCount);
 
 		VkDeviceQueueCreateInfo& createInfo = queueCreateInfos[i];
 		createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
 		createInfo.queueFamilyIndex = static_cast<uint32_t>(i);
 		createInfo.queueCount = queueFamilyProperty.queueCount;
-		createInfo.pQueuePriorities = queuePriorities[i].data();
+		createInfo.pQueuePriorities = queuePriorities[i].Data();
 	}
 
 	VkDeviceCreateInfo deviceCreateInfo{};
 	deviceCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
-	deviceCreateInfo.pQueueCreateInfos = queueCreateInfos.data();
-	deviceCreateInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
+	deviceCreateInfo.pQueueCreateInfos = queueCreateInfos.Data();
+	deviceCreateInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.Count());
 
 	VkPhysicalDeviceFeatures deviceFeatures{};
 	deviceCreateInfo.pEnabledFeatures = &deviceFeatures;
 
-	deviceCreateInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
-	deviceCreateInfo.ppEnabledLayerNames = validationLayers.data();
+	deviceCreateInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.Count());
+	deviceCreateInfo.ppEnabledLayerNames = validationLayers.Data();
 
-	std::vector<const char*> deviceExtensions;
+	JFArray<const char*> deviceExtensions;
 
 	if (GraphicsSettings::USE_SWAP_CHAIN)
 	{
-		deviceExtensions.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
+		deviceExtensions.Add(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
 	}
 
 	if (!CheckDeviceExtensionsSupport(physicalDevice, deviceExtensions))
 		throw std::runtime_error("device extensions requested, but not available!");
 
-	deviceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
-	deviceCreateInfo.ppEnabledExtensionNames = deviceExtensions.data();
+	deviceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.Count());
+	deviceCreateInfo.ppEnabledExtensionNames = deviceExtensions.Data();
 
 	ThrowIfFailed(vkCreateDevice(physicalDevice, &deviceCreateInfo, nullptr, &device));
 
-	queueFamilies.reserve(queueFamilyCount);
-	for (size_t i = 0; i < queueFamilyProperties.size(); ++i)
+	queueFamilies.Reserve(queueFamilyCount);
+	for (size_t i = 0; i < queueFamilyProperties.Count(); ++i)
 	{
 		VkQueueFamilyProperties& queueFamilyProperty = queueFamilyProperties[i];
-		queueFamilies.push_back(new QueueFamily(device, queueFamilyProperty, static_cast<uint32_t>(i)));
+		queueFamilies.Add(new QueueFamily(device, queueFamilyProperty, static_cast<uint32_t>(i)));
 	}
 }
 
@@ -269,13 +270,13 @@ JFObject<JFTexture> GraphicsDevice::CreateTexture(const JFTextureDescriptor&)
 	return nullptr;
 }
 
-bool GraphicsDevice::CheckValidationLayersSupport(const std::vector<const char*>& validationLayers) const
+bool GraphicsDevice::CheckValidationLayersSupport(const JFArray<const char*>& validationLayers) const
 {
 	uint32_t layerCount;
 	vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
 
-	std::vector<VkLayerProperties> availableLayers(layerCount);
-	vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+	JFArray<VkLayerProperties> availableLayers(layerCount);
+	vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.Data());
 
 	for (const char* layerName : validationLayers)
 	{
@@ -297,13 +298,13 @@ bool GraphicsDevice::CheckValidationLayersSupport(const std::vector<const char*>
 	return true;
 }
 
-bool GraphicsDevice::CheckInstanceExtensionsSupport(const std::vector<const char*>& extensions) const
+bool GraphicsDevice::CheckInstanceExtensionsSupport(const JFArray<const char*>& extensions) const
 {
 	uint32_t extensionCount = 0;
 	vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
 
-	std::vector<VkExtensionProperties> availableExtensions(extensionCount);
-	vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, availableExtensions.data());
+	JFArray<VkExtensionProperties> availableExtensions(extensionCount);
+	vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, availableExtensions.Data());
 
 	for (const char* extensionName : extensions)
 	{
@@ -325,13 +326,13 @@ bool GraphicsDevice::CheckInstanceExtensionsSupport(const std::vector<const char
 	return true;
 }
 
-bool GraphicsDevice::CheckDeviceExtensionsSupport(VkPhysicalDevice physicalDevice, const std::vector<const char*>& extensions) const
+bool GraphicsDevice::CheckDeviceExtensionsSupport(VkPhysicalDevice physicalDevice, const JFArray<const char*>& extensions) const
 {
 	uint32_t extensionCount = 0;
 	vkEnumerateDeviceExtensionProperties(physicalDevice, nullptr, &extensionCount, nullptr);
 
-	std::vector<VkExtensionProperties> availableExtensions(extensionCount);
-	vkEnumerateDeviceExtensionProperties(physicalDevice, nullptr, &extensionCount, availableExtensions.data());
+	JFArray<VkExtensionProperties> availableExtensions(extensionCount);
+	vkEnumerateDeviceExtensionProperties(physicalDevice, nullptr, &extensionCount, availableExtensions.Data());
 
 	for (const char* extensionName : extensions)
 	{
