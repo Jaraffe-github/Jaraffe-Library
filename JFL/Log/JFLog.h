@@ -76,17 +76,6 @@ namespace JFL
 	}
 
 	template<class... Args>
-	void JFLogVerbose(const char* format, Args&&... args)
-	{
-		JFLog(JFLogLevel::Debug, format, std::forward<Args>(args)...);
-	}
-	template<class... Args>
-	void JFLogVerbose(const wchar_t* format, Args&&... args)
-	{
-		JFLog(JFLogLevel::Debug, format, std::forward<Args>(args)...);
-	}
-
-	template<class... Args>
 	void JFLogWarning(const char* format, Args&&... args)
 	{
 		JFLog(JFLogLevel::Warning, format, std::forward<Args>(args)...);

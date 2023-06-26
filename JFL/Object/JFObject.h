@@ -38,19 +38,19 @@ namespace JFL
 		}
 
 		// convertible
-		template<Convertible U>
+		template<Convertible<T*> U>
 		JFObject(U* p)
 			: target(p)
 		{
 			InternalAddRef();
 		}
-		template<Convertible U>
+		template<Convertible<T*> U>
 		JFObject(const JFObject<U>& obj)
 			: target(obj.target)
 		{
 			InternalAddRef();
 		}
-		template<Convertible U>
+		template<Convertible<T*> U>
 		JFObject(JFObject<U>&& obj) noexcept
 			: target(obj.target)
 		{
@@ -91,7 +91,7 @@ namespace JFL
 		}
 
 		// convertible
-		template<Convertible U>
+		template<Convertible<T*> U>
 		JFObject& operator = (U* obj)
 		{
 			if (target != obj)
@@ -101,7 +101,7 @@ namespace JFL
 			InternalAddRef();
 			return *this;
 		}
-		template<Convertible U>
+		template<Convertible<T*> U>
 		JFObject& operator = (const JFObject<U>& obj)
 		{
 			if (target != obj.target)
@@ -111,7 +111,7 @@ namespace JFL
 			InternalAddRef();
 			return *this;
 		}
-		template<Convertible U>
+		template<Convertible<T*> U>
 		JFObject& operator = (JFObject<U>&& obj) noexcept
 		{
 			if (target != obj.target)

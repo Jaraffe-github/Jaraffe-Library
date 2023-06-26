@@ -19,7 +19,6 @@
 		16EDF03E2824B7C400B7CC1F /* JFLinearTransform2.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF01F2824B7C300B7CC1F /* JFLinearTransform2.h */; };
 		16EDF03F2824B7C400B7CC1F /* JFVector3.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0202824B7C300B7CC1F /* JFVector3.h */; };
 		16EDF0402824B7C400B7CC1F /* JFMatrix3.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0212824B7C400B7CC1F /* JFMatrix3.h */; };
-		16EDF0412824B7C400B7CC1F /* JFWindowContextInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0232824B7C400B7CC1F /* JFWindowContextInterface.h */; };
 		16EDF0422824B7C400B7CC1F /* JFWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0242824B7C400B7CC1F /* JFWindow.cpp */; };
 		16EDF0432824B7C400B7CC1F /* JFWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0252824B7C400B7CC1F /* JFWindow.h */; };
 		16EDF0442824B7C400B7CC1F /* WindowPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0272824B7C400B7CC1F /* WindowPlatform.h */; };
@@ -28,21 +27,12 @@
 		16EDF0492824B7C400B7CC1F /* JFApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF02E2824B7C400B7CC1F /* JFApplication.h */; };
 		16EDF04A2824B7C400B7CC1F /* ApplicationPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0302824B7C400B7CC1F /* ApplicationPlatform.h */; };
 		16EDF04D2824B7C400B7CC1F /* JFL.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0342824B7C400B7CC1F /* JFL.h */; };
-		16EDF0512824B90200B7CC1F /* ApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF04F2824B90200B7CC1F /* ApplicationContext.h */; };
-		16EDF0522824B90200B7CC1F /* ApplicationContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0502824B90200B7CC1F /* ApplicationContext.cpp */; };
-		16EDF0562824B95000B7CC1F /* WindowContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0542824B95000B7CC1F /* WindowContext.h */; };
-		16EDF0572824B95000B7CC1F /* WindowContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0552824B95000B7CC1F /* WindowContext.cpp */; };
-		16EDF0632824CA2500B7CC1F /* WindowContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0622824CA2400B7CC1F /* WindowContext.h */; };
-		16EDF0652824CB5D00B7CC1F /* WindowContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0642824CB5D00B7CC1F /* WindowContext.m */; };
+		16EDF0632824CA2500B7CC1F /* Window.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0622824CA2400B7CC1F /* Window.h */; };
+		16EDF0652824CB5D00B7CC1F /* Window.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0642824CB5D00B7CC1F /* Window.m */; };
 		16EDF0CC2824E74200B7CC1F /* ApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0CA2824E74200B7CC1F /* ApplicationContext.m */; };
 		16EDF0CD2824E74200B7CC1F /* ApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0CB2824E74200B7CC1F /* ApplicationContext.h */; };
-		16EDF0DD2825125400B7CC1F /* WindowContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0622824CA2400B7CC1F /* WindowContext.h */; };
 		16EDF0DE2825125400B7CC1F /* JFWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0252824B7C400B7CC1F /* JFWindow.h */; };
-		16EDF0DF2825125400B7CC1F /* WindowContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0542824B95000B7CC1F /* WindowContext.h */; };
 		16EDF0E02825125400B7CC1F /* JFVector2.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF00F2824B7C300B7CC1F /* JFVector2.h */; };
-		16EDF0E12825125400B7CC1F /* JFWindowContextInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0232824B7C400B7CC1F /* JFWindowContextInterface.h */; };
-		16EDF0E22825125400B7CC1F /* ApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0CB2824E74200B7CC1F /* ApplicationContext.h */; };
-		16EDF0E32825125400B7CC1F /* ApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF04F2824B90200B7CC1F /* ApplicationContext.h */; };
 		16EDF0E42825125400B7CC1F /* JFMatrix3.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0212824B7C400B7CC1F /* JFMatrix3.h */; };
 		16EDF0E52825125400B7CC1F /* JFLinearTransform2.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF01F2824B7C300B7CC1F /* JFLinearTransform2.h */; };
 		16EDF0E62825125400B7CC1F /* JFAffineTransform2.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF01B2824B7C300B7CC1F /* JFAffineTransform2.h */; };
@@ -59,20 +49,12 @@
 		16EDF0F12825125400B7CC1F /* JFMatrix4.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF01D2824B7C300B7CC1F /* JFMatrix4.h */; };
 		16EDF0F22825125400B7CC1F /* JFVector3.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0202824B7C300B7CC1F /* JFVector3.h */; };
 		16EDF0F32825125400B7CC1F /* JFLinearTransform3.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0152824B7C300B7CC1F /* JFLinearTransform3.h */; };
-		16EDF0F52825125400B7CC1F /* ApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0CA2824E74200B7CC1F /* ApplicationContext.m */; };
-		16EDF0F62825125400B7CC1F /* WindowContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0642824CB5D00B7CC1F /* WindowContext.m */; };
-		16EDF0F72825125400B7CC1F /* ApplicationContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0502824B90200B7CC1F /* ApplicationContext.cpp */; };
 		16EDF0F82825125400B7CC1F /* JFWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0242824B7C400B7CC1F /* JFWindow.cpp */; };
 		16EDF0F92825125400B7CC1F /* JFApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF02D2824B7C400B7CC1F /* JFApplication.cpp */; };
-		16EDF0FA2825125400B7CC1F /* WindowContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0552824B95000B7CC1F /* WindowContext.cpp */; };
-		16EDF1282825167B00B7CC1F /* ApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF1262825167B00B7CC1F /* ApplicationContext.h */; };
 		16EDF1292825167B00B7CC1F /* ApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF1262825167B00B7CC1F /* ApplicationContext.h */; };
-		16EDF12A2825167B00B7CC1F /* ApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF1272825167B00B7CC1F /* ApplicationContext.m */; };
 		16EDF12B2825167B00B7CC1F /* ApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF1272825167B00B7CC1F /* ApplicationContext.m */; };
-		16EDF12F2825168500B7CC1F /* WindowContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF12D2825168500B7CC1F /* WindowContext.h */; };
-		16EDF1302825168500B7CC1F /* WindowContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF12D2825168500B7CC1F /* WindowContext.h */; };
-		16EDF1312825168500B7CC1F /* WindowContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF12E2825168500B7CC1F /* WindowContext.m */; };
-		16EDF1322825168500B7CC1F /* WindowContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF12E2825168500B7CC1F /* WindowContext.m */; };
+		16EDF1302825168500B7CC1F /* Window.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF12D2825168500B7CC1F /* Window.h */; };
+		16EDF1322825168500B7CC1F /* Window.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF12E2825168500B7CC1F /* Window.m */; };
 		16EDF22F28252C7900B7CC1F /* JFL.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0342824B7C400B7CC1F /* JFL.h */; };
 		16EDF23028252C7C00B7CC1F /* JFInclude.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF00B2824B7C300B7CC1F /* JFInclude.h */; };
 		16EDF23128252C9100B7CC1F /* JFVector2.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF00F2824B7C300B7CC1F /* JFVector2.h */; };
@@ -88,59 +70,133 @@
 		16EDF23B28252CBE00B7CC1F /* JFMatrix3.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0212824B7C400B7CC1F /* JFMatrix3.h */; };
 		16EDF23C28252D0F00B7CC1F /* JFWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0242824B7C400B7CC1F /* JFWindow.cpp */; };
 		16EDF23D28252D0F00B7CC1F /* JFWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0252824B7C400B7CC1F /* JFWindow.h */; };
-		16EDF23E28252D0F00B7CC1F /* JFWindowContextInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0232824B7C400B7CC1F /* JFWindowContextInterface.h */; };
-		16EDF23F28252D1600B7CC1F /* WindowContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF12E2825168500B7CC1F /* WindowContext.m */; };
-		16EDF24028252D1600B7CC1F /* WindowContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF12D2825168500B7CC1F /* WindowContext.h */; };
-		16EDF24128252D1F00B7CC1F /* WindowContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0552824B95000B7CC1F /* WindowContext.cpp */; };
-		16EDF24228252D1F00B7CC1F /* WindowContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0642824CB5D00B7CC1F /* WindowContext.m */; };
-		16EDF24328252D1F00B7CC1F /* WindowContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0622824CA2400B7CC1F /* WindowContext.h */; };
+		16EDF24228252D1F00B7CC1F /* Window.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0642824CB5D00B7CC1F /* Window.m */; };
+		16EDF24328252D1F00B7CC1F /* Window.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0622824CA2400B7CC1F /* Window.h */; };
 		16EDF24428252D1F00B7CC1F /* WindowPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0272824B7C400B7CC1F /* WindowPlatform.h */; };
-		16EDF24528252D1F00B7CC1F /* WindowContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0542824B95000B7CC1F /* WindowContext.h */; };
-		16EDF24628252D2900B7CC1F /* ApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF1272825167B00B7CC1F /* ApplicationContext.m */; };
 		16EDF24728252D2900B7CC1F /* ApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0CA2824E74200B7CC1F /* ApplicationContext.m */; };
 		16EDF24828252D2900B7CC1F /* JFApplicationContextInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF02C2824B7C400B7CC1F /* JFApplicationContextInterface.h */; };
 		16EDF24928252D2900B7CC1F /* ApplicationPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0302824B7C400B7CC1F /* ApplicationPlatform.h */; };
 		16EDF24A28252D2900B7CC1F /* JFApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF02D2824B7C400B7CC1F /* JFApplication.cpp */; };
-		16EDF24B28252D2900B7CC1F /* ApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF1262825167B00B7CC1F /* ApplicationContext.h */; };
 		16EDF24C28252D2900B7CC1F /* JFApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF02E2824B7C400B7CC1F /* JFApplication.h */; };
 		16EDF24D28252D2900B7CC1F /* ApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0CB2824E74200B7CC1F /* ApplicationContext.h */; };
-		16EDF24E28252D9700B7CC1F /* ApplicationContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0502824B90200B7CC1F /* ApplicationContext.cpp */; };
-		16EDF24F28252D9A00B7CC1F /* ApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF04F2824B90200B7CC1F /* ApplicationContext.h */; };
 		16EDF25128252EC500B7CC1F /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16EDF25028252EC500B7CC1F /* AppKit.framework */; };
 		16EDF28E2825313900B7CC1F /* JFWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0252824B7C400B7CC1F /* JFWindow.h */; };
 		16EDF28F2825313900B7CC1F /* WindowPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0272824B7C400B7CC1F /* WindowPlatform.h */; };
 		16EDF2902825313900B7CC1F /* JFVector4.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF01A2824B7C300B7CC1F /* JFVector4.h */; };
-		16EDF2912825313900B7CC1F /* ApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF04F2824B90200B7CC1F /* ApplicationContext.h */; };
-		16EDF2922825313900B7CC1F /* WindowContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF12D2825168500B7CC1F /* WindowContext.h */; };
+		16EDF2922825313900B7CC1F /* Window.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF12D2825168500B7CC1F /* Window.h */; };
 		16EDF2932825313900B7CC1F /* JFMatrix2.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0112824B7C300B7CC1F /* JFMatrix2.h */; };
 		16EDF2942825313900B7CC1F /* JFL.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0342824B7C400B7CC1F /* JFL.h */; };
 		16EDF2952825313900B7CC1F /* JFLinearTransform3.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0152824B7C300B7CC1F /* JFLinearTransform3.h */; };
-		16EDF2962825313900B7CC1F /* WindowContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0622824CA2400B7CC1F /* WindowContext.h */; };
 		16EDF2972825313900B7CC1F /* JFMatrix4.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF01D2824B7C300B7CC1F /* JFMatrix4.h */; };
-		16EDF2982825313900B7CC1F /* WindowContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0542824B95000B7CC1F /* WindowContext.h */; };
 		16EDF2992825313900B7CC1F /* JFVector2.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF00F2824B7C300B7CC1F /* JFVector2.h */; };
-		16EDF29A2825313900B7CC1F /* ApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0CB2824E74200B7CC1F /* ApplicationContext.h */; };
 		16EDF29B2825313900B7CC1F /* JFApplicationContextInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF02C2824B7C400B7CC1F /* JFApplicationContextInterface.h */; };
 		16EDF29C2825313900B7CC1F /* JFMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0172824B7C300B7CC1F /* JFMath.h */; };
 		16EDF29D2825313900B7CC1F /* JFVector3.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0202824B7C300B7CC1F /* JFVector3.h */; };
 		16EDF29E2825313900B7CC1F /* ApplicationPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0302824B7C400B7CC1F /* ApplicationPlatform.h */; };
 		16EDF29F2825313900B7CC1F /* ApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF1262825167B00B7CC1F /* ApplicationContext.h */; };
 		16EDF2A02825313900B7CC1F /* JFMatrix3.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0212824B7C400B7CC1F /* JFMatrix3.h */; };
-		16EDF2A12825313900B7CC1F /* JFWindowContextInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0232824B7C400B7CC1F /* JFWindowContextInterface.h */; };
 		16EDF2A22825313900B7CC1F /* JFAffineTransform2.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF01B2824B7C300B7CC1F /* JFAffineTransform2.h */; };
 		16EDF2A32825313900B7CC1F /* JFInclude.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF00B2824B7C300B7CC1F /* JFInclude.h */; };
 		16EDF2A42825313900B7CC1F /* JFLinearTransform2.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF01F2824B7C300B7CC1F /* JFLinearTransform2.h */; };
 		16EDF2A52825313900B7CC1F /* JFApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF02E2824B7C400B7CC1F /* JFApplication.h */; };
 		16EDF2A62825313900B7CC1F /* JFAffineTransform3.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDF0142824B7C300B7CC1F /* JFAffineTransform3.h */; };
-		16EDF2A82825313900B7CC1F /* ApplicationContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0502824B90200B7CC1F /* ApplicationContext.cpp */; };
-		16EDF2A92825313900B7CC1F /* ApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0CA2824E74200B7CC1F /* ApplicationContext.m */; };
 		16EDF2AA2825313900B7CC1F /* JFApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF02D2824B7C400B7CC1F /* JFApplication.cpp */; };
 		16EDF2AB2825313900B7CC1F /* JFWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0242824B7C400B7CC1F /* JFWindow.cpp */; };
-		16EDF2AC2825313900B7CC1F /* WindowContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF12E2825168500B7CC1F /* WindowContext.m */; };
-		16EDF2AD2825313900B7CC1F /* WindowContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0552824B95000B7CC1F /* WindowContext.cpp */; };
+		16EDF2AC2825313900B7CC1F /* Window.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF12E2825168500B7CC1F /* Window.m */; };
 		16EDF2AE2825313900B7CC1F /* ApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF1272825167B00B7CC1F /* ApplicationContext.m */; };
-		16EDF2AF2825313900B7CC1F /* WindowContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EDF0642824CB5D00B7CC1F /* WindowContext.m */; };
 		16EDF2B82825315A00B7CC1F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16EDF2B72825315A00B7CC1F /* UIKit.framework */; };
+		16EEBEE92A49B69100A16D58 /* JFObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEE62A49B69100A16D58 /* JFObject.h */; };
+		16EEBEEA2A49B69100A16D58 /* JFObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEE62A49B69100A16D58 /* JFObject.h */; };
+		16EEBEEB2A49B69100A16D58 /* JFObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEE62A49B69100A16D58 /* JFObject.h */; };
+		16EEBEEC2A49B69100A16D58 /* JFObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEE62A49B69100A16D58 /* JFObject.h */; };
+		16EEBEED2A49B69100A16D58 /* JFRefCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEE72A49B69100A16D58 /* JFRefCounter.cpp */; };
+		16EEBEEE2A49B69100A16D58 /* JFRefCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEE72A49B69100A16D58 /* JFRefCounter.cpp */; };
+		16EEBEEF2A49B69100A16D58 /* JFRefCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEE72A49B69100A16D58 /* JFRefCounter.cpp */; };
+		16EEBEF02A49B69200A16D58 /* JFRefCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEE72A49B69100A16D58 /* JFRefCounter.cpp */; };
+		16EEBEF12A49B69200A16D58 /* JFRefCounter.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEE82A49B69100A16D58 /* JFRefCounter.h */; };
+		16EEBEF22A49B69200A16D58 /* JFRefCounter.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEE82A49B69100A16D58 /* JFRefCounter.h */; };
+		16EEBEF32A49B69200A16D58 /* JFRefCounter.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEE82A49B69100A16D58 /* JFRefCounter.h */; };
+		16EEBEF42A49B69200A16D58 /* JFRefCounter.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEE82A49B69100A16D58 /* JFRefCounter.h */; };
+		16EEBEFD2A49C12900A16D58 /* JFString.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF62A49C12900A16D58 /* JFString.h */; };
+		16EEBEFE2A49C12900A16D58 /* JFString.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF62A49C12900A16D58 /* JFString.h */; };
+		16EEBEFF2A49C12900A16D58 /* JFString.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF62A49C12900A16D58 /* JFString.h */; };
+		16EEBF002A49C12A00A16D58 /* JFString.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF62A49C12900A16D58 /* JFString.h */; };
+		16EEBF012A49C12A00A16D58 /* JFStringFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF72A49C12900A16D58 /* JFStringFormat.h */; };
+		16EEBF022A49C12A00A16D58 /* JFStringFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF72A49C12900A16D58 /* JFStringFormat.h */; };
+		16EEBF032A49C12A00A16D58 /* JFStringFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF72A49C12900A16D58 /* JFStringFormat.h */; };
+		16EEBF042A49C12A00A16D58 /* JFStringFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF72A49C12900A16D58 /* JFStringFormat.h */; };
+		16EEBF052A49C12A00A16D58 /* JFStringA.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF82A49C12900A16D58 /* JFStringA.h */; };
+		16EEBF062A49C12A00A16D58 /* JFStringA.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF82A49C12900A16D58 /* JFStringA.h */; };
+		16EEBF072A49C12A00A16D58 /* JFStringA.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF82A49C12900A16D58 /* JFStringA.h */; };
+		16EEBF082A49C12A00A16D58 /* JFStringA.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF82A49C12900A16D58 /* JFStringA.h */; };
+		16EEBF092A49C12A00A16D58 /* JFStringW.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF92A49C12900A16D58 /* JFStringW.h */; };
+		16EEBF0A2A49C12A00A16D58 /* JFStringW.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF92A49C12900A16D58 /* JFStringW.h */; };
+		16EEBF0B2A49C12A00A16D58 /* JFStringW.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF92A49C12900A16D58 /* JFStringW.h */; };
+		16EEBF0C2A49C12A00A16D58 /* JFStringW.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBEF92A49C12900A16D58 /* JFStringW.h */; };
+		16EEBF0D2A49C12A00A16D58 /* JFStringFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEFA2A49C12900A16D58 /* JFStringFormat.cpp */; };
+		16EEBF0E2A49C12A00A16D58 /* JFStringFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEFA2A49C12900A16D58 /* JFStringFormat.cpp */; };
+		16EEBF0F2A49C12A00A16D58 /* JFStringFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEFA2A49C12900A16D58 /* JFStringFormat.cpp */; };
+		16EEBF102A49C12A00A16D58 /* JFStringFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEFA2A49C12900A16D58 /* JFStringFormat.cpp */; };
+		16EEBF112A49C12A00A16D58 /* JFStringW.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEFB2A49C12900A16D58 /* JFStringW.cpp */; };
+		16EEBF122A49C12A00A16D58 /* JFStringW.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEFB2A49C12900A16D58 /* JFStringW.cpp */; };
+		16EEBF132A49C12A00A16D58 /* JFStringW.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEFB2A49C12900A16D58 /* JFStringW.cpp */; };
+		16EEBF142A49C12A00A16D58 /* JFStringW.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEFB2A49C12900A16D58 /* JFStringW.cpp */; };
+		16EEBF152A49C12A00A16D58 /* JFStringA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEFC2A49C12900A16D58 /* JFStringA.cpp */; };
+		16EEBF162A49C12A00A16D58 /* JFStringA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEFC2A49C12900A16D58 /* JFStringA.cpp */; };
+		16EEBF172A49C12A00A16D58 /* JFStringA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEFC2A49C12900A16D58 /* JFStringA.cpp */; };
+		16EEBF182A49C12A00A16D58 /* JFStringA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBEFC2A49C12900A16D58 /* JFStringA.cpp */; };
+		16EEBF862A49C54F00A16D58 /* JFCondition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF792A49C54F00A16D58 /* JFCondition.cpp */; };
+		16EEBF872A49C54F00A16D58 /* JFCondition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF792A49C54F00A16D58 /* JFCondition.cpp */; };
+		16EEBF882A49C54F00A16D58 /* JFCondition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF792A49C54F00A16D58 /* JFCondition.cpp */; };
+		16EEBF892A49C54F00A16D58 /* JFCondition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF792A49C54F00A16D58 /* JFCondition.cpp */; };
+		16EEBF8A2A49C54F00A16D58 /* JFSpinLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF7A2A49C54F00A16D58 /* JFSpinLock.cpp */; };
+		16EEBF8B2A49C54F00A16D58 /* JFSpinLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF7A2A49C54F00A16D58 /* JFSpinLock.cpp */; };
+		16EEBF8C2A49C54F00A16D58 /* JFSpinLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF7A2A49C54F00A16D58 /* JFSpinLock.cpp */; };
+		16EEBF8D2A49C54F00A16D58 /* JFSpinLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF7A2A49C54F00A16D58 /* JFSpinLock.cpp */; };
+		16EEBF8E2A49C54F00A16D58 /* JFSpinLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7B2A49C54F00A16D58 /* JFSpinLock.h */; };
+		16EEBF8F2A49C54F00A16D58 /* JFSpinLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7B2A49C54F00A16D58 /* JFSpinLock.h */; };
+		16EEBF902A49C54F00A16D58 /* JFSpinLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7B2A49C54F00A16D58 /* JFSpinLock.h */; };
+		16EEBF912A49C54F00A16D58 /* JFSpinLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7B2A49C54F00A16D58 /* JFSpinLock.h */; };
+		16EEBF922A49C54F00A16D58 /* JFMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF7C2A49C54F00A16D58 /* JFMutex.cpp */; };
+		16EEBF932A49C54F00A16D58 /* JFMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF7C2A49C54F00A16D58 /* JFMutex.cpp */; };
+		16EEBF942A49C54F00A16D58 /* JFMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF7C2A49C54F00A16D58 /* JFMutex.cpp */; };
+		16EEBF952A49C54F00A16D58 /* JFMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF7C2A49C54F00A16D58 /* JFMutex.cpp */; };
+		16EEBF962A49C54F00A16D58 /* JFDummyLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7D2A49C54F00A16D58 /* JFDummyLock.h */; };
+		16EEBF972A49C54F00A16D58 /* JFDummyLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7D2A49C54F00A16D58 /* JFDummyLock.h */; };
+		16EEBF982A49C54F00A16D58 /* JFDummyLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7D2A49C54F00A16D58 /* JFDummyLock.h */; };
+		16EEBF992A49C54F00A16D58 /* JFDummyLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7D2A49C54F00A16D58 /* JFDummyLock.h */; };
+		16EEBF9A2A49C54F00A16D58 /* JFMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7E2A49C54F00A16D58 /* JFMutex.h */; };
+		16EEBF9B2A49C54F00A16D58 /* JFMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7E2A49C54F00A16D58 /* JFMutex.h */; };
+		16EEBF9C2A49C54F00A16D58 /* JFMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7E2A49C54F00A16D58 /* JFMutex.h */; };
+		16EEBF9D2A49C54F00A16D58 /* JFMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7E2A49C54F00A16D58 /* JFMutex.h */; };
+		16EEBF9E2A49C54F00A16D58 /* JFLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7F2A49C54F00A16D58 /* JFLock.h */; };
+		16EEBF9F2A49C54F00A16D58 /* JFLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7F2A49C54F00A16D58 /* JFLock.h */; };
+		16EEBFA02A49C54F00A16D58 /* JFLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7F2A49C54F00A16D58 /* JFLock.h */; };
+		16EEBFA12A49C54F00A16D58 /* JFLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF7F2A49C54F00A16D58 /* JFLock.h */; };
+		16EEBFA22A49C54F00A16D58 /* JFCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF802A49C54F00A16D58 /* JFCondition.h */; };
+		16EEBFA32A49C54F00A16D58 /* JFCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF802A49C54F00A16D58 /* JFCondition.h */; };
+		16EEBFA42A49C54F00A16D58 /* JFCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF802A49C54F00A16D58 /* JFCondition.h */; };
+		16EEBFA52A49C54F00A16D58 /* JFCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF802A49C54F00A16D58 /* JFCondition.h */; };
+		16EEBFA62A49C54F00A16D58 /* JFRecursiveMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF812A49C54F00A16D58 /* JFRecursiveMutex.h */; };
+		16EEBFA72A49C54F00A16D58 /* JFRecursiveMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF812A49C54F00A16D58 /* JFRecursiveMutex.h */; };
+		16EEBFA82A49C54F00A16D58 /* JFRecursiveMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF812A49C54F00A16D58 /* JFRecursiveMutex.h */; };
+		16EEBFA92A49C54F00A16D58 /* JFRecursiveMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF812A49C54F00A16D58 /* JFRecursiveMutex.h */; };
+		16EEBFAA2A49C54F00A16D58 /* JFSharedMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF822A49C54F00A16D58 /* JFSharedMutex.cpp */; };
+		16EEBFAB2A49C54F00A16D58 /* JFSharedMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF822A49C54F00A16D58 /* JFSharedMutex.cpp */; };
+		16EEBFAC2A49C54F00A16D58 /* JFSharedMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF822A49C54F00A16D58 /* JFSharedMutex.cpp */; };
+		16EEBFAD2A49C54F00A16D58 /* JFSharedMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF822A49C54F00A16D58 /* JFSharedMutex.cpp */; };
+		16EEBFAE2A49C54F00A16D58 /* JFSharedMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF832A49C54F00A16D58 /* JFSharedMutex.h */; };
+		16EEBFAF2A49C54F00A16D58 /* JFSharedMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF832A49C54F00A16D58 /* JFSharedMutex.h */; };
+		16EEBFB02A49C54F00A16D58 /* JFSharedMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF832A49C54F00A16D58 /* JFSharedMutex.h */; };
+		16EEBFB12A49C54F00A16D58 /* JFSharedMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF832A49C54F00A16D58 /* JFSharedMutex.h */; };
+		16EEBFB22A49C54F00A16D58 /* JFScopedLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF842A49C54F00A16D58 /* JFScopedLock.h */; };
+		16EEBFB32A49C54F00A16D58 /* JFScopedLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF842A49C54F00A16D58 /* JFScopedLock.h */; };
+		16EEBFB42A49C54F00A16D58 /* JFScopedLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF842A49C54F00A16D58 /* JFScopedLock.h */; };
+		16EEBFB52A49C54F00A16D58 /* JFScopedLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EEBF842A49C54F00A16D58 /* JFScopedLock.h */; };
+		16EEBFB62A49C54F00A16D58 /* JFRecursiveMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF852A49C54F00A16D58 /* JFRecursiveMutex.cpp */; };
+		16EEBFB72A49C54F00A16D58 /* JFRecursiveMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF852A49C54F00A16D58 /* JFRecursiveMutex.cpp */; };
+		16EEBFB82A49C54F00A16D58 /* JFRecursiveMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF852A49C54F00A16D58 /* JFRecursiveMutex.cpp */; };
+		16EEBFB92A49C54F00A16D58 /* JFRecursiveMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EEBF852A49C54F00A16D58 /* JFRecursiveMutex.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,7 +223,6 @@
 		16EDF01F2824B7C300B7CC1F /* JFLinearTransform2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFLinearTransform2.h; sourceTree = "<group>"; };
 		16EDF0202824B7C300B7CC1F /* JFVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFVector3.h; sourceTree = "<group>"; };
 		16EDF0212824B7C400B7CC1F /* JFMatrix3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFMatrix3.h; sourceTree = "<group>"; };
-		16EDF0232824B7C400B7CC1F /* JFWindowContextInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFWindowContextInterface.h; sourceTree = "<group>"; };
 		16EDF0242824B7C400B7CC1F /* JFWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JFWindow.cpp; sourceTree = "<group>"; };
 		16EDF0252824B7C400B7CC1F /* JFWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFWindow.h; sourceTree = "<group>"; };
 		16EDF0272824B7C400B7CC1F /* WindowPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowPlatform.h; sourceTree = "<group>"; };
@@ -178,21 +233,42 @@
 		16EDF0342824B7C400B7CC1F /* JFL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFL.h; sourceTree = "<group>"; };
 		16EDF04F2824B90200B7CC1F /* ApplicationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationContext.h; sourceTree = "<group>"; };
 		16EDF0502824B90200B7CC1F /* ApplicationContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApplicationContext.cpp; sourceTree = "<group>"; };
-		16EDF0542824B95000B7CC1F /* WindowContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowContext.h; sourceTree = "<group>"; };
-		16EDF0552824B95000B7CC1F /* WindowContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowContext.cpp; sourceTree = "<group>"; };
-		16EDF0622824CA2400B7CC1F /* WindowContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowContext.h; sourceTree = "<group>"; };
-		16EDF0642824CB5D00B7CC1F /* WindowContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowContext.m; sourceTree = "<group>"; };
+		16EDF0622824CA2400B7CC1F /* Window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
+		16EDF0642824CB5D00B7CC1F /* Window.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Window.m; sourceTree = "<group>"; };
 		16EDF0CA2824E74200B7CC1F /* ApplicationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationContext.m; path = Cocoa/ApplicationContext.m; sourceTree = "<group>"; };
 		16EDF0CB2824E74200B7CC1F /* ApplicationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationContext.h; path = Cocoa/ApplicationContext.h; sourceTree = "<group>"; };
 		16EDF0FF2825125400B7CC1F /* libJFL_iOS_static.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJFL_iOS_static.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		16EDF1262825167B00B7CC1F /* ApplicationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationContext.h; sourceTree = "<group>"; };
 		16EDF1272825167B00B7CC1F /* ApplicationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationContext.m; sourceTree = "<group>"; };
-		16EDF12D2825168500B7CC1F /* WindowContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowContext.h; sourceTree = "<group>"; };
-		16EDF12E2825168500B7CC1F /* WindowContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowContext.m; sourceTree = "<group>"; };
+		16EDF12D2825168500B7CC1F /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
+		16EDF12E2825168500B7CC1F /* Window.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Window.m; sourceTree = "<group>"; };
 		16EDF21828252AF200B7CC1F /* JFL_macOS_dynamic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JFL_macOS_dynamic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		16EDF25028252EC500B7CC1F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		16EDF2B62825313900B7CC1F /* JFL_iOS_dynamic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JFL_iOS_dynamic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		16EDF2B72825315A00B7CC1F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		16EEBEE62A49B69100A16D58 /* JFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFObject.h; sourceTree = "<group>"; };
+		16EEBEE72A49B69100A16D58 /* JFRefCounter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JFRefCounter.cpp; sourceTree = "<group>"; };
+		16EEBEE82A49B69100A16D58 /* JFRefCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFRefCounter.h; sourceTree = "<group>"; };
+		16EEBEF62A49C12900A16D58 /* JFString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFString.h; sourceTree = "<group>"; };
+		16EEBEF72A49C12900A16D58 /* JFStringFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFStringFormat.h; sourceTree = "<group>"; };
+		16EEBEF82A49C12900A16D58 /* JFStringA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFStringA.h; sourceTree = "<group>"; };
+		16EEBEF92A49C12900A16D58 /* JFStringW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFStringW.h; sourceTree = "<group>"; };
+		16EEBEFA2A49C12900A16D58 /* JFStringFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JFStringFormat.cpp; sourceTree = "<group>"; };
+		16EEBEFB2A49C12900A16D58 /* JFStringW.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JFStringW.cpp; sourceTree = "<group>"; };
+		16EEBEFC2A49C12900A16D58 /* JFStringA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JFStringA.cpp; sourceTree = "<group>"; };
+		16EEBF792A49C54F00A16D58 /* JFCondition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JFCondition.cpp; sourceTree = "<group>"; };
+		16EEBF7A2A49C54F00A16D58 /* JFSpinLock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JFSpinLock.cpp; sourceTree = "<group>"; };
+		16EEBF7B2A49C54F00A16D58 /* JFSpinLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFSpinLock.h; sourceTree = "<group>"; };
+		16EEBF7C2A49C54F00A16D58 /* JFMutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JFMutex.cpp; sourceTree = "<group>"; };
+		16EEBF7D2A49C54F00A16D58 /* JFDummyLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFDummyLock.h; sourceTree = "<group>"; };
+		16EEBF7E2A49C54F00A16D58 /* JFMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFMutex.h; sourceTree = "<group>"; };
+		16EEBF7F2A49C54F00A16D58 /* JFLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFLock.h; sourceTree = "<group>"; };
+		16EEBF802A49C54F00A16D58 /* JFCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCondition.h; sourceTree = "<group>"; };
+		16EEBF812A49C54F00A16D58 /* JFRecursiveMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFRecursiveMutex.h; sourceTree = "<group>"; };
+		16EEBF822A49C54F00A16D58 /* JFSharedMutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JFSharedMutex.cpp; sourceTree = "<group>"; };
+		16EEBF832A49C54F00A16D58 /* JFSharedMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFSharedMutex.h; sourceTree = "<group>"; };
+		16EEBF842A49C54F00A16D58 /* JFScopedLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFScopedLock.h; sourceTree = "<group>"; };
+		16EEBF852A49C54F00A16D58 /* JFRecursiveMutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JFRecursiveMutex.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +308,9 @@
 		16EDEFE52824B4C300B7CC1F = {
 			isa = PBXGroup;
 			children = (
+				16EEBF782A49C54F00A16D58 /* Lock */,
+				16EEBEF52A49C12900A16D58 /* String */,
+				16EEBEE52A49B69100A16D58 /* Object */,
 				16EDF02B2824B7C400B7CC1F /* Application */,
 				16EDF0222824B7C400B7CC1F /* Window */,
 				16EDF00C2824B7C300B7CC1F /* Math */,
@@ -284,7 +363,6 @@
 		16EDF0222824B7C400B7CC1F /* Window */ = {
 			isa = PBXGroup;
 			children = (
-				16EDF0232824B7C400B7CC1F /* JFWindowContextInterface.h */,
 				16EDF0242824B7C400B7CC1F /* JFWindow.cpp */,
 				16EDF0252824B7C400B7CC1F /* JFWindow.h */,
 				16EDF0262824B7C400B7CC1F /* Private */,
@@ -297,7 +375,6 @@
 			children = (
 				16EDF12C2825168500B7CC1F /* CocoaTouch */,
 				16EDF0612824CA0C00B7CC1F /* Cocoa */,
-				16EDF0532824B95000B7CC1F /* Win32 */,
 				16EDF0272824B7C400B7CC1F /* WindowPlatform.h */,
 			);
 			path = Private;
@@ -334,15 +411,6 @@
 			path = Win32;
 			sourceTree = "<group>";
 		};
-		16EDF0532824B95000B7CC1F /* Win32 */ = {
-			isa = PBXGroup;
-			children = (
-				16EDF0542824B95000B7CC1F /* WindowContext.h */,
-				16EDF0552824B95000B7CC1F /* WindowContext.cpp */,
-			);
-			path = Win32;
-			sourceTree = "<group>";
-		};
 		16EDF0582824C47300B7CC1F /* Cocoa */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,8 +423,8 @@
 		16EDF0612824CA0C00B7CC1F /* Cocoa */ = {
 			isa = PBXGroup;
 			children = (
-				16EDF0622824CA2400B7CC1F /* WindowContext.h */,
-				16EDF0642824CB5D00B7CC1F /* WindowContext.m */,
+				16EDF0622824CA2400B7CC1F /* Window.h */,
+				16EDF0642824CB5D00B7CC1F /* Window.m */,
 			);
 			path = Cocoa;
 			sourceTree = "<group>";
@@ -382,10 +450,54 @@
 		16EDF12C2825168500B7CC1F /* CocoaTouch */ = {
 			isa = PBXGroup;
 			children = (
-				16EDF12D2825168500B7CC1F /* WindowContext.h */,
-				16EDF12E2825168500B7CC1F /* WindowContext.m */,
+				16EDF12D2825168500B7CC1F /* Window.h */,
+				16EDF12E2825168500B7CC1F /* Window.m */,
 			);
 			path = CocoaTouch;
+			sourceTree = "<group>";
+		};
+		16EEBEE52A49B69100A16D58 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				16EEBEE62A49B69100A16D58 /* JFObject.h */,
+				16EEBEE72A49B69100A16D58 /* JFRefCounter.cpp */,
+				16EEBEE82A49B69100A16D58 /* JFRefCounter.h */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
+		16EEBEF52A49C12900A16D58 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				16EEBEF62A49C12900A16D58 /* JFString.h */,
+				16EEBEF72A49C12900A16D58 /* JFStringFormat.h */,
+				16EEBEF82A49C12900A16D58 /* JFStringA.h */,
+				16EEBEF92A49C12900A16D58 /* JFStringW.h */,
+				16EEBEFA2A49C12900A16D58 /* JFStringFormat.cpp */,
+				16EEBEFB2A49C12900A16D58 /* JFStringW.cpp */,
+				16EEBEFC2A49C12900A16D58 /* JFStringA.cpp */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		16EEBF782A49C54F00A16D58 /* Lock */ = {
+			isa = PBXGroup;
+			children = (
+				16EEBF792A49C54F00A16D58 /* JFCondition.cpp */,
+				16EEBF7A2A49C54F00A16D58 /* JFSpinLock.cpp */,
+				16EEBF7B2A49C54F00A16D58 /* JFSpinLock.h */,
+				16EEBF7C2A49C54F00A16D58 /* JFMutex.cpp */,
+				16EEBF7D2A49C54F00A16D58 /* JFDummyLock.h */,
+				16EEBF7E2A49C54F00A16D58 /* JFMutex.h */,
+				16EEBF7F2A49C54F00A16D58 /* JFLock.h */,
+				16EEBF802A49C54F00A16D58 /* JFCondition.h */,
+				16EEBF812A49C54F00A16D58 /* JFRecursiveMutex.h */,
+				16EEBF822A49C54F00A16D58 /* JFSharedMutex.cpp */,
+				16EEBF832A49C54F00A16D58 /* JFSharedMutex.h */,
+				16EEBF842A49C54F00A16D58 /* JFScopedLock.h */,
+				16EEBF852A49C54F00A16D58 /* JFRecursiveMutex.cpp */,
+			);
+			path = Lock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,31 +507,40 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16EDF0632824CA2500B7CC1F /* WindowContext.h in Headers */,
+				16EEBEE92A49B69100A16D58 /* JFObject.h in Headers */,
+				16EDF0632824CA2500B7CC1F /* Window.h in Headers */,
 				16EDF0432824B7C400B7CC1F /* JFWindow.h in Headers */,
-				16EDF0562824B95000B7CC1F /* WindowContext.h in Headers */,
+				16EEBFA62A49C54F00A16D58 /* JFRecursiveMutex.h in Headers */,
 				16EDF0362824B7C400B7CC1F /* JFVector2.h in Headers */,
-				16EDF0412824B7C400B7CC1F /* JFWindowContextInterface.h in Headers */,
-				16EDF12F2825168500B7CC1F /* WindowContext.h in Headers */,
 				16EDF0CD2824E74200B7CC1F /* ApplicationContext.h in Headers */,
-				16EDF0512824B90200B7CC1F /* ApplicationContext.h in Headers */,
 				16EDF0402824B7C400B7CC1F /* JFMatrix3.h in Headers */,
+				16EEBF052A49C12A00A16D58 /* JFStringA.h in Headers */,
 				16EDF03E2824B7C400B7CC1F /* JFLinearTransform2.h in Headers */,
 				16EDF03C2824B7C400B7CC1F /* JFAffineTransform2.h in Headers */,
 				16EDF04A2824B7C400B7CC1F /* ApplicationPlatform.h in Headers */,
-				16EDF1282825167B00B7CC1F /* ApplicationContext.h in Headers */,
+				16EEBEF12A49B69200A16D58 /* JFRefCounter.h in Headers */,
+				16EEBF9E2A49C54F00A16D58 /* JFLock.h in Headers */,
 				16EDF0492824B7C400B7CC1F /* JFApplication.h in Headers */,
 				16EDF0472824B7C400B7CC1F /* JFApplicationContextInterface.h in Headers */,
+				16EEBFA22A49C54F00A16D58 /* JFCondition.h in Headers */,
 				16EDF0372824B7C400B7CC1F /* JFMatrix2.h in Headers */,
 				16EDF04D2824B7C400B7CC1F /* JFL.h in Headers */,
+				16EEBF012A49C12A00A16D58 /* JFStringFormat.h in Headers */,
+				16EEBF962A49C54F00A16D58 /* JFDummyLock.h in Headers */,
+				16EEBEFD2A49C12900A16D58 /* JFString.h in Headers */,
+				16EEBF092A49C12A00A16D58 /* JFStringW.h in Headers */,
 				16EDF03B2824B7C400B7CC1F /* JFVector4.h in Headers */,
 				16EDF0382824B7C400B7CC1F /* JFAffineTransform3.h in Headers */,
 				16EDF0352824B7C400B7CC1F /* JFInclude.h in Headers */,
 				16EDF0442824B7C400B7CC1F /* WindowPlatform.h in Headers */,
+				16EEBF8E2A49C54F00A16D58 /* JFSpinLock.h in Headers */,
 				16EDF03A2824B7C400B7CC1F /* JFMath.h in Headers */,
+				16EEBFAE2A49C54F00A16D58 /* JFSharedMutex.h in Headers */,
+				16EEBFB22A49C54F00A16D58 /* JFScopedLock.h in Headers */,
 				16EDF03D2824B7C400B7CC1F /* JFMatrix4.h in Headers */,
 				16EDF03F2824B7C400B7CC1F /* JFVector3.h in Headers */,
 				16EDF0392824B7C400B7CC1F /* JFLinearTransform3.h in Headers */,
+				16EEBF9A2A49C54F00A16D58 /* JFMutex.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,31 +548,40 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16EDF0DD2825125400B7CC1F /* WindowContext.h in Headers */,
 				16EDF0DE2825125400B7CC1F /* JFWindow.h in Headers */,
-				16EDF0DF2825125400B7CC1F /* WindowContext.h in Headers */,
 				16EDF0E02825125400B7CC1F /* JFVector2.h in Headers */,
-				16EDF0E12825125400B7CC1F /* JFWindowContextInterface.h in Headers */,
-				16EDF1302825168500B7CC1F /* WindowContext.h in Headers */,
-				16EDF0E22825125400B7CC1F /* ApplicationContext.h in Headers */,
-				16EDF0E32825125400B7CC1F /* ApplicationContext.h in Headers */,
+				16EDF1302825168500B7CC1F /* Window.h in Headers */,
+				16EEBFA72A49C54F00A16D58 /* JFRecursiveMutex.h in Headers */,
 				16EDF0E42825125400B7CC1F /* JFMatrix3.h in Headers */,
 				16EDF0E52825125400B7CC1F /* JFLinearTransform2.h in Headers */,
 				16EDF0E62825125400B7CC1F /* JFAffineTransform2.h in Headers */,
+				16EEBF062A49C12A00A16D58 /* JFStringA.h in Headers */,
 				16EDF0E72825125400B7CC1F /* ApplicationPlatform.h in Headers */,
+				16EEBEF22A49B69200A16D58 /* JFRefCounter.h in Headers */,
 				16EDF1292825167B00B7CC1F /* ApplicationContext.h in Headers */,
 				16EDF0E82825125400B7CC1F /* JFApplication.h in Headers */,
+				16EEBF9F2A49C54F00A16D58 /* JFLock.h in Headers */,
 				16EDF0E92825125400B7CC1F /* JFApplicationContextInterface.h in Headers */,
+				16EEBEEA2A49B69100A16D58 /* JFObject.h in Headers */,
+				16EEBFA32A49C54F00A16D58 /* JFCondition.h in Headers */,
 				16EDF0EA2825125400B7CC1F /* JFMatrix2.h in Headers */,
 				16EDF0EB2825125400B7CC1F /* JFL.h in Headers */,
+				16EEBF022A49C12A00A16D58 /* JFStringFormat.h in Headers */,
+				16EEBF972A49C54F00A16D58 /* JFDummyLock.h in Headers */,
+				16EEBEFE2A49C12900A16D58 /* JFString.h in Headers */,
+				16EEBF0A2A49C12A00A16D58 /* JFStringW.h in Headers */,
 				16EDF0EC2825125400B7CC1F /* JFVector4.h in Headers */,
 				16EDF0ED2825125400B7CC1F /* JFAffineTransform3.h in Headers */,
 				16EDF0EE2825125400B7CC1F /* JFInclude.h in Headers */,
 				16EDF0EF2825125400B7CC1F /* WindowPlatform.h in Headers */,
+				16EEBF8F2A49C54F00A16D58 /* JFSpinLock.h in Headers */,
 				16EDF0F02825125400B7CC1F /* JFMath.h in Headers */,
+				16EEBFAF2A49C54F00A16D58 /* JFSharedMutex.h in Headers */,
+				16EEBFB32A49C54F00A16D58 /* JFScopedLock.h in Headers */,
 				16EDF0F12825125400B7CC1F /* JFMatrix4.h in Headers */,
 				16EDF0F22825125400B7CC1F /* JFVector3.h in Headers */,
 				16EDF0F32825125400B7CC1F /* JFLinearTransform3.h in Headers */,
+				16EEBF9B2A49C54F00A16D58 /* JFMutex.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,28 +592,37 @@
 				16EDF23D28252D0F00B7CC1F /* JFWindow.h in Headers */,
 				16EDF24428252D1F00B7CC1F /* WindowPlatform.h in Headers */,
 				16EDF23628252CAC00B7CC1F /* JFVector4.h in Headers */,
-				16EDF24F28252D9A00B7CC1F /* ApplicationContext.h in Headers */,
-				16EDF24028252D1600B7CC1F /* WindowContext.h in Headers */,
+				16EEBFA82A49C54F00A16D58 /* JFRecursiveMutex.h in Headers */,
 				16EDF23228252C9500B7CC1F /* JFMatrix2.h in Headers */,
 				16EDF22F28252C7900B7CC1F /* JFL.h in Headers */,
 				16EDF23428252CA100B7CC1F /* JFLinearTransform3.h in Headers */,
-				16EDF24328252D1F00B7CC1F /* WindowContext.h in Headers */,
+				16EEBF072A49C12A00A16D58 /* JFStringA.h in Headers */,
+				16EDF24328252D1F00B7CC1F /* Window.h in Headers */,
 				16EDF23828252CB400B7CC1F /* JFMatrix4.h in Headers */,
-				16EDF24528252D1F00B7CC1F /* WindowContext.h in Headers */,
+				16EEBEF32A49B69200A16D58 /* JFRefCounter.h in Headers */,
 				16EDF23128252C9100B7CC1F /* JFVector2.h in Headers */,
+				16EEBFA02A49C54F00A16D58 /* JFLock.h in Headers */,
 				16EDF24D28252D2900B7CC1F /* ApplicationContext.h in Headers */,
 				16EDF24828252D2900B7CC1F /* JFApplicationContextInterface.h in Headers */,
+				16EEBFA42A49C54F00A16D58 /* JFCondition.h in Headers */,
+				16EEBEEB2A49B69100A16D58 /* JFObject.h in Headers */,
 				16EDF23528252CA500B7CC1F /* JFMath.h in Headers */,
+				16EEBF032A49C12A00A16D58 /* JFStringFormat.h in Headers */,
+				16EEBF982A49C54F00A16D58 /* JFDummyLock.h in Headers */,
+				16EEBEFF2A49C12900A16D58 /* JFString.h in Headers */,
+				16EEBF0B2A49C12A00A16D58 /* JFStringW.h in Headers */,
 				16EDF23A28252CBA00B7CC1F /* JFVector3.h in Headers */,
 				16EDF24928252D2900B7CC1F /* ApplicationPlatform.h in Headers */,
-				16EDF24B28252D2900B7CC1F /* ApplicationContext.h in Headers */,
 				16EDF23B28252CBE00B7CC1F /* JFMatrix3.h in Headers */,
-				16EDF23E28252D0F00B7CC1F /* JFWindowContextInterface.h in Headers */,
 				16EDF23728252CAF00B7CC1F /* JFAffineTransform2.h in Headers */,
+				16EEBF902A49C54F00A16D58 /* JFSpinLock.h in Headers */,
 				16EDF23028252C7C00B7CC1F /* JFInclude.h in Headers */,
+				16EEBFB02A49C54F00A16D58 /* JFSharedMutex.h in Headers */,
+				16EEBFB42A49C54F00A16D58 /* JFScopedLock.h in Headers */,
 				16EDF23928252CB800B7CC1F /* JFLinearTransform2.h in Headers */,
 				16EDF24C28252D2900B7CC1F /* JFApplication.h in Headers */,
 				16EDF23328252C9C00B7CC1F /* JFAffineTransform3.h in Headers */,
+				16EEBF9C2A49C54F00A16D58 /* JFMutex.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,28 +633,37 @@
 				16EDF28E2825313900B7CC1F /* JFWindow.h in Headers */,
 				16EDF28F2825313900B7CC1F /* WindowPlatform.h in Headers */,
 				16EDF2902825313900B7CC1F /* JFVector4.h in Headers */,
-				16EDF2912825313900B7CC1F /* ApplicationContext.h in Headers */,
-				16EDF2922825313900B7CC1F /* WindowContext.h in Headers */,
+				16EEBFA92A49C54F00A16D58 /* JFRecursiveMutex.h in Headers */,
+				16EDF2922825313900B7CC1F /* Window.h in Headers */,
 				16EDF2932825313900B7CC1F /* JFMatrix2.h in Headers */,
 				16EDF2942825313900B7CC1F /* JFL.h in Headers */,
+				16EEBF082A49C12A00A16D58 /* JFStringA.h in Headers */,
 				16EDF2952825313900B7CC1F /* JFLinearTransform3.h in Headers */,
-				16EDF2962825313900B7CC1F /* WindowContext.h in Headers */,
 				16EDF2972825313900B7CC1F /* JFMatrix4.h in Headers */,
-				16EDF2982825313900B7CC1F /* WindowContext.h in Headers */,
+				16EEBEEC2A49B69100A16D58 /* JFObject.h in Headers */,
 				16EDF2992825313900B7CC1F /* JFVector2.h in Headers */,
-				16EDF29A2825313900B7CC1F /* ApplicationContext.h in Headers */,
+				16EEBFA12A49C54F00A16D58 /* JFLock.h in Headers */,
 				16EDF29B2825313900B7CC1F /* JFApplicationContextInterface.h in Headers */,
 				16EDF29C2825313900B7CC1F /* JFMath.h in Headers */,
+				16EEBFA52A49C54F00A16D58 /* JFCondition.h in Headers */,
 				16EDF29D2825313900B7CC1F /* JFVector3.h in Headers */,
 				16EDF29E2825313900B7CC1F /* ApplicationPlatform.h in Headers */,
+				16EEBF042A49C12A00A16D58 /* JFStringFormat.h in Headers */,
+				16EEBF992A49C54F00A16D58 /* JFDummyLock.h in Headers */,
+				16EEBF002A49C12A00A16D58 /* JFString.h in Headers */,
+				16EEBF0C2A49C12A00A16D58 /* JFStringW.h in Headers */,
 				16EDF29F2825313900B7CC1F /* ApplicationContext.h in Headers */,
 				16EDF2A02825313900B7CC1F /* JFMatrix3.h in Headers */,
-				16EDF2A12825313900B7CC1F /* JFWindowContextInterface.h in Headers */,
 				16EDF2A22825313900B7CC1F /* JFAffineTransform2.h in Headers */,
+				16EEBEF42A49B69200A16D58 /* JFRefCounter.h in Headers */,
+				16EEBF912A49C54F00A16D58 /* JFSpinLock.h in Headers */,
 				16EDF2A32825313900B7CC1F /* JFInclude.h in Headers */,
+				16EEBFB12A49C54F00A16D58 /* JFSharedMutex.h in Headers */,
+				16EEBFB52A49C54F00A16D58 /* JFScopedLock.h in Headers */,
 				16EDF2A42825313900B7CC1F /* JFLinearTransform2.h in Headers */,
 				16EDF2A52825313900B7CC1F /* JFApplication.h in Headers */,
 				16EDF2A62825313900B7CC1F /* JFAffineTransform3.h in Headers */,
+				16EEBF9D2A49C54F00A16D58 /* JFMutex.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,7 +747,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					16EDEFED2824B4C300B7CC1F = {
 						CreatedOnToolsVersion = 13.1;
@@ -652,14 +800,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16EEBEED2A49B69100A16D58 /* JFRefCounter.cpp in Sources */,
 				16EDF0CC2824E74200B7CC1F /* ApplicationContext.m in Sources */,
-				16EDF12A2825167B00B7CC1F /* ApplicationContext.m in Sources */,
-				16EDF0652824CB5D00B7CC1F /* WindowContext.m in Sources */,
-				16EDF0522824B90200B7CC1F /* ApplicationContext.cpp in Sources */,
+				16EEBF922A49C54F00A16D58 /* JFMutex.cpp in Sources */,
+				16EDF0652824CB5D00B7CC1F /* Window.m in Sources */,
+				16EEBFAA2A49C54F00A16D58 /* JFSharedMutex.cpp in Sources */,
+				16EEBFB62A49C54F00A16D58 /* JFRecursiveMutex.cpp in Sources */,
 				16EDF0422824B7C400B7CC1F /* JFWindow.cpp in Sources */,
 				16EDF0482824B7C400B7CC1F /* JFApplication.cpp in Sources */,
-				16EDF0572824B95000B7CC1F /* WindowContext.cpp in Sources */,
-				16EDF1312825168500B7CC1F /* WindowContext.m in Sources */,
+				16EEBF862A49C54F00A16D58 /* JFCondition.cpp in Sources */,
+				16EEBF112A49C12A00A16D58 /* JFStringW.cpp in Sources */,
+				16EEBF152A49C12A00A16D58 /* JFStringA.cpp in Sources */,
+				16EEBF8A2A49C54F00A16D58 /* JFSpinLock.cpp in Sources */,
+				16EEBF0D2A49C12A00A16D58 /* JFStringFormat.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,14 +820,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16EDF0F52825125400B7CC1F /* ApplicationContext.m in Sources */,
+				16EEBEEE2A49B69100A16D58 /* JFRefCounter.cpp in Sources */,
 				16EDF12B2825167B00B7CC1F /* ApplicationContext.m in Sources */,
-				16EDF0F62825125400B7CC1F /* WindowContext.m in Sources */,
-				16EDF0F72825125400B7CC1F /* ApplicationContext.cpp in Sources */,
+				16EEBF932A49C54F00A16D58 /* JFMutex.cpp in Sources */,
 				16EDF0F82825125400B7CC1F /* JFWindow.cpp in Sources */,
+				16EEBFAB2A49C54F00A16D58 /* JFSharedMutex.cpp in Sources */,
+				16EEBFB72A49C54F00A16D58 /* JFRecursiveMutex.cpp in Sources */,
 				16EDF0F92825125400B7CC1F /* JFApplication.cpp in Sources */,
-				16EDF0FA2825125400B7CC1F /* WindowContext.cpp in Sources */,
-				16EDF1322825168500B7CC1F /* WindowContext.m in Sources */,
+				16EDF1322825168500B7CC1F /* Window.m in Sources */,
+				16EEBF872A49C54F00A16D58 /* JFCondition.cpp in Sources */,
+				16EEBF122A49C12A00A16D58 /* JFStringW.cpp in Sources */,
+				16EEBF162A49C12A00A16D58 /* JFStringA.cpp in Sources */,
+				16EEBF8B2A49C54F00A16D58 /* JFSpinLock.cpp in Sources */,
+				16EEBF0E2A49C12A00A16D58 /* JFStringFormat.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,14 +840,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16EDF24E28252D9700B7CC1F /* ApplicationContext.cpp in Sources */,
+				16EEBEEF2A49B69100A16D58 /* JFRefCounter.cpp in Sources */,
 				16EDF24728252D2900B7CC1F /* ApplicationContext.m in Sources */,
+				16EEBF942A49C54F00A16D58 /* JFMutex.cpp in Sources */,
 				16EDF24A28252D2900B7CC1F /* JFApplication.cpp in Sources */,
+				16EEBFAC2A49C54F00A16D58 /* JFSharedMutex.cpp in Sources */,
+				16EEBFB82A49C54F00A16D58 /* JFRecursiveMutex.cpp in Sources */,
 				16EDF23C28252D0F00B7CC1F /* JFWindow.cpp in Sources */,
-				16EDF23F28252D1600B7CC1F /* WindowContext.m in Sources */,
-				16EDF24128252D1F00B7CC1F /* WindowContext.cpp in Sources */,
-				16EDF24628252D2900B7CC1F /* ApplicationContext.m in Sources */,
-				16EDF24228252D1F00B7CC1F /* WindowContext.m in Sources */,
+				16EDF24228252D1F00B7CC1F /* Window.m in Sources */,
+				16EEBF882A49C54F00A16D58 /* JFCondition.cpp in Sources */,
+				16EEBF132A49C12A00A16D58 /* JFStringW.cpp in Sources */,
+				16EEBF172A49C12A00A16D58 /* JFStringA.cpp in Sources */,
+				16EEBF8C2A49C54F00A16D58 /* JFSpinLock.cpp in Sources */,
+				16EEBF0F2A49C12A00A16D58 /* JFStringFormat.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,14 +860,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16EDF2A82825313900B7CC1F /* ApplicationContext.cpp in Sources */,
-				16EDF2A92825313900B7CC1F /* ApplicationContext.m in Sources */,
+				16EEBEF02A49B69200A16D58 /* JFRefCounter.cpp in Sources */,
 				16EDF2AA2825313900B7CC1F /* JFApplication.cpp in Sources */,
+				16EEBF952A49C54F00A16D58 /* JFMutex.cpp in Sources */,
 				16EDF2AB2825313900B7CC1F /* JFWindow.cpp in Sources */,
-				16EDF2AC2825313900B7CC1F /* WindowContext.m in Sources */,
-				16EDF2AD2825313900B7CC1F /* WindowContext.cpp in Sources */,
+				16EEBFAD2A49C54F00A16D58 /* JFSharedMutex.cpp in Sources */,
+				16EEBFB92A49C54F00A16D58 /* JFRecursiveMutex.cpp in Sources */,
+				16EDF2AC2825313900B7CC1F /* Window.m in Sources */,
 				16EDF2AE2825313900B7CC1F /* ApplicationContext.m in Sources */,
-				16EDF2AF2825313900B7CC1F /* WindowContext.m in Sources */,
+				16EEBF892A49C54F00A16D58 /* JFCondition.cpp in Sources */,
+				16EEBF142A49C12A00A16D58 /* JFStringW.cpp in Sources */,
+				16EEBF182A49C12A00A16D58 /* JFStringA.cpp in Sources */,
+				16EEBF8D2A49C54F00A16D58 /* JFSpinLock.cpp in Sources */,
+				16EEBF102A49C12A00A16D58 /* JFStringFormat.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,6 +914,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -764,6 +933,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				"HEADER_SEARCH_PATHS[arch=*]" = "";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -807,6 +978,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -819,6 +991,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				"HEADER_SEARCH_PATHS[arch=*]" = "";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -830,10 +1004,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
+				HEADER_SEARCH_PATHS = (
+					"./**",
+					../ThirdParty/fmt/include,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -843,10 +1022,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
+				HEADER_SEARCH_PATHS = (
+					"./**",
+					../ThirdParty/fmt/include,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -860,6 +1044,10 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
+				HEADER_SEARCH_PATHS = (
+					"./**",
+					../ThirdParty/fmt/include,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -874,6 +1062,10 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
+				HEADER_SEARCH_PATHS = (
+					"./**",
+					../ThirdParty/fmt/include,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -887,12 +1079,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"./**",
+					../ThirdParty/fmt/include,
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -901,6 +1099,8 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "c11 c++20";
 				PRODUCT_BUNDLE_IDENTIFIER = "jaraffe.JFL-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -917,12 +1117,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"./**",
+					../ThirdParty/fmt/include,
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -931,6 +1137,8 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "c11 c++20";
 				PRODUCT_BUNDLE_IDENTIFIER = "jaraffe.JFL-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -944,6 +1152,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -951,12 +1160,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/iOSSupport/System/Library/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"./**",
+					../ThirdParty/fmt/include,
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -965,6 +1179,8 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "c11 c++20";
 				PRODUCT_BUNDLE_IDENTIFIER = "jaraffe.JFL-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -981,6 +1197,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -988,12 +1205,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/iOSSupport/System/Library/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"./**",
+					../ThirdParty/fmt/include,
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1002,6 +1224,8 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "c11 c++20";
 				PRODUCT_BUNDLE_IDENTIFIER = "jaraffe.JFL-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

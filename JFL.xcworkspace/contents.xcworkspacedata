@@ -5,6 +5,9 @@
       location = "group:JFL"
       name = "ThirdParty">
       <FileRef
+         location = "group:../ThirdParty/fmt/fmt.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:../ThirdParty/googletest/googletest.xcodeproj">
       </FileRef>
    </Group>

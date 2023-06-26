@@ -5,9 +5,18 @@
 //  Copyright (c) 2022 Seungmin Choi. All rights reserved.
 //
 
-#include "WindowContext.h"
+#include "Window.h"
+
+namespace JFL::Private::CocoaTouch
+{
+    JFWindow* CreatePlatformWindow()
+    {
+        return new Window();
+    }
+}
 
 using namespace JFL;
+using namespace JFL::Private::CocoaTouch;
 
 @interface ViewController : UIViewController
 @end
@@ -16,13 +25,13 @@ using namespace JFL;
 
 @end
 
-WindowContext::WindowContext()
+Window::Window()
     : window(nil)
     , view(nil)
 {
 }
 
-void WindowContext::Create()
+void Window::Create(const JFWindowDescriptor& descriptor)
 {
     CGRect rect = [[UIScreen mainScreen] bounds];
     // CGRect nativeRect = [[UIScreen mainScreen] nativeBounds];
@@ -39,24 +48,34 @@ void WindowContext::Create()
     [window setBounds:rect];
 }
 
-void WindowContext::Destory()
+void Window::Destory()
 {
     // ref counting.
     view = nil;
     window = nil;
 }
 
-void WindowContext::Show()
+void Window::Show()
 {
     [window makeKeyAndVisible];
 }
 
-void WindowContext::Hide()
+void Window::Hide()
 {
     
 }
 
-void* WindowContext::PlatformHandle() const
+JFStringW Window::Title() const
+{
+    return {};
+}
+
+void SetTitle(const JFStringW& title)
+{
+    
+}
+
+void* Window::PlatformHandle() const
 {
     return nil;
 }

@@ -5,9 +5,18 @@
 //  Copyright (c) 2022 Seungmin Choi. All rights reserved.
 //
 
-#include "WindowContext.h"
+#include "Window.h"
+
+namespace JFL::Private::Cocoa
+{
+    JFWindow* CreatePlatformWindow()
+    {
+        return new Window();
+    }
+}
 
 using namespace JFL;
+using namespace JFL::Private::Cocoa;
 
 @interface WindowDelegate : NSObject<NSWindowDelegate>
 @end
@@ -21,13 +30,13 @@ using namespace JFL;
 
 @end
 
-WindowContext::WindowContext()
+Window::Window()
     : window(nil)
     , view(nil)
 {
 }
 
-void WindowContext::Create()
+void Window::Create(const JFWindowDescriptor& descriptor)
 {
     NSRect rect = NSMakeRect(300, 300, 512, 512);
     window = [[NSWindow alloc] initWithContentRect:rect styleMask:NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable backing:NSBackingStoreBuffered defer:NO];
@@ -39,24 +48,34 @@ void WindowContext::Create()
     [window setDelegate:[WindowDelegate alloc]];
 }
 
-void WindowContext::Destory()
+void Window::Destory()
 {
     // ref counting.
     view = nil;
     window = nil;
 }
 
-void WindowContext::Show()
+void Window::Show()
 {
     [window setIsVisible:YES];
 }
 
-void WindowContext::Hide()
+void Window::Hide()
 {
     
 }
 
-void* WindowContext::PlatformHandle() const
+JFStringW Window::Title() const
+{
+    return {};
+}
+
+void Window::SetTitle(const JFStringW& title)
+{
+    
+}
+
+void* Window::PlatformHandle() const
 {
     return nil;
 }

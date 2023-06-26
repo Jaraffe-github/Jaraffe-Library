@@ -6,23 +6,28 @@
 //
 
 #pragma once
+#include "../../JFWindow.h"
 #include "JFInclude.h"
-#include "../../JFWindowContextInterface.h"
 #include <Cocoa/Cocoa.h>
 
-namespace JFL
+namespace JFL::Private::Cocoa
 {
-    class WindowContext : public JFWindowContextInterface
+    class Window : public JFWindow
     {
     public:
-        WindowContext();
-        ~WindowContext() = default;
-
-        void Create() override;
+        Window();
+        ~Window() = default;
+        
+        void Create(const JFWindowDescriptor& descriptor) override;
         void Destory() override;
 
         void Show() override;
         void Hide() override;
+        
+        JFStringW Title() const override;
+        void SetTitle(const JFStringW& title) override;
+        
+        float DpiScale() const override { return 1.0f; }
 
         void* PlatformHandle() const override;
         

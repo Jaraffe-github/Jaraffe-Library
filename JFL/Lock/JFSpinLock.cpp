@@ -11,8 +11,8 @@ using namespace JFL;
 
 void JFSpinLock::Lock() const
 {
-    while (!TryLock())
-        std::this_thread::yield();
+//    while (!TryLock())
+//        std::this_thread::yield();
 }
 
 bool JFSpinLock::TryLock() const

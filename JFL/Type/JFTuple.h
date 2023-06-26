@@ -111,7 +111,6 @@ namespace JFL
 		struct TupleElementList<Index, T, Ts...>
 			: public TupleElementList<Index + 1, Ts...>
 		{
-			enum { Index = Index };
 			using NextType = TupleElementList<Index + 1, Ts...>;
 			using ElementType = JFTupleElement<T>;
 
