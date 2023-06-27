@@ -33,13 +33,13 @@ namespace JFL::Private::Vulkan
 		void Present() override;
 
 	private:
-		bool CheckSurfaceFormatSupport(const std::vector<VkSurfaceFormatKHR>& surfaceFormats);
-		bool CheckSurfacePresentMode(const std::vector<VkPresentModeKHR>& presentModes);
+		bool CheckSurfaceFormatSupport(const JFArray<VkSurfaceFormatKHR>& surfaceFormats);
+		bool CheckSurfacePresentMode(const JFArray<VkPresentModeKHR>& presentModes);
 
 		VkSurfaceKHR surface;
 		VkSwapchainKHR swapChain;
 
-		std::vector<Texture> colorTextures;
+		JFArray<Texture> colorTextures;
 
 		uint32_t width;
 		uint32_t height;

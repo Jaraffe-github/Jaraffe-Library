@@ -56,6 +56,6 @@ inline void ThrowIfFailed(VkResult result)
 	if (result != VK_SUCCESS)
 	{
 		auto msg = Tools::errorString(result);
-		throw std::exception(msg.c_str());
+		throw std::runtime_error(msg.c_str());
 	}
 }
