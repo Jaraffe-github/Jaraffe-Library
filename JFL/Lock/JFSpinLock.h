@@ -16,8 +16,8 @@ namespace JFL
     class JFL_API JFSpinLock final
     {
     public:
-        JFSpinLock() = default;
-        ~JFSpinLock() = default;
+        JFSpinLock();
+        ~JFSpinLock();
 
         void Lock() const;
         bool TryLock() const;
@@ -27,6 +27,10 @@ namespace JFL
         JFSpinLock(const JFSpinLock&) = delete;
         JFSpinLock& operator = (const JFSpinLock&) = delete;
 
+#if defined(JFPLATFORM_LINUX)
+        mutable pthread_spinlock_t lock;
+#else
         mutable struct JFL_API std::atomic_flag lock;
+#endif
     };
 }
