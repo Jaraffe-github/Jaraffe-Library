@@ -405,6 +405,12 @@
     <ClInclude Include="Type\JFTypeTuple.h" />
     <ClInclude Include="Window\JFWindow.h" />
     <ClInclude Include="Window\JFVirtualKeyCode.h" />
+    <ClInclude Include="Window\Private\CocoaTouch\Window.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Window\Private\Cocoa\Window.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Window\Private\WindowPlatform.h" />
     <ClInclude Include="Window\Private\Win32\Window.h" />
   </ItemGroup>
@@ -420,6 +426,12 @@
     <None Include="Math\JFVector2.inl" />
     <None Include="Math\JFVector3.inl" />
     <None Include="Math\JFVector4.inl" />
+    <None Include="Window\Private\CocoaTouch\Window.m">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="Window\Private\Cocoa\Window.m">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\JFApplication.cpp" />

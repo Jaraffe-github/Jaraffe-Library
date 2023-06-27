@@ -8,31 +8,27 @@
 #pragma once
 #include "../JFWindow.h"
 
-#if !defined(_WIN32)
-#include <TargetConditionals.h>
-#endif
-
 namespace JFL::Private
 {
-#if defined(_WIN32)
+#ifdef JFPLATFORM_WINDOWS
 	namespace Win32
 	{
 		extern JFWindow* CreatePlatformWindow();
 	}
 	using namespace Win32;
-#endif
-
-#if TARGET_OS_MAC
+#elif JFPLATFORM_MAC
     namespace Cocoa
     {
         extern JFWindow* CreatePlatformWindow();
     }
     using namespace Cocoa;
-#elif TARGET_OS_IOS
+#elif JFPLATFORM_IOS
     namespace CocoaTouch
     {
         extern JFWindow* CreatePlatformWindow();
     }
     using namespace CocoaTouch;
+#elif
+    #error "Unsupported platform. Window creation not implemented."
 #endif
 }

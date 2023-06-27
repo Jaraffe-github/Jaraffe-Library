@@ -57,22 +57,25 @@ void Window::Destory()
 
 void Window::Show()
 {
-    [window setIsVisible:YES];
+    [window setHidden:NO];
 }
 
 void Window::Hide()
 {
-    
+     [window setHidden:YES];
 }
 
 JFStringW Window::Title() const
 {
-    return {};
+    NSString* title = [window title];
+    const wchar_t* wideTitle = [title cStringUsingEncoding:NSUTF32LittleEndianStringEncoding];
+    return JFStringW(wideTitle);
 }
 
 void Window::SetTitle(const JFStringW& title)
 {
-    
+    NSString* nsTitle = [NSString stringWithCharacters:title.Data() length:title.Length()];
+    [window setTitle:nsTitle];
 }
 
 void* Window::PlatformHandle() const

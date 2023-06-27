@@ -291,6 +291,12 @@
     <ClInclude Include="Graphics\Private\Vulkan\Types.h">
       <Filter>Graphics\Private\Vulkan</Filter>
     </ClInclude>
+    <ClInclude Include="Window\Private\Cocoa\Window.h">
+      <Filter>Window\Private\Cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Private\CocoaTouch\Window.h">
+      <Filter>Window\Private\CocoaTouch</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -325,6 +331,12 @@
     </None>
     <None Include="Math\JFVector4.inl">
       <Filter>Math</Filter>
+    </None>
+    <None Include="Window\Private\Cocoa\Window.m">
+      <Filter>Window\Private\Cocoa</Filter>
+    </None>
+    <None Include="Window\Private\CocoaTouch\Window.m">
+      <Filter>Window\Private\CocoaTouch</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -503,6 +515,12 @@
     </Filter>
     <Filter Include="Application\Private\Win32">
       <UniqueIdentifier>{8c782666-c161-4079-b31b-6d802b1ea22d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Private\Cocoa">
+      <UniqueIdentifier>{9f21d8a0-db70-4560-9681-3f32f79c24d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Private\CocoaTouch">
+      <UniqueIdentifier>{35f68e38-3791-4ae2-897d-24259ef5f515}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -13,7 +13,19 @@
 #include <cmath>
 #include <memory>
 
-struct LibraryVersion
+#if defined(__APPLE__)
+	#include <TargetConditionals.h>
+#endif
+
+#ifdef _WIN32
+	#define JFPLATFORM_WINDOWS 1
+#elif TARGET_OS_MAC
+	#define JFPLATFORM_MAC 1
+#elif TARGET_OS_IOS
+	#define JFPLATFORM_IOS 1
+#endif
+
+struct JFLibraryVersion
 {
 	enum { Major = 0 };
 	enum { Minor = 0 };
@@ -31,6 +43,18 @@ struct LibraryVersion
 #endif
 
 #define WINDOW_CLASS_NAME L"JFWindowClass"
+
+#define JF_NOOP								(void)0;
+#define JFASSERT(expr)						assert(expr)
+#define JFASSERT_DESC(expr, desc)			assert(((void)desc, expr))
+
+#if defined(_DEBUG)
+#	define JFASSERT_DEBUG(expr)				JFASSERT(expr)
+#	define JFASSERT_DESC_DEBUG(expr, desc)	JFASSERT_DESC(expr, desc)
+#else
+#	define JFASSERT_DEBUG(expr)				JF_NOOP
+#	define JFASSERT_DESC_DEBUG(expr, desc)	JF_NOOP
+#endif
 
 namespace JFL
 {
@@ -104,15 +128,3 @@ namespace JFL
 		}
 	}
 }
-
-#define JF_NOOP								(void)0;
-#define JFASSERT(expr)						assert(expr)
-#define JFASSERT_DESC(expr, desc)			assert(((void)desc, expr))
-
-#if defined(_DEBUG)
-#	define JFASSERT_DEBUG(expr)				JFASSERT(expr)
-#	define JFASSERT_DESC_DEBUG(expr, desc)	JFASSERT_DESC(expr, desc)
-#else
-#	define JFASSERT_DEBUG(expr)				JF_NOOP
-#	define JFASSERT_DESC_DEBUG(expr, desc)	JF_NOOP
-#endif

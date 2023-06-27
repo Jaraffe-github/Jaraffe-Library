@@ -62,17 +62,20 @@ void Window::Show()
 
 void Window::Hide()
 {
-    
+    [window setHidden:YES];
 }
 
 JFStringW Window::Title() const
 {
-    return {};
+    NSString* title = [window rootViewController].title;
+    const wchar_t* wideTitle = [title cStringUsingEncoding:NSUTF32LittleEndianStringEncoding];
+    return JFStringW(wideTitle);
 }
 
 void SetTitle(const JFStringW& title)
 {
-    
+    NSString* nsTitle = [NSString stringWithCharacters:title.Data() length:title.Length()];
+    [[window rootViewController] setTitle:nsTitle];
 }
 
 void* Window::PlatformHandle() const
