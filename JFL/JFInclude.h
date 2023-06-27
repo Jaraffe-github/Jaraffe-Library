@@ -13,16 +13,19 @@
 #include <cmath>
 #include <memory>
 
-#if defined(__APPLE__)
-	#include <TargetConditionals.h>
-#endif
-
-#ifdef _WIN32
+#if defined(_WIN32)
 	#define JFPLATFORM_WINDOWS 1
-#elif TARGET_OS_MAC
-	#define JFPLATFORM_MAC 1
-#elif TARGET_OS_IOS
-	#define JFPLATFORM_IOS 1
+#elif defined(__linux__)
+	#define JFPLATFORM_LINUX 1
+#elif defined(__APPLE__)
+	#include <TargetConditionals.h>
+	#define JFPLATFORM_APPLE 1
+	
+	#if TARGET_OS_MAC
+		#define JFPLATFORM_MAC
+	#elif TARGET_OS_IOS
+		#define JFPLATFORM_IOS
+	#endif
 #endif
 
 struct JFLibraryVersion

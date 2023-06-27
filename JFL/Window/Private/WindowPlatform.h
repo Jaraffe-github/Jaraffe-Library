@@ -10,25 +10,25 @@
 
 namespace JFL::Private
 {
-#ifdef JFPLATFORM_WINDOWS
+#if defined(JFPLATFORM_WINDOWS)
 	namespace Win32
 	{
 		extern JFWindow* CreatePlatformWindow();
 	}
 	using namespace Win32;
-#elif JFPLATFORM_MAC
+#elif defined(JFPLATFORM_MAC)
     namespace Cocoa
     {
         extern JFWindow* CreatePlatformWindow();
     }
     using namespace Cocoa;
-#elif JFPLATFORM_IOS
+#elif defined(JFPLATFORM_IOS)
     namespace CocoaTouch
     {
         extern JFWindow* CreatePlatformWindow();
     }
     using namespace CocoaTouch;
-#elif
+#else
     #error "Unsupported platform. Window creation not implemented."
 #endif
 }
