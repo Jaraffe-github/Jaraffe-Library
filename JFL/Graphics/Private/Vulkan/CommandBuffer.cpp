@@ -74,6 +74,7 @@ void CommandBuffer::Commit()
 
 	submitInfo.signalSemaphoreCount = 0;
 	submitInfo.pSignalSemaphores = nullptr;
+	submitInfos.Add(submitInfo);
 
 	queue->Submit(submitInfos.Data(), submitInfos.Count());
 }
