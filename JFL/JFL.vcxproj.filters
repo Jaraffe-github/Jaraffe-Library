@@ -297,6 +297,15 @@
     <ClInclude Include="Window\Private\CocoaTouch\Window.h">
       <Filter>Window\Private\CocoaTouch</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\CommandBuffer.h">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\CopyCommandEncoder.h">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Private\Vulkan\RenderCommandEncoder.h">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\JFAffineTransform2.inl">
@@ -455,6 +464,15 @@
       <Filter>Application\Private\Win32</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Private\Vulkan\RenderPipeline.cpp">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Vulkan\CommandBuffer.cpp">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Vulkan\CopyCommandEncoder.cpp">
+      <Filter>Graphics\Private\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Vulkan\RenderCommandEncoder.cpp">
       <Filter>Graphics\Private\Vulkan</Filter>
     </ClCompile>
   </ItemGroup>

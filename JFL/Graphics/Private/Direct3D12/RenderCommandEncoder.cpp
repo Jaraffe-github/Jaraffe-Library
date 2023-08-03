@@ -8,6 +8,7 @@
 #include "RenderCommandEncoder.h"
 #include "Texture.h"
 #include "GPUBuffer.h"
+#include "RenderCommandEncoder.h"
 
 using namespace JFL;
 using namespace JFL::Private::Direct3D12;

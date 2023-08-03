@@ -238,7 +238,7 @@ GraphicsDevice::GraphicsDevice()
 	for (size_t i = 0; i < queueFamilyProperties.Count(); ++i)
 	{
 		VkQueueFamilyProperties& queueFamilyProperty = queueFamilyProperties[i];
-		queueFamilies.Add(new QueueFamily(device, queueFamilyProperty, static_cast<uint32_t>(i)));
+		queueFamilies.Add(new QueueFamily(this, queueFamilyProperty, static_cast<uint32_t>(i)));
 	}
 }
 
@@ -413,6 +413,26 @@ JFObject<JFRenderPipeline> GraphicsDevice::CreateRenderPipeline(const JFRenderPi
 		desc.vertexShader.DynamicCast<Shader>()->PipelineShaderStageInfo(),
 		desc.fragmentShader.DynamicCast<Shader>()->PipelineShaderStageInfo()
 	};
+	
+	// Viewport.
+	VkViewport viewport{};
+	viewport.x = 0.0f;
+	viewport.y = 0.0f;
+	viewport.width = (float)1024;
+	viewport.height = (float)1024;
+	viewport.minDepth = 0.0f;
+	viewport.maxDepth = 1.0f;
+
+	VkRect2D scissor{};
+	scissor.offset = { 0, 0 };
+	scissor.extent = VkExtent2D{ 1024, 1024 };
+
+	VkPipelineViewportStateCreateInfo viewportState{};
+	viewportState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+	viewportState.viewportCount = 1;
+	viewportState.pViewports = &viewport;
+	viewportState.scissorCount = 1;
+	viewportState.pScissors = &scissor;
 
 	// Rasterizer.
 	VkPipelineRasterizationStateCreateInfo rasterizer{};
@@ -427,6 +447,16 @@ JFObject<JFRenderPipeline> GraphicsDevice::CreateRenderPipeline(const JFRenderPi
 	rasterizer.depthBiasConstantFactor = 0.0f; // Optional
 	rasterizer.depthBiasClamp = 0.0f; // Optional
 	rasterizer.depthBiasSlopeFactor = 0.0f; // Optional
+
+	// Multisampling.
+	VkPipelineMultisampleStateCreateInfo multisampling{};
+	multisampling.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
+	multisampling.sampleShadingEnable = VK_FALSE;
+	multisampling.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;
+	multisampling.minSampleShading = 1.0f; // Optional
+	multisampling.pSampleMask = nullptr; // Optional
+	multisampling.alphaToCoverageEnable = VK_FALSE; // Optional
+	multisampling.alphaToOneEnable = VK_FALSE; // Optional
 
 	// Color blending.
 	VkPipelineColorBlendAttachmentState colorBlendAttachment{};
@@ -499,9 +529,9 @@ JFObject<JFRenderPipeline> GraphicsDevice::CreateRenderPipeline(const JFRenderPi
 
 	pipelineInfo.pVertexInputState = &vertexInputInfo;
 	pipelineInfo.pInputAssemblyState = &inputAssembly;
-	pipelineInfo.pViewportState = nullptr;
+	pipelineInfo.pViewportState = &viewportState;
 	pipelineInfo.pRasterizationState = &rasterizer;
-	pipelineInfo.pMultisampleState = nullptr;
+	pipelineInfo.pMultisampleState = &multisampling;
 	pipelineInfo.pDepthStencilState = nullptr;
 	pipelineInfo.pColorBlendState = &colorBlending;
 	pipelineInfo.pDynamicState = &dynamicState;

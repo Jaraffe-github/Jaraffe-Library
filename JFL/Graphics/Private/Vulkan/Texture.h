@@ -15,7 +15,7 @@ namespace JFL::Private::Vulkan
 	class Texture final : public JFTexture
 	{
 	public:
-		Texture(GraphicsDevice* device, VkImage image, VkImageView imageView);
+		Texture(GraphicsDevice* device, VkImage image, VkImageView imageView, VkFramebuffer frameBuffer);
 		Texture(const Texture& texture);
 		~Texture() noexcept;
 
@@ -24,6 +24,9 @@ namespace JFL::Private::Vulkan
 		uint32_t Height() const { return height; }
 		JFPixelFormat Format() const { return format; }
 
+		VkImageView ImageView() const { return imageView; }
+		VkFramebuffer FrameBuffer() const { return frameBuffer; }
+
 	private:
 		uint32_t width;
 		uint32_t height;
@@ -31,6 +34,7 @@ namespace JFL::Private::Vulkan
 
 		VkImage image;
 		VkImageView imageView;
+		VkFramebuffer frameBuffer;
 		JFObject<GraphicsDevice> device;
 	};
 }

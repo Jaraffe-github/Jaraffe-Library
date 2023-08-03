@@ -19,6 +19,9 @@ namespace JFL::Private::Vulkan
 		RenderPipeline(GraphicsDevice* device, VkPipeline pipeline, VkRenderPass renderPass, VkPipelineLayout pipelineLayout);
 		~RenderPipeline();
 
+		VkPipeline Pipeline() const { return pipeline; }
+		VkRenderPass RenderPass() const { return renderPass; }
+
 	private:
 		VkPipeline pipeline;
 		VkRenderPass renderPass;

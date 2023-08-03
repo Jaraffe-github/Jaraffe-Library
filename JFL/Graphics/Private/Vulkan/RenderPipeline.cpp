@@ -6,6 +6,7 @@
 //
 
 #include "RenderPipeline.h"
+#include "GraphicsDevice.h"
 
 using namespace JFL;
 using namespace JFL::Private::Vulkan;

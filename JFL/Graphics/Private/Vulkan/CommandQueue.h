@@ -9,14 +9,12 @@
 #include "../../JFCommandQueue.h"
 #include "JFInclude.h"
 #include "vulkan_headers.h"
+#include "Object/JFObject.h"
 #include "QueueFamily.h"
 #include "GraphicsDevice.h"
-#include "Object/JFObject.h"
 
 namespace JFL::Private::Vulkan
 {
-	class GraphicsDevice;
-
 	class CommandQueue final : public JFCommandQueue
 	{
 	public:
@@ -30,7 +28,10 @@ namespace JFL::Private::Vulkan
 
 		VkQueue Queue() const { return queue; }
 
+		void Submit(const VkSubmitInfo* submitInfos, uint32_t numSubmitInfos);
+
 	private:
+		VkFence fence;
 		VkQueue queue;
 		JFObject<QueueFamily> queueFamily;
 		JFObject<GraphicsDevice> device;

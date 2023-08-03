@@ -7,11 +7,12 @@
 
 #include "QueueFamily.h"
 #include "CommandQueue.h"
+#include "GraphicsDevice.h"
 
 using namespace JFL;
 using namespace JFL::Private::Vulkan;
 
-QueueFamily::QueueFamily(VkDevice device, const VkQueueFamilyProperties& queueProperty, uint32_t familyIndex)
+QueueFamily::QueueFamily(GraphicsDevice* device, const VkQueueFamilyProperties& queueProperty, uint32_t familyIndex)
 	: queueProperty(queueProperty)
 	, familyIndex(familyIndex)
 {
@@ -19,9 +20,13 @@ QueueFamily::QueueFamily(VkDevice device, const VkQueueFamilyProperties& queuePr
 	usableQueues.Add(VkQueue{}, queueProperty.queueCount);
 	for (uint32_t i = 0; i < queueProperty.queueCount; ++i)
 	{
-		vkGetDeviceQueue(device, familyIndex, i, &usableQueues[i]);
+		vkGetDeviceQueue(device->Device(), familyIndex, i, &usableQueues[i]);
 		JFASSERT(usableQueues[i]);
 	}
+}
+
+QueueFamily::~QueueFamily()
+{
 }
 
 bool QueueFamily::IsFlagSupported(VkQueueFlags queueFlag)

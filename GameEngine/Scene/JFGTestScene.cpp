@@ -38,7 +38,7 @@ void JFGTestScene::Initialize()
 	BuildConstantsBuffers();
 	BuildRenderPipeline();
 
-	models.Add(LoadModel("Resource/Meshes/bunny.obj"));
+	// models.Add(LoadModel("Resource/Meshes/bunny.obj"));
 }
 
 void JFGTestScene::Terminate()
@@ -57,7 +57,7 @@ void JFGTestScene::Update()
 	}
 
 	UpdateCamera();
-	UpdateMainPassConstants();
+	//UpdateMainPassConstants();
 }
 
 void JFGTestScene::Render()
@@ -77,23 +77,25 @@ void JFGTestScene::Render()
 
 			encoder->SetRenderTargets({ swapChain->CurrentColorTexture() }, swapChain->DepthStencilTexture());
 
-			encoder->SetConstantBuffer(2, mainPassConstantsBuffer);
+			// encoder->SetConstantBuffer(2, mainPassConstantsBuffer);
 
-			for (const JFGModel& model : models)
-			{
-				UpdateObjectConstants(model);
-				UpdateMaterialConstants(model);
+			//for (const JFGModel& model : models)
+			//{
+			//	UpdateObjectConstants(model);
+			//	UpdateMaterialConstants(model);
+			//
+			//	encoder->SetConstantBuffer(0, objectConstantsBuffer);
+			//	encoder->SetConstantBuffer(1, materialConstantsBuffer);
+			//
+			//	for (const JFGMesh& mesh : model.meshes)
+			//	{
+			//		encoder->SetVertexBuffer(mesh.vertexBuffer, sizeof(JFGVertex));
+			//		encoder->DrawPrimitives(JFRenderCommandEncoder::PrimitiveType::Triangle,
+			//								(uint32_t)mesh.vertices.Count(), 1, 0, 0);
+			//	}
+			//}
 
-				encoder->SetConstantBuffer(0, objectConstantsBuffer);
-				encoder->SetConstantBuffer(1, materialConstantsBuffer);
-
-				for (const JFGMesh& mesh : model.meshes)
-				{
-					encoder->SetVertexBuffer(mesh.vertexBuffer, sizeof(JFGVertex));
-					encoder->DrawPrimitives(JFRenderCommandEncoder::PrimitiveType::Triangle,
-											(uint32_t)mesh.vertices.Count(), 1, 0, 0);
-				}
-			}
+			encoder->DrawPrimitives(JFRenderCommandEncoder::PrimitiveType::Triangle, 3, 1, 0, 0);
 
 			encoder->EndEncoding();
 		}
@@ -101,9 +103,10 @@ void JFGTestScene::Render()
 		commandBuffer->Commit();
 	}
 
+	commandQueue->WaitComplete();
+
 	// swap the back and front buffers.
 	swapChain->Present();
-	commandQueue->WaitComplete();
 }
 
 void JFGTestScene::OnWindowEvent(const JFWindowEvent& windowEvent)
@@ -142,11 +145,12 @@ void JFGTestScene::BuildRenderPipeline()
 {
 	JFRenderPipelineDescriptor descriptor;
 	descriptor.sampleCount = 1;
-	descriptor.vertexShader = graphicsDevice->CreateShader(L"Resource/Shaders/Default.hlsl", "VS", JFShader::StageType::Vertex);
-	descriptor.fragmentShader = graphicsDevice->CreateShader(L"Resource/Shaders/Default.hlsl", "PS", JFShader::StageType::Fragment);
+	descriptor.vertexShader = graphicsDevice->CreateShader(L"Resource/Shaders/SimpleVertexShader.spv", "main", JFShader::StageType::Vertex);
+	descriptor.fragmentShader = graphicsDevice->CreateShader(L"Resource/Shaders/SimplePixelShader.spv", "main", JFShader::StageType::Fragment);
 	descriptor.vertexDescriptor.attributes = {
-		{JFVertexFormat::Float3, "POSITION", 0, 0 },
-		{JFVertexFormat::Float3, "NORMAL", 0, 12 },
+		{JFVertexFormat::Float3, "COLOR", 0, 0 },
+		// {JFVertexFormat::Float3, "POSITION", 0, 0 },
+		// {JFVertexFormat::Float3, "NORMAL", 0, 12 },
 		//{JFVertexFormat::Float4, "COLOR", 0, 24 },
 		//{JFVertexFormat::Float2, "TEXCOORD", 0, 40 }
 	};

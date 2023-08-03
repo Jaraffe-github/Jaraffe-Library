@@ -17,6 +17,8 @@ SwapChain::SwapChain(GraphicsDevice* device, CommandQueue* queue, QueueFamily* q
 	: width(window->Width())
 	, height(window->Height())
 	, device(device)
+	, presentQueue(queue)
+	, currentFrameBufferIndex(0)
 {
 #if defined(VK_USE_PLATFORM_WIN32_KHR)
 	VkWin32SurfaceCreateInfoKHR surfaceCreateInfo = {};
@@ -25,6 +27,39 @@ SwapChain::SwapChain(GraphicsDevice* device, CommandQueue* queue, QueueFamily* q
 	surfaceCreateInfo.hinstance = (HINSTANCE)GetModuleHandleW(NULL);
 	ThrowIfFailed(vkCreateWin32SurfaceKHR(device->Instance(), &surfaceCreateInfo, nullptr, &surface));
 #endif
+
+	VkRenderPass renderPass;
+
+	// Attachment description.
+	VkAttachmentDescription colorAttachment{};
+	colorAttachment.format = VK_FORMAT_R8G8B8A8_UNORM;
+	colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
+	colorAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
+	colorAttachment.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
+	colorAttachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+	colorAttachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+	colorAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+	colorAttachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+
+	// Subpasses and attachment references.
+	VkAttachmentReference colorAttachmentRef{};
+	colorAttachmentRef.attachment = 0;
+	colorAttachmentRef.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+
+	VkSubpassDescription subpass{};
+	subpass.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
+	subpass.colorAttachmentCount = 1;
+	subpass.pColorAttachments = &colorAttachmentRef;
+
+	// Render pass.
+	VkRenderPassCreateInfo renderPassInfo{};
+	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
+	renderPassInfo.attachmentCount = 1;
+	renderPassInfo.pAttachments = &colorAttachment;
+	renderPassInfo.subpassCount = 1;
+	renderPassInfo.pSubpasses = &subpass;
+
+	ThrowIfFailed(vkCreateRenderPass(device->Device(), &renderPassInfo, nullptr, &renderPass));
 
 	VkSurfaceCapabilitiesKHR capabilities;
 	vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device->PhysicalDevice(), surface, &capabilities);
@@ -36,7 +71,7 @@ SwapChain::SwapChain(GraphicsDevice* device, CommandQueue* queue, QueueFamily* q
 		throw std::runtime_error("surface format not supported!");
 
 	JFArray<VkPresentModeKHR> presentModes ={
-		VK_PRESENT_MODE_MAILBOX_KHR
+		VK_PRESENT_MODE_FIFO_KHR
 	};
 	if (!CheckSurfacePresentMode(presentModes))
 		throw std::runtime_error("surface present mode not supported!");
@@ -70,8 +105,13 @@ SwapChain::SwapChain(GraphicsDevice* device, CommandQueue* queue, QueueFamily* q
 	JFArray<VkImage> colorImages(imageCount);
 	vkGetSwapchainImagesKHR(device->Device(), swapChain, &imageCount, colorImages.Data());
 
+	colorTextures.Reserve(imageCount);
+	framebuffers.Reserve(imageCount);
+
+	// Create image view.
 	for (VkImage colorImage : colorImages)
 	{
+		// image view.
 		VkImageViewCreateInfo createInfo{};
 		createInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
 		createInfo.image = colorImage;
@@ -93,14 +133,33 @@ SwapChain::SwapChain(GraphicsDevice* device, CommandQueue* queue, QueueFamily* q
 		VkImageView imageView;
 		ThrowIfFailed(vkCreateImageView(device->Device(), &createInfo, nullptr, &imageView));
 
-		colorTextures.EmplaceAdd(device, colorImage, imageView);
+		// frame buffer.
+		VkFramebufferCreateInfo framebufferInfo{};
+		framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
+		framebufferInfo.renderPass = renderPass;
+		framebufferInfo.attachmentCount = 1;
+		framebufferInfo.pAttachments = &imageView;
+		framebufferInfo.width = width;
+		framebufferInfo.height = height;
+		framebufferInfo.layers = 1;
+
+		VkFramebuffer frameBuffer;
+		ThrowIfFailed(vkCreateFramebuffer(device->Device(), &framebufferInfo, nullptr, &frameBuffer));
+
+		colorTextures.Add(new Texture(device, colorImage, imageView, frameBuffer));
 	}
+
+	VkSemaphoreCreateInfo semaphoreInfo{};
+	semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
+
+	ThrowIfFailed(vkCreateSemaphore(device->Device(), &semaphoreInfo, nullptr, &imageAvailableSemaphore));
 }
 
 SwapChain::~SwapChain()
 {
 	colorTextures.Clear();
 
+	vkDestroySemaphore(device->Device(), imageAvailableSemaphore, nullptr);
 	vkDestroySwapchainKHR(device->Device(), swapChain, nullptr);
 	vkDestroySurfaceKHR(device->Instance(), surface, nullptr);
 }
@@ -117,7 +176,7 @@ uint32_t SwapChain::Height()
 
 const JFTexture* SwapChain::CurrentColorTexture() const
 {
-	return nullptr;
+	return colorTextures[currentFrameBufferIndex];
 }
 
 const JFTexture* SwapChain::DepthStencilTexture() const
@@ -131,7 +190,21 @@ void SwapChain::Resize(uint32_t width, uint32_t height)
 
 void SwapChain::Present()
 {
+	vkAcquireNextImageKHR(device->Device(), swapChain, UINT64_MAX, imageAvailableSemaphore, VK_NULL_HANDLE, &currentFrameBufferIndex);
 
+	VkPresentInfoKHR presentInfo{};
+	presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+
+	presentInfo.waitSemaphoreCount = 0;
+	presentInfo.pWaitSemaphores = nullptr;
+
+	VkSwapchainKHR swapChains[] = { swapChain };
+	presentInfo.swapchainCount = 1;
+	presentInfo.pSwapchains = swapChains;
+
+	presentInfo.pImageIndices = &currentFrameBufferIndex;
+
+	vkQueuePresentKHR(presentQueue->Queue(), &presentInfo);
 }
 
 bool SwapChain::CheckSurfaceFormatSupport(const JFArray<VkSurfaceFormatKHR>& surfaceFormats)

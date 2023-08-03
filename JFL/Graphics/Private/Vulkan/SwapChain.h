@@ -9,14 +9,12 @@
 #include "../../JFSwapChain.h"
 #include "JFInclude.h"
 #include "vulkan_headers.h"
-#include "GraphicsDevice.h"
 #include "Texture.h"
+#include "CommandQueue.h"
+#include "GraphicsDevice.h"
 
 namespace JFL::Private::Vulkan
 {
-	class CommandQueue;
-	class GraphicsDevice;
-
 	class SwapChain final : public JFSwapChain
 	{
 	public:
@@ -38,11 +36,15 @@ namespace JFL::Private::Vulkan
 
 		VkSurfaceKHR surface;
 		VkSwapchainKHR swapChain;
-
-		JFArray<Texture> colorTextures;
+		VkSemaphore imageAvailableSemaphore;
+		
+		uint32_t currentFrameBufferIndex;
+		JFArray<VkFramebuffer> framebuffers;
+		JFArray<JFObject<Texture>> colorTextures;
 
 		uint32_t width;
 		uint32_t height;
 		JFObject<GraphicsDevice> device;
+		JFObject<CommandQueue> presentQueue;
 	};
 }

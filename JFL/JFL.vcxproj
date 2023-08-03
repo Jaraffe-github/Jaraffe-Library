@@ -333,7 +333,9 @@
     <ClInclude Include="Graphics\Private\Direct3D12\RenderCommandEncoder.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\RenderPipeline.h" />
     <ClInclude Include="Graphics\Private\Direct3D12\Shader.h" />
+    <ClInclude Include="Graphics\Private\Vulkan\CommandBuffer.h" />
     <ClInclude Include="Graphics\Private\Vulkan\CommandQueue.h" />
+    <ClInclude Include="Graphics\Private\Vulkan\CopyCommandEncoder.h" />
     <ClInclude Include="Graphics\Private\Vulkan\GraphicsDevice.h" />
     <ClInclude Include="Graphics\JFCommandBuffer.h" />
     <ClInclude Include="Graphics\JFCommandQueue.h" />
@@ -354,6 +356,7 @@
     <ClInclude Include="Graphics\Private\Direct3D12\GraphicsDevice.h" />
     <ClInclude Include="Graphics\JFSwapChain.h" />
     <ClInclude Include="Graphics\Private\Vulkan\QueueFamily.h" />
+    <ClInclude Include="Graphics\Private\Vulkan\RenderCommandEncoder.h" />
     <ClInclude Include="Graphics\Private\Vulkan\RenderPipeline.h" />
     <ClInclude Include="Graphics\Private\Vulkan\Shader.h" />
     <ClInclude Include="Graphics\Private\Vulkan\SwapChain.h" />
@@ -452,9 +455,12 @@
     <ClCompile Include="Graphics\Private\Direct3D12\Shader.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\SwapChain.cpp" />
     <ClCompile Include="Graphics\Private\Direct3D12\Texture.cpp" />
+    <ClCompile Include="Graphics\Private\Vulkan\CommandBuffer.cpp" />
     <ClCompile Include="Graphics\Private\Vulkan\CommandQueue.cpp" />
+    <ClCompile Include="Graphics\Private\Vulkan\CopyCommandEncoder.cpp" />
     <ClCompile Include="Graphics\Private\Vulkan\GraphicsDevice.cpp" />
     <ClCompile Include="Graphics\Private\Vulkan\QueueFamily.cpp" />
+    <ClCompile Include="Graphics\Private\Vulkan\RenderCommandEncoder.cpp" />
     <ClCompile Include="Graphics\Private\Vulkan\RenderPipeline.cpp" />
     <ClCompile Include="Graphics\Private\Vulkan\Shader.cpp" />
     <ClCompile Include="Graphics\Private\Vulkan\SwapChain.cpp" />

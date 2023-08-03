@@ -8,6 +8,7 @@
 #pragma once
 #include "JFInclude.h"
 #include "vulkan_headers.h"
+#include "Object/JFObject.h"
 #include "Object/JFRefCounter.h"
 #include "Lock/JFLock.h"
 #include "Container/JFArray.h"
@@ -20,8 +21,8 @@ namespace JFL::Private::Vulkan
 	class QueueFamily final : public JFRefCounter
 	{
 	public:
-		QueueFamily(VkDevice device, const VkQueueFamilyProperties& queueProperty, uint32_t familyIndex);
-		~QueueFamily() = default;
+		QueueFamily(GraphicsDevice* device, const VkQueueFamilyProperties& queueProperty, uint32_t familyIndex);
+		~QueueFamily();
 
 		uint32_t FamilyIndex() const;
 		size_t QueueCount() const;
@@ -32,8 +33,8 @@ namespace JFL::Private::Vulkan
 		void ReleaseCommandQueue(CommandQueue* queue);
 
 	private:
-		VkQueueFamilyProperties queueProperty;
 		uint32_t familyIndex;
+		VkQueueFamilyProperties queueProperty;
 
 		JFSpinLock queueLock;
 		JFArray<VkQueue> usableQueues;

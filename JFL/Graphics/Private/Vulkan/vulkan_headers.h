@@ -16,7 +16,7 @@
 
 namespace Tools
 {
-	static std::string errorString(VkResult errorCode)
+	static std::string ErrorString(VkResult errorCode)
 	{
 		switch (errorCode)
 		{
@@ -55,7 +55,7 @@ inline void ThrowIfFailed(VkResult result)
 {
 	if (result != VK_SUCCESS)
 	{
-		auto msg = Tools::errorString(result);
+		auto msg = Tools::ErrorString(result);
 		throw std::runtime_error(msg.c_str());
 	}
 }
