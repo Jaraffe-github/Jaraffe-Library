@@ -8,6 +8,7 @@
 #include "CommandQueue.h"
 #include "SwapChain.h"
 #include "CommandBuffer.h"
+#include "VulkanUtils.h"
 
 using namespace JFL;
 using namespace JFL::Private::Vulkan;

@@ -38,7 +38,7 @@ void JFGTestScene::Initialize()
 	BuildConstantsBuffers();
 	BuildRenderPipeline();
 
-	// models.Add(LoadModel("Resource/Meshes/bunny.obj"));
+	models.Add(LoadModel("Resource/Meshes/bunny.obj"));
 }
 
 void JFGTestScene::Terminate()
@@ -79,23 +79,21 @@ void JFGTestScene::Render()
 
 			// encoder->SetConstantBuffer(2, mainPassConstantsBuffer);
 
-			//for (const JFGModel& model : models)
-			//{
-			//	UpdateObjectConstants(model);
-			//	UpdateMaterialConstants(model);
-			//
-			//	encoder->SetConstantBuffer(0, objectConstantsBuffer);
-			//	encoder->SetConstantBuffer(1, materialConstantsBuffer);
-			//
-			//	for (const JFGMesh& mesh : model.meshes)
-			//	{
-			//		encoder->SetVertexBuffer(mesh.vertexBuffer, sizeof(JFGVertex));
-			//		encoder->DrawPrimitives(JFRenderCommandEncoder::PrimitiveType::Triangle,
-			//								(uint32_t)mesh.vertices.Count(), 1, 0, 0);
-			//	}
-			//}
-
-			encoder->DrawPrimitives(JFRenderCommandEncoder::PrimitiveType::Triangle, 3, 1, 0, 0);
+			for (const JFGModel& model : models)
+			{
+				// UpdateObjectConstants(model);
+				// UpdateMaterialConstants(model);
+			
+				// encoder->SetConstantBuffer(0, objectConstantsBuffer);
+				// encoder->SetConstantBuffer(1, materialConstantsBuffer);
+			
+				for (const JFGMesh& mesh : model.meshes)
+				{
+					encoder->SetVertexBuffer(mesh.vertexBuffer, sizeof(JFGVertex));
+					encoder->DrawPrimitives(JFRenderCommandEncoder::PrimitiveType::Triangle,
+											(uint32_t)mesh.vertices.Count(), 1, 0, 0);
+				}
+			}
 
 			encoder->EndEncoding();
 		}
@@ -136,9 +134,9 @@ void JFGTestScene::CreateWhiteTexture()
 
 void JFGTestScene::BuildConstantsBuffers()
 {
-	mainPassConstantsBuffer = graphicsDevice->CreateGPUBuffer(sizeof(JFGMainPassConstants), JFGPUBuffer::CPUCacheMode::WriteCombined);
-	objectConstantsBuffer = graphicsDevice->CreateGPUBuffer(sizeof(JFGObjectConstants), JFGPUBuffer::CPUCacheMode::WriteCombined);
-	materialConstantsBuffer = graphicsDevice->CreateGPUBuffer(sizeof(JFGMaterialConstants), JFGPUBuffer::CPUCacheMode::WriteCombined);
+	//mainPassConstantsBuffer = graphicsDevice->CreateGPUBuffer({ sizeof(JFGMainPassConstants),  });
+	//objectConstantsBuffer = graphicsDevice->CreateGPUBuffer(sizeof(JFGObjectConstants), JFGPUBuffer::CPUCacheMode::WriteCombined);
+	//materialConstantsBuffer = graphicsDevice->CreateGPUBuffer(sizeof(JFGMaterialConstants), JFGPUBuffer::CPUCacheMode::WriteCombined);
 }
 
 void JFGTestScene::BuildRenderPipeline()
@@ -147,11 +145,11 @@ void JFGTestScene::BuildRenderPipeline()
 	descriptor.sampleCount = 1;
 	descriptor.vertexShader = graphicsDevice->CreateShader(L"Resource/Shaders/SimpleVertexShader.spv", "main", JFShader::StageType::Vertex);
 	descriptor.fragmentShader = graphicsDevice->CreateShader(L"Resource/Shaders/SimplePixelShader.spv", "main", JFShader::StageType::Fragment);
+	descriptor.vertexDescriptor.vertexStride = sizeof(JFGVertex);
 	descriptor.vertexDescriptor.attributes = {
-		{JFVertexFormat::Float3, "COLOR", 0, 0 },
-		// {JFVertexFormat::Float3, "POSITION", 0, 0 },
-		// {JFVertexFormat::Float3, "NORMAL", 0, 12 },
-		//{JFVertexFormat::Float4, "COLOR", 0, 24 },
+		{ JFVertexFormat::Float3,	"POSITION", 0,	0	},
+		{ JFVertexFormat::Float3,	"NORMAL",	0,	12	},
+		{ JFVertexFormat::Float4,	"COLOR",	0,	24	},
 		//{JFVertexFormat::Float2, "TEXCOORD", 0, 40 }
 	};
 	descriptor.colorAttachments = {
@@ -290,7 +288,13 @@ JFGModel JFGTestScene::LoadModel(const JFStringA& path)
 			index_offset += fv;
 		}
 
-		JFObject<JFGPUBuffer> vertexBuffer = graphicsDevice->CreateGPUBuffer(vertices.Bytes(), JFGPUBuffer::CPUCacheMode::WriteCombined);
+		JFGPUBufferDescriptor vertexBufferDesc{};
+		vertexBufferDesc.size = vertices.Bytes();
+		vertexBufferDesc.usage = JFGPUBuffer::Usage::UsageVertexBuffer;
+		vertexBufferDesc.memoryLocation = JFGPUBuffer::MemoryLocation::CPUAndGPU;
+		vertexBufferDesc.cacheMode = JFGPUBuffer::CPUCacheMode::Synchronized;
+
+		JFObject<JFGPUBuffer> vertexBuffer = graphicsDevice->CreateGPUBuffer(vertexBufferDesc);
 		vertexBuffer->WriteData(vertices.Data(), vertices.Bytes());
 
 		newModel.meshes.EmplaceAdd(std::move(vertices), vertexBuffer);

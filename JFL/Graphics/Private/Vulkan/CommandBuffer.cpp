@@ -10,6 +10,7 @@
 #include "RenderCommandEncoder.h"
 #include "RenderPipeline.h"
 #include "GraphicsDevice.h"
+#include "VulkanUtils.h"
 
 using namespace JFL;
 using namespace JFL::Private::Vulkan;
@@ -69,14 +70,14 @@ void CommandBuffer::Commit()
 	submitInfo.pWaitSemaphores = nullptr;
 	submitInfo.pWaitDstStageMask = waitStages;
 
-	submitInfo.commandBufferCount = encodedCommandBuffers.Count();
+	submitInfo.commandBufferCount = static_cast<uint32_t>(encodedCommandBuffers.Count());
 	submitInfo.pCommandBuffers = encodedCommandBuffers.Data();
 
 	submitInfo.signalSemaphoreCount = 0;
 	submitInfo.pSignalSemaphores = nullptr;
 	submitInfos.Add(submitInfo);
 
-	queue->Submit(submitInfos.Data(), submitInfos.Count());
+	queue->Submit(submitInfos.Data(), static_cast<uint32_t>(submitInfos.Count()));
 }
 
 VkCommandBuffer CommandBuffer::GetCommandBuffer()

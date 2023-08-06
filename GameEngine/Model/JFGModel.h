@@ -16,7 +16,7 @@ namespace JFG
         JFVector3 pos;
         JFVector3 normal;
         JFLinearColor color;
-        JFVector2 texcoord;
+        // JFVector2 texcoord;
     };
 
     struct JFGMesh

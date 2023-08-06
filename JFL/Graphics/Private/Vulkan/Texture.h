@@ -7,7 +7,7 @@
 
 #pragma once
 #include "../../JFTexture.h"
-#include "vulkan_headers.h"
+#include "VulkanHeaders.h"
 #include "GraphicsDevice.h"
 
 namespace JFL::Private::Vulkan

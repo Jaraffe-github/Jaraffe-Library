@@ -11,12 +11,12 @@
 
 namespace JFL::Private
 {
-#if defined(_WIN32)
-	namespace Direct3D12
-	{
-		extern JFGraphicsDevice* CreateGraphicsDevice();
-	}
-#endif
+// #if defined(_WIN32)
+// 	namespace Direct3D12
+// 	{
+// 		extern JFGraphicsDevice* CreateGraphicsDevice();
+// 	}
+// #endif
 
 	namespace Vulkan
 	{
@@ -32,10 +32,10 @@ namespace JFL::Private
 	{
 		switch (type)
 		{
-#if defined(_WIN32)
-		case JFGraphicsType::Direct3D12:
-			return Direct3D12::CreateGraphicsDevice();
-#endif
+// #if defined(_WIN32)
+// 		case JFGraphicsType::Direct3D12:
+// 			return Direct3D12::CreateGraphicsDevice();
+// #endif
 		case JFGraphicsType::Vulkan:
 			return Vulkan::CreateGraphicsDevice();
 		}

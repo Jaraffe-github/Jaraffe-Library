@@ -33,7 +33,7 @@ namespace JFL
 		virtual JFObject<JFCommandQueue> CreateCommandQueue() = 0;
 		virtual JFObject<JFRenderPipeline> CreateRenderPipeline(const JFRenderPipelineDescriptor& descriptor) = 0;
 
-		virtual JFObject<JFGPUBuffer> CreateGPUBuffer(size_t size, JFGPUBuffer::CPUCacheMode mode) = 0;
+		virtual JFObject<JFGPUBuffer> CreateGPUBuffer(const JFGPUBufferDescriptor& descriptor) = 0;
 		virtual JFObject<JFTexture> CreateTexture(const JFTextureDescriptor& descriptor) = 0;
 
 		// TODO: need SPIR-V

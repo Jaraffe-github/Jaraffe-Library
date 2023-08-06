@@ -7,6 +7,8 @@
 
 #include "RenderCommandEncoder.h"
 #include "Texture.h"
+#include "GPUBuffer.h"
+#include "VulkanUtils.h"
 
 using namespace JFL;
 using namespace JFL::Private::Vulkan;
@@ -85,7 +87,16 @@ void RenderCommandEncoder::ClearDepthStencilView(const JFTexture* depthStencil, 
 
 void RenderCommandEncoder::SetVertexBuffer(const JFGPUBuffer* vertexBuffer, uint32_t vertexSize)
 {
+	commandFunctions.Add([vertexBuffer, vertexSize](VkCommandBuffer vkCommandBuffer)
+	{
+		const GPUBuffer* vb = dynamic_cast<const GPUBuffer*>(vertexBuffer);
+		JFASSERT_DEBUG(vb);
 
+		VkBuffer vertexBuffers[] = { vb->Buffer() };
+		VkDeviceSize offsets[] = { 0 };
+
+		vkCmdBindVertexBuffers(vkCommandBuffer, 0, 1, vertexBuffers, offsets);
+	});
 }
 
 void RenderCommandEncoder::SetIndexBuffer(const JFGPUBuffer* indexBuffer, uint32_t indexSize)

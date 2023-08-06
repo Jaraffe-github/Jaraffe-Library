@@ -30,6 +30,7 @@ namespace JFL
 
     struct JFVertexDescriptor
     {
+        uint32_t vertexStride;
         JFArray<JFVertexAttributeDescriptor> attributes;
     };
 }

@@ -7,7 +7,7 @@
 
 #pragma once
 #include "../../JFCopyCommandEncoder.h"
-#include "vulkan_headers.h"
+#include "VulkanHeaders.h"
 #include "CommandBuffer.h"
 
 namespace JFL::Private::Vulkan

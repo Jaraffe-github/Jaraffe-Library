@@ -9,6 +9,7 @@
 #include "GraphicsDevice.h"
 #include "Window/JFWindow.h"
 #include "SwapChain.h"
+#include "VulkanUtils.h"
 
 using namespace JFL;
 using namespace JFL::Private::Vulkan;

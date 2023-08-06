@@ -7,7 +7,7 @@
 
 #pragma once
 #include "../../JFGraphicsDevice.h"
-#include "vulkan_headers.h"
+#include "VulkanHeaders.h"
 #include "QueueFamily.h"
 
 namespace JFL::Private::Vulkan
@@ -21,7 +21,7 @@ namespace JFL::Private::Vulkan
 		JFObject<JFCommandQueue> CreateCommandQueue() override;
 		JFObject<JFRenderPipeline> CreateRenderPipeline(const JFRenderPipelineDescriptor&) override;
 
-		JFObject<JFGPUBuffer> CreateGPUBuffer(size_t, JFGPUBuffer::CPUCacheMode) override;
+		JFObject<JFGPUBuffer> CreateGPUBuffer(const JFGPUBufferDescriptor& descriptor) override;
 		JFObject<JFTexture> CreateTexture(const JFTextureDescriptor&) override;
 
 		JFObject<JFShader> CreateShader(const JFArray<uint8_t>& path, const JFStringA& entry, JFShader::StageType stage) override;

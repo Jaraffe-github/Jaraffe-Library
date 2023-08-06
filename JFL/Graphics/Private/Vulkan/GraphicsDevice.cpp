@@ -12,7 +12,8 @@
 #include "CommandQueue.h"
 #include "Shader.h"
 #include "RenderPipeline.h"
-#include "Types.h"
+#include "VulkanUtils.h"
+#include "GPUBuffer.h"
 
 namespace JFL::Private::Vulkan
 {
@@ -93,8 +94,7 @@ GraphicsDevice::GraphicsDevice()
 	, device(nullptr)
 	, physicalDevice(nullptr)
 {
-	VkInstanceCreateInfo instanceCreateInfo{};
-	instanceCreateInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+	VkInstanceCreateInfo instanceCreateInfo{ VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO };
 
 	JFArray<const char*> instanceExtensions =
 	{
@@ -260,9 +260,50 @@ JFObject<JFCommandQueue> GraphicsDevice::CreateCommandQueue()
 	return nullptr;
 }
 
-JFObject<JFGPUBuffer> GraphicsDevice::CreateGPUBuffer(size_t, JFGPUBuffer::CPUCacheMode)
+JFObject<JFGPUBuffer> GraphicsDevice::CreateGPUBuffer(const JFGPUBufferDescriptor& descriptor)
 {
-	return nullptr;
+	VkBuffer vkBuffer;
+	{
+		VkBufferCreateInfo bufferInfo{ VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO };
+		bufferInfo.size = descriptor.size;
+		bufferInfo.usage = Converter::BufferUsage(descriptor.usage);
+		bufferInfo.sharingMode = Converter::BufferSharingMode(descriptor.sharingMode);
+
+		ThrowIfFailed(vkCreateBuffer(device, &bufferInfo, nullptr, &vkBuffer));
+	}
+
+	VkDeviceMemory vkBufferMemory;
+	{
+		auto findMemoryType = [this](uint32_t typeFilter, VkMemoryPropertyFlags properties)
+		{
+			VkPhysicalDeviceMemoryProperties memProperties;
+			vkGetPhysicalDeviceMemoryProperties(physicalDevice, &memProperties);
+
+			for (uint32_t i = 0; i < memProperties.memoryTypeCount; i++)
+			{
+				if ((typeFilter & (1 << i)) && (memProperties.memoryTypes[i].propertyFlags & properties) == properties)
+				{
+					return i;
+				}
+			}
+
+			throw std::runtime_error("failed to find suitable memory type!");
+		};
+
+		VkMemoryRequirements memRequirements;
+		vkGetBufferMemoryRequirements(device, vkBuffer, &memRequirements);
+
+		VkMemoryAllocateInfo allocInfo{};
+		allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+		allocInfo.allocationSize = memRequirements.size;
+		allocInfo.memoryTypeIndex = findMemoryType(memRequirements.memoryTypeBits, Converter::MemoryPropertyFlags(descriptor.memoryLocation, descriptor.cacheMode));
+
+		ThrowIfFailed(vkAllocateMemory(device, &allocInfo, nullptr, &vkBufferMemory));
+	}
+
+	vkBindBufferMemory(device, vkBuffer, vkBufferMemory, 0);
+
+	return new GPUBuffer(this, vkBuffer, vkBufferMemory, descriptor);
 }
 
 JFObject<JFTexture> GraphicsDevice::CreateTexture(const JFTextureDescriptor&)
@@ -384,16 +425,39 @@ JFObject<JFRenderPipeline> GraphicsDevice::CreateRenderPipeline(const JFRenderPi
 	dynamicState.pDynamicStates = dynamicStates.Data();
 
 	// Vertex Input.
-	VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
-	vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-	vertexInputInfo.vertexBindingDescriptionCount = 0;
-	vertexInputInfo.pVertexBindingDescriptions = nullptr; // Optional
-	vertexInputInfo.vertexAttributeDescriptionCount = 0;
-	vertexInputInfo.pVertexAttributeDescriptions = nullptr; // Optional
+	VkPipelineVertexInputStateCreateInfo vertexInputInfo{ VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO };
+
+	// Setup binding description.
+	VkVertexInputBindingDescription vertexBindingDescription{};
+	vertexBindingDescription.binding = 0;
+	vertexBindingDescription.stride = desc.vertexDescriptor.vertexStride;
+	vertexBindingDescription.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+
+	vertexInputInfo.vertexBindingDescriptionCount = 1;
+	vertexInputInfo.pVertexBindingDescriptions = &vertexBindingDescription;
+
+	// Setup attribute description.
+	const int numOfVertexInputAttributes = static_cast<int>(desc.vertexDescriptor.attributes.Count());
+
+	JFArray<VkVertexInputAttributeDescription> vertexAttributeDescriptions(numOfVertexInputAttributes);
+	for (int i = 0; i < numOfVertexInputAttributes; ++i)
+	{
+		const JFVertexAttributeDescriptor& inputVertexAttrDesc = desc.vertexDescriptor.attributes[i];
+
+		VkVertexInputAttributeDescription vertexAttrDesc;
+		vertexAttrDesc.binding = 0;
+		vertexAttrDesc.location = i;
+		vertexAttrDesc.format = Converter::VertexFormat(inputVertexAttrDesc.format);
+		vertexAttrDesc.offset = inputVertexAttrDesc.offset;
+
+		vertexAttributeDescriptions[i] = vertexAttrDesc;
+	}
+
+	vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(vertexAttributeDescriptions.Count());
+	vertexInputInfo.pVertexAttributeDescriptions = vertexAttributeDescriptions.Data();
 
 	// Input assembly.
-	VkPipelineInputAssemblyStateCreateInfo inputAssembly{};
-	inputAssembly.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
+	VkPipelineInputAssemblyStateCreateInfo inputAssembly{ VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO };
 	inputAssembly.primitiveRestartEnable = VK_FALSE;
 
 	switch (desc.inputPrimitiveTopology)
@@ -492,7 +556,7 @@ JFObject<JFRenderPipeline> GraphicsDevice::CreateRenderPipeline(const JFRenderPi
 
 	// Attachment description.
 	VkAttachmentDescription colorAttachment{};
-	colorAttachment.format = PixelFormat(desc.colorAttachments[0].pixelFormat);
+	colorAttachment.format = Converter::PixelFormat(desc.colorAttachments[0].pixelFormat);
 	colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
 	colorAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
 	colorAttachment.storeOp = VK_ATTACHMENT_STORE_OP_STORE;

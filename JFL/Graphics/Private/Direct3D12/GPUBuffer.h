@@ -8,6 +8,7 @@
 #pragma once
 #include "../../JFGPUBuffer.h"
 #include "d3d12_headers.h"
+#include "GPUBuffer.h"
 
 namespace JFL::Private::Direct3D12
 {
