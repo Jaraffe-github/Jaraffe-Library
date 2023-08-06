@@ -101,7 +101,13 @@ void RenderCommandEncoder::SetVertexBuffer(const JFGPUBuffer* vertexBuffer, uint
 
 void RenderCommandEncoder::SetIndexBuffer(const JFGPUBuffer* indexBuffer, uint32_t indexSize)
 {
+	commandFunctions.Add([indexBuffer, indexSize](VkCommandBuffer vkCommandBuffer)
+	{
+		const GPUBuffer* ib = dynamic_cast<const GPUBuffer*>(indexBuffer);
+		JFASSERT_DEBUG(ib);
 
+		vkCmdBindIndexBuffer(vkCommandBuffer, ib->Buffer(), 0, indexSize == 2 ? VK_INDEX_TYPE_UINT16 : VK_INDEX_TYPE_UINT32);
+	});
 }
 
 void RenderCommandEncoder::SetConstantBuffer(uint32_t index, const JFGPUBuffer* constantBuffer)

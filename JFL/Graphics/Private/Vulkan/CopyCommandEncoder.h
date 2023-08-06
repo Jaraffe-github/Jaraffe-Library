@@ -9,6 +9,7 @@
 #include "../../JFCopyCommandEncoder.h"
 #include "VulkanHeaders.h"
 #include "CommandBuffer.h"
+#include <functional>
 
 namespace JFL::Private::Vulkan
 {
@@ -24,7 +25,10 @@ namespace JFL::Private::Vulkan
 
 		void EndEncoding();
 
+	private:
 		JFObject<CommandBuffer> commandBuffer;
 		VkCommandBuffer vkCommandBuffer;
+
+		JFArray<std::function<void(VkCommandBuffer)>> commandFunctions;
 	};
 }
