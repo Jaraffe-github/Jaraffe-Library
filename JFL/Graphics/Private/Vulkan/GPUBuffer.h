@@ -15,8 +15,6 @@ namespace JFL::Private::Vulkan
 	class GPUBuffer final : public JFGPUBuffer
 	{
 	public:
-		enum { WHOLE_SIZE = ~0ULL };
-
 		GPUBuffer(GraphicsDevice* device, VkBuffer vkBuffer, VkDeviceMemory vkMemory, const JFGPUBufferDescriptor& descriptor);
 		~GPUBuffer() noexcept;
 

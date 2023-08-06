@@ -92,7 +92,7 @@ bool GPUBuffer::SyncHostToDevice(size_t offset, size_t size)
 			memoryRange.sType = VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE;
 			memoryRange.memory = vkMemory;
 			memoryRange.offset = offset;
-			memoryRange.size = size;
+			memoryRange.size = JFNumeric::Min(size, descriptor.size);
 			vkFlushMappedMemoryRanges(device->Device(), 1, &memoryRange);
 			return true;
 		}
@@ -119,7 +119,7 @@ bool GPUBuffer::SyncDeviceToHost(size_t offset, size_t size)
 			memoryRange.sType = VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE;
 			memoryRange.memory = vkMemory;
 			memoryRange.offset = offset;
-			memoryRange.size = size;
+			memoryRange.size = JFNumeric::Min(size, descriptor.size);
 			vkInvalidateMappedMemoryRanges(device->Device(), 1, &memoryRange);
 		}
 		else

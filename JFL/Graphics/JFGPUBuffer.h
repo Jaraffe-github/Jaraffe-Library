@@ -14,6 +14,8 @@ namespace JFL
 	class JFL_API JFGPUBuffer : public JFRefCounter
 	{
 	public:
+		enum { WHOLE_SIZE = ~0ULL };
+
 		enum Usage : uint8_t
 		{
 			UsageIndexBuffer	= 0,
@@ -51,14 +53,14 @@ namespace JFL
 
 		virtual size_t Size() const = 0;
 
-		// Synchronize manually.
-		virtual bool SyncHostToDevice(size_t offset, size_t size) = 0;
-		virtual bool SyncDeviceToHost(size_t offset, size_t size) = 0;
-
 		// Must be memory location is CPUAndGPU.
 		virtual bool WriteData(const void* data, size_t size) = 0;
 		virtual bool WriteDataForTexture(const void* data, uint32_t width, uint32_t height, uint32_t formatSize) = 0;
 		virtual bool ReadData(void* data, size_t size) = 0;
+
+		// Synchronize manually.
+		virtual bool SyncHostToDevice(size_t offset = 0, size_t size = WHOLE_SIZE) = 0;
+		virtual bool SyncDeviceToHost(size_t offset = 0, size_t size = WHOLE_SIZE) = 0;
 	};
 
 	struct JFGPUBufferDescriptor
